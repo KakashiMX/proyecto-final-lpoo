@@ -117,6 +117,32 @@ public class ControladorBD {
         return usuarios;
     }
     
+    // método para obtener los datos del usuario al iniciar sesión
+    public Usuario consultarUsuario(String nombreUsuario, String contrasena){
+        Usuario usuario = new Usuario();
+        Statement sentenciaSQL;
+        ResultSet rs;
+        String query="SELECT * FROM usuarios WHERE usuario='" + nombreUsuario + "'";
+        
+        try {
+            sentenciaSQL = conexion.createStatement();
+            rs = sentenciaSQL.executeQuery(query);
+            
+            while( rs.next() ){
+                usuario.setIdUsuario(rs.getInt(1));
+                usuario.setUsuario(rs.getString(2));
+                usuario.setContrasena(rs.getString(3));
+                usuario.setRol(rs.getString(4));
+                usuario.setFechaCreacion(rs.getTimestamp(5));
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Excepcion: " + ex.getMessage() );
+        }
+        
+        return usuario;
+    }
+    
     // Actualiza un usuario de la DB de acuerdo a su nombre de usuario
     public boolean actualizarNombreUsuario(String usuarioAnterior, String usuarioNuevo){
         boolean estado=false;
