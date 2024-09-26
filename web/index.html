@@ -8,26 +8,53 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <title>Reservas</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./styles/styles.css"/>
     </head>
     <body>
-        <div class="container">
-            <form action="" method="post">
-                <div class="form-fields">
-                    <label>Usuario: </label>
-                    <input type="text" class="form-input"/>
-                </div>
-                
-                <div class="form-fields">
-                    <label>Contraseña:  </label>
-                    <input type="password" class="form-input"/>
-                </div>
-                
-                <input type="submit" value="Iniciar Sesion"/>
-                
-                <div class="form-fields">
-                    <p>Aun no tienes una cuenta <a><a href="registro.html" target="target">Registrate</a></p>
-                </div>
-            </form>
-        </div>
+        <div class="form-container">
+        <!-- Formulario -->
+        <form class="form">
+            <!-- Icono del formulario -->
+            <div class="form-icon">
+                <i class="fas fa-user-plus fa-2x"></i>
+            </div>
+            <!-- Título -->
+            <h1 class="form-title">Iniciar Sesión</h1>
+
+            <!-- Contenedor del icono y campo -->
+            <div class="form-group">
+                <!-- Icono del campo -->
+                <i class="fas fa-user-tag input-icon"></i>
+                <!-- campo de texto -->
+                <input 
+                    type="text" 
+                    class="form-input"
+                    placeholder="Nombre Usuario"
+                />
+            </div>
+            
+            <!-- Contenedor del icono y campo -->
+            <div class="form-group">
+                <!-- Icono del campo -->
+                <i class="fas fa-lock input-icon"></i>
+                <!-- campo de texto -->
+                <input 
+                    type="password"
+                    class="form-input"
+                    placeholder="Contraseña"
+                />
+            </div>
+
+            <!-- Condiciones del servicio -->
+            <small class="form-small">
+                <p>Aún no estas registrado <a href="registro.html" class="small-link"> Crear una cuenta</a></p>
+            </small>
+
+            <!-- Botón de envío -->
+            <button
+                type="submit" 
+                class="form-submit"
+            >Iniciar Sesión</button>
+        </form>
     </body>
 </html>

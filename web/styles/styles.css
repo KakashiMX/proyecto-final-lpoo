@@ -1,0 +1,133 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 25 sept 2024, 19:49:18
+    Author     : kakashi
+*/
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+body{
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    max-width: 100vw;
+    min-height: 100vh;
+}
+
+/* Estilos iguales al contendor,
+    icono del formulario,
+    contenedor del icono y campo
+ */
+.form-container,
+.form-icon,
+.form-group{
+    display: flex;
+    justify-content: center;
+}
+
+/*  Contenedor del formulario */
+.form-container{
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*  Icono del formulario */
+.form-icon{
+    position: absolute;
+    align-items: center;
+    width: 90px;
+    height: 90px;
+    top: -50px;
+    left: 37%;
+    padding: 5px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 6px 11px 13px -2px rgba(0,0,0,0.3);
+}
+
+
+/*  Formulario */
+.form{
+    position: relative;
+    width: 400px;
+    height: auto;
+    background-color: rgba(255, 255, 255, .4);
+    padding: 3rem;
+    border-radius: 15px;
+    margin-top: 100px;
+    box-shadow: 6px 11px 13px -2px rgba(0,0,0,0.3);
+    margin-bottom: 1.5rem;
+}
+
+/* Título */
+.form-title{
+    color: rgba(128, 128, 128, .7);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/*  Contenedor del icono y campo */
+.form-group{
+    margin-bottom: 15px;
+}
+
+/*  campo,
+    icono del campo,
+    botón submit
+*/
+.form-input,
+.form-submit,
+.input-icon{
+    padding: .8rem;
+    border: none;
+    outline: none;
+}
+
+/* Icono del formulario,
+    campo,
+    icono del campo,
+    condiciones del servicio
+ */
+.form-icon,
+.form-input,
+.input-icon,
+.form-small{
+    color: gray;
+}
+
+/* Icono del formulario y campos del mismo*/
+.form-input,
+.input-icon{
+    background-color: #fff;
+}
+
+.form-input{
+    flex: 1;
+}
+
+/*  Condiciones del servicio */
+.form-small{
+    display: block;
+    text-align: center;
+}
+
+/*  enlaces */
+.small-link{
+    text-decoration: none;
+}
+
+/* Botón submit */
+.form-submit{
+    background-color: rgba(40, 167, 69, .8);
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    margin-top: 1.5rem;
+    transition: background-color .5s ease-in;
+}
