@@ -44,8 +44,19 @@
                             boolean existe = controlador.verificarContrasena(nombreUsuario, contrasena);
 
                             if (existe) {
-                                // Redirigimos al usuario a otra página si es exitoso
-                                response.sendRedirect("inicio.jsp");
+                                // si el usuario existe, hay que traer su información ya que depende del rol del usuario
+                                // para ver a donde será redireccionado
+                                Usuario usuario = new Usuario();
+                                usuario = controlador.consultarUsuario(nombreUsuario, contrasena);
+                                // se obtiene el rol del usuario
+                                String rol = usuario.getRol();
+                                controlador.desconectar();
+                                
+                                if( rol.equalsIgnoreCase("usuario")){
+                                    response.sendRedirect("reservas.jsp");
+                                }else if( rol.equalsIgnoreCase("administrador")){
+                                    response.sendRedirect("panelAdministrador.jsp");
+                                }
                             } else {
                                 // Mostramos un mensaje de error
                                 out.print("<p id='mensajeError' class='form-alert hidden' data-show-error='true'>El nombre de usuario o la contraseña son incorrectos</p>");
@@ -70,7 +81,6 @@
                                 </script>
                                 <%
                             }
-                            controlador.desconectar();
                         }
                     %>
                 </div>
