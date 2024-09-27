@@ -143,6 +143,35 @@ public class ControladorBD {
         return usuario;
     }
     
+    public boolean yaExisteUsuario(String nombreUsuario){
+        boolean yaExiste = false;
+        Usuario usuario = new Usuario();
+        Statement sentenciaSQL;
+        ResultSet rs;
+        String query="SELECT * FROM usuarios WHERE usuario='" + nombreUsuario + "'";
+        
+        try {
+            sentenciaSQL = conexion.createStatement();
+            rs = sentenciaSQL.executeQuery(query);
+            
+            while( rs.next() ){
+                usuario.setIdUsuario(rs.getInt(1));
+                usuario.setUsuario(rs.getString(2));
+                usuario.setContrasena(rs.getString(3));
+                usuario.setRol(rs.getString(4));
+                usuario.setFechaCreacion(rs.getTimestamp(5));
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Excepcion: " + ex.getMessage() );
+        }
+        
+        if( usuario.getUsuario() != null){
+            yaExiste = true;
+        }
+        return yaExiste;
+    }
+    
     // Actualiza un usuario de la DB de acuerdo a su nombre de usuario
     public boolean actualizarNombreUsuario(String usuarioAnterior, String usuarioNuevo){
         boolean estado=false;
