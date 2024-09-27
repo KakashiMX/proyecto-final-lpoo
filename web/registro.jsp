@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 26 sept 2024, 14:28:07
+    Document   : registro
+    Created on : 26 sept 2024, 18:50:58
     Author     : kakashi
 --%>
 
@@ -10,11 +10,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Iniciar Sesión</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Registro</title>
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-        <link rel="stylesheet" type="text/css" href="styles/styles.css"/>
+        <link rel="stylesheet" href="./styles/styles.css"/>
     </head>
     <body>
         <div class="form-container">
@@ -25,42 +24,41 @@
                     <img src="./assets/images/logo.jpeg" alt="alt" class="form-icon-logo"/>
                 </div>
                 <!-- Título -->
-                <h1 class="form-title">Iniciar Sesión</h1>
-                
+                <h1 class="form-title">Registrar Cuenta</h1>
                 <div>
-                    <% 
+                    <%
                         // Solo procesamos si el método es POST y los campos no son nulos
                         if ("POST".equalsIgnoreCase(request.getMethod()) && 
                             request.getParameter("usuario") != null && 
-                            request.getParameter("contrasena") != null) {
-
+                            request.getParameter("contrasena") != null &&
+                            request.getParameter("repetirContrasena") != null ) {
+                            
+                            
+                            ControladorBD controlador = new ControladorBD();
+                            controlador.conectar();
                             // Obtenemos los valores del formulario
                             String nombreUsuario = request.getParameter("usuario");
                             String contrasena = request.getParameter("contrasena");
+                            String repetirContrasena = request.getParameter("repetirContrasena");
 
-                            // Validamos usuario y contraseña
-                            ControladorBD controlador = new ControladorBD();
-                            controlador.conectar();
-                            boolean existe = controlador.verificarContrasena(nombreUsuario, contrasena);
-
-                            if (existe) {
-                                // si el usuario existe, hay que traer su información ya que depende del rol del usuario
-                                // para ver a donde será redireccionado
-                                Usuario usuario = new Usuario();
-                                usuario = controlador.consultarUsuario(nombreUsuario, contrasena);
-                                // se obtiene el rol del usuario
-                                String rol = usuario.getRol();
-                                controlador.desconectar();
-                                
-                                if( rol.equalsIgnoreCase("usuario")){
-                                    response.sendRedirect("reservas.jsp");
-                                }else if( rol.equalsIgnoreCase("administrador")){
-                                    response.sendRedirect("panelAdministrador.jsp");
-                                }
-                            } else {
+                            if(nombreUsuario.trim() == "" || contrasena.trim() == "" || repetirContrasena.trim() == "" || !contrasena.equals(repetirContrasena)) {
                                 // Mostramos un mensaje de error
-                                out.print("<p id='mensajeError' class='form-alert hidden' data-show-error='true'>El nombre de usuario o la contraseña son incorrectos</p>");
-                                %>
+                                out.print("<p id='mensajeError' class='form-alert hidden' data-show-error='true'>Verifica que los datos sean correctos</p>");
+                            }else{
+                                boolean usuarioExistente = controlador.yaExisteUsuario(nombreUsuario);
+                                if( usuarioExistente){
+                                    out.print("<p id='mensajeError' class='form-alert hidden' data-show-error='true'>Intenta con otro nombre de usuario</p>");
+                                }else{
+                                    // agrega al usuario a la DB
+                                    Usuario nuevoUsuario = new Usuario(nombreUsuario, contrasena, "cliente");
+                                    // llama al método para crear un usuario nuevo
+                                    controlador.agregarUsuario(nuevoUsuario);
+                                    controlador.desconectar();
+                                    response.sendRedirect("reservas.jsp");
+                                }
+                                
+                            }
+                            %>
                                 <script>
                                     // este script sirve para ocultar la alerta despues de 3 segundos
                                     // Función para mostrar u ocultar el mensaje de error
@@ -80,10 +78,10 @@
                                     }
                                 </script>
                                 <%
-                            }
                         }
                     %>
                 </div>
+
                 <!-- Contenedor del icono y campo -->
                 <div class="form-group">
                     <!-- Icono del campo -->
@@ -110,17 +108,32 @@
                     />
                 </div>
 
+                <!-- Contenedor del icono y campo -->
+                <div class="form-group">
+                    <!-- Icono del campo -->
+                    <i class="fas fa-unlock input-icon"></i>
+                    <!-- campo de texto -->
+                    <input 
+                        type="password"
+                        class="form-input"
+                        placeholder="Confirmar Contraseña"
+                        name="repetirContrasena"
+                    />
+                </div>
+
                 <!-- Condiciones del servicio -->
                 <small class="form-small">
-                    <p>¿Aún no estas registrado? <a href="registro.jsp" class="small-link"> Crea una cuenta</a></p>
+                    Al registrarte estás aceptando los 
+                    <a href="!#" class="small-link">Términos de servicio</a> & 
+                    <a href="!#" class="small-link">Politica de privacidad</a>
                 </small>
 
                 <!-- Botón de envío -->
                 <button
                     type="submit" 
                     class="form-submit"
-                >Iniciar Sesión</button>
+                >Registrar</button>
             </form>
-       </div>
+        </div>
     </body>
 </html>
