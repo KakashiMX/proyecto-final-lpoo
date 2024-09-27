@@ -54,7 +54,11 @@
                                     // llama al método para crear un usuario nuevo
                                     controlador.agregarUsuario(nuevoUsuario);
                                     controlador.desconectar();
+<<<<<<< HEAD
                                     response.sendRedirect("index.jsp");
+=======
+                                    response.sendRedirect("reservas.jsp");
+>>>>>>> a43083a (Se agrego la funcionalidad para registrar usuarios)
                                 }
                                 
                             }

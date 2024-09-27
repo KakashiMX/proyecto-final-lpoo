@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/D:/OneDrive%20-%20Instituto%20Politecnico%20Nacional/Documents/NetBeansProjects/Proyecto_Final_LPOO/proyecto-final-lpoo/src/java/datos/ControladorBD.java</file>
             <file>file:/D:/OneDrive%20-%20Instituto%20Politecnico%20Nacional/Documents/NetBeansProjects/Proyecto_Final_LPOO/proyecto-final-lpoo/web/vistaHuesped/borrarHuespedes.jsp</file>
@@ -10,5 +11,8 @@
             <file>file:/D:/OneDrive%20-%20Instituto%20Politecnico%20Nacional/Documents/NetBeansProjects/Proyecto_Final_LPOO/proyecto-final-lpoo/web/vistaHuesped/consultarHuespedes.jsp</file>
             <file>file:/D:/OneDrive%20-%20Instituto%20Politecnico%20Nacional/Documents/NetBeansProjects/Proyecto_Final_LPOO/proyecto-final-lpoo/web/vistaHuesped/huespedes.jsp</file>
         </group>
+=======
+        <group/>
+>>>>>>> a43083a (Se agrego la funcionalidad para registrar usuarios)
     </open-files>
 </project-private>
