@@ -3,16 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
-import java.sql.Date;
+
+import java.time.LocalDate;
+
 /**
  *
  * @author kakashi
  */
 public class Huesped {
-    private int idHuesped;
+
+    private int id;
     private String nombre;
     private String apellido;
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private String nacionalidad;
     private String telefono;
     private Reserva reserva;
@@ -21,21 +24,44 @@ public class Huesped {
     public Huesped() {
     }
 
-    public Huesped(String nombre, String apellido, Date fechaNacimiento, String nacionalidad, String telefono, Reserva reserva) {
+    public Huesped(String nombre, String apellido, LocalDate fechaNacimiento, String nacionalidad, String telefono,
+            Integer idReserva) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
         this.nacionalidad = nacionalidad;
         this.telefono = telefono;
-        this.reserva = reserva;
+        this.idReserva = idReserva;
     }
 
-    public int getIdHuesped() {
-        return idHuesped;
+    public Huesped(Integer id, String nombre, String apellido, LocalDate fechaNacimiento, String nacionalidad,
+            String telefono, Integer idReserva) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNacimiento = fechaNacimiento;
+        this.nacionalidad = nacionalidad;
+        this.telefono = telefono;
+        this.idReserva = idReserva;
     }
 
-    public void setIdHuesped(int idHuesped) {
-        this.idHuesped = idHuesped;
+    public Huesped(String nombre, String apellido, LocalDate fechaNacimiento, String nacionalidad,
+            String telefono, Integer idReserva, Integer id) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNacimiento = fechaNacimiento;
+        this.nacionalidad = nacionalidad;
+        this.telefono = telefono;
+        this.idReserva = idReserva;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -54,11 +80,11 @@ public class Huesped {
         this.apellido = apellido;
     }
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -94,13 +120,10 @@ public class Huesped {
         this.idReserva = idReserva;
     }
 
-    
-   
-    
     @Override
     public String toString() {
-        return "Huesped " + "ID: " + idHuesped + ", Nombre completo: " + nombre + " " + apellido + ", Fecha de nacimiento: " + fechaNacimiento
+        return "Huesped " + "ID: " + id + ", Nombre completo: " + nombre + " " + apellido + ", Fecha de nacimiento: " + fechaNacimiento
                 + ", Nacionalidad: " + nacionalidad + ", Telefono: " + telefono + ", ID de reserva: " + idReserva;
     }
-    
+
 }
