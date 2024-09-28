@@ -27,7 +27,7 @@ import org.mindrot.jbcrypt.BCrypt;
 public class ControladorBD {
 
     private static final String USUARIO = "root";
-    private static final String PASSWORD = "Protegee7-Deceit-Harmful";
+    private static final String PASSWORD = "6421";
     private static final String URL = "jdbc:mysql://localhost:3306/";
     private static final String BD = "hotel";
 
@@ -447,8 +447,8 @@ public class ControladorBD {
      */
     public void agregarHuesped(Huesped huesped) {
     	try {
-    		String sql = "INSERT INTO huesped(nombre, apellido, fecha_nacimiento, nacionalidad, telefono, id_reserva)"
-    				+ "VALUES(?, ?, ?, ?, ?, ?)";
+    		String sql = "INSERT INTO huesped(nombre, apellido, fecha_nacimiento, nacionalidad, telefono)"
+    				+ "VALUES(?, ?, ?, ?, ?)";
     		final PreparedStatement statement = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
     		try(statement) {
     			statement.setString(1, huesped.getNombre());
@@ -456,7 +456,6 @@ public class ControladorBD {
     			statement.setObject(3, huesped.getFechaNacimiento());
     			statement.setString(4, huesped.getNacionalidad());
     			statement.setString(5, huesped.getTelefono());
-    			statement.setInt(6, huesped.getIdReserva());
     			
     			//statement.executeUpdate();
     			statement.execute();
@@ -495,11 +494,11 @@ public class ControladorBD {
     }
     
    public int actualizarHuesped(String nombre, String apellido, LocalDate fechaNacimiento, String nacionalidad,
-			String telefono, Integer idReserva, Integer id) {
+			String telefono, Integer id) {
         try {
           
 			String sql = "UPDATE huesped SET nombre = ?, apellido = ?, fecha_nacimiento = ?, nacionalidad = ?, " 
-			+ "telefono = ?, id_reserva = ? WHERE id = ?";
+			+ "telefono = ? WHERE id = ?";
         	
         	final PreparedStatement statement = conexion.prepareStatement(sql);
 
@@ -510,8 +509,7 @@ public class ControladorBD {
             	//statement.setObject(3, fechaNacimiento);
                 statement.setString(4, nacionalidad);
                 statement.setString(5, telefono);
-                statement.setInt(6, idReserva);
-                statement.setInt(7, id);
+                statement.setInt(6, id);
                 statement.execute();
                 //System.out.println("entrando a la base");
                 int updateCount = statement.getUpdateCount();
@@ -526,7 +524,7 @@ public class ControladorBD {
     
     public void eliminarHuesped(Integer id) {
 		try {
-			String sql = "DELETE FROM huespedes WHERE id = ?";
+			String sql = "DELETE FROM huesped WHERE id = ?";
 			PreparedStatement statement = conexion.prepareStatement(sql);
         	try (statement) {
         		//java.sql.Statement state = con.createStatement();
@@ -539,7 +537,7 @@ public class ControladorBD {
         		
 			} 
 		} catch (SQLException e) {
-			throw new RuntimeException("Animal" + e.getMessage() +e);
+			throw new RuntimeException("Exception: " + e.getMessage() +e);
 		}
 	}
     
@@ -554,9 +552,8 @@ public class ControladorBD {
             	LocalDate fechaNacimiento = resultSet.getDate("fecha_nacimiento").toLocalDate().plusDays(0);
             	String nacionalidad = resultSet.getString("nacionalidad");
             	String telefono = resultSet.getString("telefono");
-            	int idReserva = resultSet.getInt("id_reserva");
             	
-            	Huesped producto = new Huesped(nombre, apellido, fechaNacimiento, nacionalidad, telefono, idReserva);
+            	Huesped producto = new Huesped(idHuesped, nombre, apellido, fechaNacimiento, nacionalidad, telefono);
             	huespedes.add(producto);
             }
         } catch (SQLException e) {
