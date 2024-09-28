@@ -54,7 +54,7 @@
                                     // llama al método para crear un usuario nuevo
                                     controlador.agregarUsuario(nuevoUsuario);
                                     controlador.desconectar();
-                                    response.sendRedirect("reservas.jsp");
+                                    response.sendRedirect("index.jsp");
                                 }
                                 
                             }
