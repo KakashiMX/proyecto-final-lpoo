@@ -5,6 +5,9 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -18,41 +21,35 @@ public class Huesped {
     private LocalDate fechaNacimiento;
     private String nacionalidad;
     private String telefono;
-    private Reserva reserva;
-    private int idReserva;
 
     public Huesped() {
     }
 
-    public Huesped(String nombre, String apellido, LocalDate fechaNacimiento, String nacionalidad, String telefono,
-            Integer idReserva) {
+    public Huesped(String nombre, String apellido, LocalDate fechaNacimiento, String nacionalidad, String telefono) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
         this.nacionalidad = nacionalidad;
         this.telefono = telefono;
-        this.idReserva = idReserva;
     }
 
     public Huesped(Integer id, String nombre, String apellido, LocalDate fechaNacimiento, String nacionalidad,
-            String telefono, Integer idReserva) {
+            String telefono) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
         this.nacionalidad = nacionalidad;
         this.telefono = telefono;
-        this.idReserva = idReserva;
     }
-
+    
     public Huesped(String nombre, String apellido, LocalDate fechaNacimiento, String nacionalidad,
-            String telefono, Integer idReserva, Integer id) {
+            String telefono,Integer id) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
         this.nacionalidad = nacionalidad;
         this.telefono = telefono;
-        this.idReserva = idReserva;
         this.id = id;
     }
 
@@ -104,26 +101,24 @@ public class Huesped {
         this.telefono = telefono;
     }
 
-    public Reserva getReserva() {
-        return reserva;
-    }
+    
+    public Map<String, Integer> contarHuespedesPorNacionalidad(ArrayList<Huesped> huespedes) {
+        Map<String, Integer> nacionalidadesCount = new HashMap<>();
 
-    public void setReserva(Reserva reserva) {
-        this.reserva = reserva;
-    }
+        for (Huesped huesped : huespedes) {
+            String nacionalidad = huesped.getNacionalidad();
+            
+            // Si ya existe la nacionalidad en el mapa, se incrementa el contador
+            nacionalidadesCount.put(nacionalidad, nacionalidadesCount.getOrDefault(nacionalidad, 0) + 1);
+        }
 
-    public int getIdReserva() {
-        return idReserva;
+        return nacionalidadesCount;
     }
-
-    public void setIdReserva(int idReserva) {
-        this.idReserva = idReserva;
-    }
-
+    
     @Override
     public String toString() {
         return "Huesped " + "ID: " + id + ", Nombre completo: " + nombre + " " + apellido + ", Fecha de nacimiento: " + fechaNacimiento
-                + ", Nacionalidad: " + nacionalidad + ", Telefono: " + telefono + ", ID de reserva: " + idReserva;
+                + ", Nacionalidad: " + nacionalidad + ", Telefono: " + telefono;
     }
 
 }
