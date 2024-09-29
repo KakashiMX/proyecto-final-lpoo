@@ -12,96 +12,104 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <link rel="stylesheet" type="text/css" href="../styles/test.css"/>
         <title>Modulo Estadistico Huespedes</title>
     </head>
     <body>
-        <h1>Modulo Estadistico de Huespedes</h1>
-        <%
-            ControladorBD controlador = new ControladorBD();
-            ArrayList<Huesped> huespedes = new ArrayList<>();
+        <div class="container">
+            <div class="sidebar">
+                <img src="../assets/images/logo.jpeg" alt="Hotel Logo">
+                <ul>
+                    <li><a href="huespedes.jsp" class="menu-link"><i class="fas fa-user-plus"></i> Huéspedes</a></li> 
+                    <li><a href="agregarHuesped.jsp" class="menu-link"><i class="fas fa-user-plus"></i> Registrar Huéspedes</a></li>    
+                    <li><a href="actualizarHuesped.jsp" class="menu-link"><i class="fas fa-user-edit"></i> Modificar Huéspedes</a></li> 
+                    <li><a href="eliminarHuesped.jsp" class="menu-link"><i class="fas fa-user-times"></i> Borrar Huéspedes</a></li>
+                    <li><a href="consultarHuespedes.jsp" class="menu-link"><i class="fas fa-users"></i> Consultar Huéspedes</a></li>
+                </ul>
+            </div>
+            <div class="main-content">
+                <h1 class="form-title">Módulo Estadístico de Huéspedes</h1>
+                <%
+                    ControladorBD controlador = new ControladorBD();
+                    ArrayList<Huesped> huespedes = new ArrayList<>();
 
-            controlador.conectar();
+                    controlador.conectar();
+                    huespedes = controlador.consultarHuspedes();
+                    controlador.desconectar();
 
-            huespedes = controlador.consultarHuspedes();
+                    Map<String, Integer> numHuespedesNacionalidad = Huesped.contarHuespedesPorNacionalidad(huespedes);
+                    int promedioEdad = Huesped.calcularEdadPromedio(huespedes);
+                    Map<String, Integer> numHuespedesIntervaloEdad = Huesped.contarPorRangosDeEdad(huespedes);
+                    Map<String, Integer> numHuespedesNombre = Huesped.nombresMasComunes(huespedes);
+                    Map<String, Integer> numHuespedesApellido = Huesped.apellidosMasComunes(huespedes);
+                %>
 
-            controlador.desconectar();
+                <div class="main-content">
+                    <h2>Número de Huéspedes por Nacionalidad</h2>
+                    <table>
+                        <tr>
+                            <th>Nacionalidad</th>
+                            <th>Cantidad</th>
+                        </tr>
+                        <%
+                            for (Map.Entry<String, Integer> entry : numHuespedesNacionalidad.entrySet()) {
+                                out.println("<tr><td>" + entry.getKey() + "</td><td>" + entry.getValue() + "</td></tr>");
+                            }
+                        %>
+                    </table>
 
-            Map<String, Integer> numHuespedesNacionalidad = Huesped.contarHuespedesPorNacionalidad(huespedes);
+                    <h2>Número de Huéspedes por Intervalo de Edad</h2>
+                    <table>
+                        <tr>
+                            <th>Rango de Edad</th>
+                            <th>Cantidad</th>
+                        </tr>
+                        <%
+                            for (Map.Entry<String, Integer> entry : numHuespedesIntervaloEdad.entrySet()) {
+                                out.println("<tr><td>" + entry.getKey() + "</td><td>" + entry.getValue() + "</td></tr>");
+                            }
+                        %>
+                    </table>
 
-            int promedioEdad = Huesped.calcularEdadPromedio(huespedes);
-            
-            Map<String, Integer> numHuespedesIntervaloEdad=Huesped.contarPorRangosDeEdad(huespedes);
-            
-            Map<String, Integer> numHuespedesNombre=Huesped.nombresMasComunes(huespedes);
-            
-            Map<String, Integer> numHuespedesApellido=Huesped.apellidosMasComunes(huespedes);
+                    <h2>Número de Huéspedes con el Mismo Nombre</h2>
+                    <table>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Cantidad</th>
+                        </tr>
+                        <%
+                            for (Map.Entry<String, Integer> entry : numHuespedesNombre.entrySet()) {
+                                out.println("<tr><td>" + entry.getKey() + "</td><td>" + entry.getValue() + "</td></tr>");
+                            }
+                        %>
+                    </table>
 
-        %>
-        
-        <h2>Número de Huespedes por Nacionalidad</h2>
+                    <h2>Número de Huéspedes con el Mismo Apellido</h2>
+                    <table>
+                        <tr>
+                            <th>Apellido</th>
+                            <th>Cantidad</th>
+                        </tr>
+                        <%
+                            for (Map.Entry<String, Integer> entry : numHuespedesApellido.entrySet()) {
+                                out.println("<tr><td>" + entry.getKey() + "</td><td>" + entry.getValue() + "</td></tr>");
+                            }
+                        %>
+                    </table>
 
-        <table border=1, width="500">
-            <tr>
-                <th>Nacionalidad</th><th>Cantidad</th>
-            </tr>
-            <%                
-                for (Map.Entry<String, Integer> entry : numHuespedesNacionalidad.entrySet()) {
-                    out.println("<tr><td>" + entry.getKey() + "</td><td>" + entry.getValue() + "</td></tr>");
-                }
-            %>            
-        </table> 
-        <br><br>
-        
-        <h2>Número de Huespedes por intervalo de edad</h2>
-
-        <table border=1, width="500">
-            <tr>
-                <th>Rango de edad</th><th>Cantidad</th>
-            </tr>
-            <%                
-                for (Map.Entry<String, Integer> entry : numHuespedesIntervaloEdad.entrySet()) {
-                    out.println("<tr><td>" + entry.getKey() + "</td><td>" + entry.getValue() + "</td></tr>");
-                }
-            %>            
-        </table> 
-        <br><br>
-        
-        <h2>Número de Huespedes con el mismo nombre</h2>
-
-        <table border=1, width="500">
-            <tr>
-                <th>Nombre</th><th>Cantidad</th>
-            </tr>
-            <%                
-                for (Map.Entry<String, Integer> entry : numHuespedesNombre.entrySet()) {
-                    out.println("<tr><td>" + entry.getKey() + "</td><td>" + entry.getValue() + "</td></tr>");
-                }
-            %>            
-        </table> 
-        <br><br>
-        
-        <h2>Número de Huespedes con el mismo apellido</h2>
-
-        <table border=1, width="500">
-            <tr>
-                <th>Nombre</th><th>Cantidad</th>
-            </tr>
-            <%                
-                for (Map.Entry<String, Integer> entry : numHuespedesApellido.entrySet()) {
-                    out.println("<tr><td>" + entry.getKey() + "</td><td>" + entry.getValue() + "</td></tr>");
-                }
-            %>            
-        </table> 
-        <br><br>
-        
-        <h2>Promedio de la edad de huespedes</h2>
-
-        <table border=1, width="500">
-            <tr>
-                <th>Edad promedio</th><th><%out.print(promedioEdad+" años");%></th>
-            </tr>            
-        </table> 
-        <br><br>
+                    <h2>Promedio de la Edad de Huéspedes</h2>
+                    <table>
+                        <tr>
+                            <th>Edad Promedio</th>
+                            <td><% out.print(promedioEdad + " años");%></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
     </body>
+
 </html>
