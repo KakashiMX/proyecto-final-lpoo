@@ -53,12 +53,12 @@
                                 controlador.desconectar();
                                 
 <<<<<<< HEAD
-                                if( rol.equalsIgnoreCase("cliente")){
-                                    response.sendRedirect("panelUsuario.jsp");
-=======
                                 if( rol.equalsIgnoreCase("usuario")){
                                     response.sendRedirect("reservas.jsp?nombreUsuario=" + usuario.getUsuario() + "&rol=" + usuario.getRol());
->>>>>>> 6953514 (crud para reservas y enviando el nombre de usuario y rol por url)
+=======
+                                if( rol.equalsIgnoreCase("cliente")){
+                                    response.sendRedirect("panelUsuario.jsp");
+>>>>>>> 3c3a703979c65913a01038edbaf6f5a30585bf6b
                                 }else if( rol.equalsIgnoreCase("administrador")){
                                     response.sendRedirect("panelAdministrador.jsp?nombreUsuario=" + usuario.getUsuario() + "&rol=" + usuario.getRol());
                                 }

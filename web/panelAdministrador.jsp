@@ -15,11 +15,10 @@
         <h1>Panel del administrador</h1>
         <ul>
 <<<<<<< HEAD
-            <li><a href="vistaHuesped/huespedes.jsp">Huespedes</a></li>          
-=======
             <li><a href="huespedes.jsp">CRUD Huespedes</a></li>
-            <li><a href="reservas.jsp">CRUD Reservas</a></li>
->>>>>>> 6953514 (crud para reservas y enviando el nombre de usuario y rol por url)
+=======
+            <li><a href="vistaHuesped/huespedes.jsp">Huespedes</a></li>          
+>>>>>>> 3c3a703979c65913a01038edbaf6f5a30585bf6b
         </ul>
         
         <div> 
