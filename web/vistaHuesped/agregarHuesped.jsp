@@ -56,6 +56,7 @@
                                     } else {
                                         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                                         LocalDate fechaNacimiento = LocalDate.parse(fechaNac, formato);
+                                        out.println(fechaNacimiento);
 
                                         // Insertar datos a la base de datos
                                         ControladorBD controlador = new ControladorBD();
@@ -65,7 +66,7 @@
                                         controlador.agregarHuesped(huesped);
                                         controlador.desconectar();
 
-                                        response.sendRedirect(request.getContextPath() + "/vistaReserva/reservas.jsp");
+                                        response.sendRedirect("../vistaReserva/reservas.jsp");
                                     }
                                 }
                             %>
