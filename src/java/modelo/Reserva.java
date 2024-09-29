@@ -20,12 +20,13 @@ public class Reserva {
     public Reserva() {
     }
 
-    public Reserva(Date fechaEntrada, Date fechaSalida, double valor, String formaPago, int idHabitacion) {
+    public Reserva(Date fechaEntrada, Date fechaSalida, double valor, String formaPago, int idHabitacion, int idCliente) {
         this.fechaEntrada = fechaEntrada;
         this.fechaSalida = fechaSalida;
         this.valor = valor;
         this.formaPago = formaPago;
         this.idHabitacion = idHabitacion;
+        this.idCliente = idCliente;
     }
 
     public int getIdReserva() {
