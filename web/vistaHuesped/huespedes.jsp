@@ -21,7 +21,8 @@
         <ul>
             <li><a href="registroHuespedes.jsp">Registar Huespedes</a></li>    
             <li><a href="modificarHuespedes.jsp">Modificar Huespedes</a></li> 
-            <li><a href="borrarHuespedes.jsp">Borrar Huespedes</a></li> 
+            <li><a href="borrarHuespedes.jsp">Borrar Huespedes</a></li>
+            <li><a href="consultarHuespedes.jsp">Consultar Huespedes</a></li> 
         </ul>
        
     </body>
