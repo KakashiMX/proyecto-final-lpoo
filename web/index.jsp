@@ -52,34 +52,19 @@
                                 String rol = usuario.getRol();
                                 controlador.desconectar();
                                 
+<<<<<<< HEAD
                                 if( rol.equalsIgnoreCase("cliente")){
                                     response.sendRedirect("panelUsuario.jsp");
+=======
+                                if( rol.equalsIgnoreCase("usuario")){
+                                    response.sendRedirect("reservas.jsp?nombreUsuario=" + usuario.getUsuario() + "&rol=" + usuario.getRol());
+>>>>>>> 6953514 (crud para reservas y enviando el nombre de usuario y rol por url)
                                 }else if( rol.equalsIgnoreCase("administrador")){
-                                    response.sendRedirect("panelAdministrador.jsp");
+                                    response.sendRedirect("panelAdministrador.jsp?nombreUsuario=" + usuario.getUsuario() + "&rol=" + usuario.getRol());
                                 }
                             } else {
                                 // Mostramos un mensaje de error
                                 out.print("<p id='mensajeError' class='form-alert hidden' data-show-error='true'>El nombre de usuario o la contraseña son incorrectos</p>");
-                                %>
-                                <script>
-                                    // este script sirve para ocultar la alerta despues de 3 segundos
-                                    // Función para mostrar u ocultar el mensaje de error
-                                    function mostrarError(elemento) {
-                                        if (elemento.dataset.showError === 'true') {
-                                            elemento.classList.remove('hidden');
-                                            setTimeout(() => {
-                                                elemento.classList.add('hidden');
-                                            }, 3000); // Ocultar después de 3 segundos
-                                        }
-                                    }
-
-                                    // Llamar a la función si el atributo data-show-error está presente
-                                    const mensajeError = document.getElementById('mensajeError');
-                                    if (mensajeError) {
-                                        mostrarError(mensajeError);
-                                    }
-                                </script>
-                                <%
                             }
                         }
                     %>
@@ -122,5 +107,24 @@
                 >Iniciar Sesión</button>
             </form>
        </div>
+                
+    <script>
+        // este script sirve para ocultar la alerta despues de 3 segundos
+        // Función para mostrar u ocultar el mensaje de error
+        function mostrarError(elemento) {
+            if (elemento.dataset.showError === 'true') {
+                elemento.classList.remove('hidden');
+                setTimeout(() => {
+                    elemento.classList.add('hidden');
+                }, 3000); // Ocultar después de 3 segundos
+            }
+        }
+
+        // Llamar a la función si el atributo data-show-error está presente
+        const mensajeError = document.getElementById('mensajeError');
+        if (mensajeError) {
+            mostrarError(mensajeError);
+        }
+    </script>
     </body>
 </html>

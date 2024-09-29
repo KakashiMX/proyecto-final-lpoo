@@ -9,12 +9,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Panel administrador</title>
     </head>
     <body>
         <h1>Panel del administrador</h1>
         <ul>
+<<<<<<< HEAD
             <li><a href="vistaHuesped/huespedes.jsp">Huespedes</a></li>          
+=======
+            <li><a href="huespedes.jsp">CRUD Huespedes</a></li>
+            <li><a href="reservas.jsp">CRUD Reservas</a></li>
+>>>>>>> 6953514 (crud para reservas y enviando el nombre de usuario y rol por url)
         </ul>
+        
+        <div> 
+        </div>
     </body>
 </html>
