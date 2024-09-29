@@ -409,16 +409,20 @@ public class ControladorBD {
     }
 
     // Actualiza un usuario de la DB de acuerdo a su nombre de usuario
-    public boolean actualizarReserva(int idReserva, Date fechaEntrada, Date fechaSalida) {
+    public boolean actualizarReserva(int idReserva, Date fechaEntrada, Date fechaSalida, float valor, String formaPago, int idHabitacion) {
         boolean estado = false;
         PreparedStatement ps;
-        String query = "UPDATE reserva SET fecha_entrada= ?, fecha_salida = ? WHERE id=?";
+        String query = "UPDATE reserva SET fecha_entrada= ?, fecha_salida = ?,"+ 
+                " valor= ?, forma_pago = ?, habitacion_id = ? WHERE id=?";
 
         try {
             ps = conexion.prepareStatement(query);
             ps.setDate(1, fechaEntrada);
             ps.setDate(2, fechaSalida);
-            ps.setInt(3, idReserva);
+            ps.setFloat(3, valor);
+            ps.setString(4, formaPago);
+            ps.setInt(5, idHabitacion);
+            ps.setInt(6, idReserva);
             ps.execute();
             estado = true;
         } catch (SQLException ex) {
