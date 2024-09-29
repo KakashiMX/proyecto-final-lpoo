@@ -360,7 +360,7 @@ public class ControladorBD {
 
         PreparedStatement ps;
         String query = "INSERT INTO reserva (fecha_entrada, fecha_salida,"
-                + "valor, forma_pago, habitacion_id) VALUES(?, ?, ?, ?, ?)";
+                + "valor, forma_pago, habitacion_id, id_huesped) VALUES(?, ?, ?, ?, ?, ?)";
 
         try {
             ps = conexion.prepareStatement(query);
@@ -369,6 +369,7 @@ public class ControladorBD {
             ps.setDouble(3, reserva.getValor());
             ps.setString(4, reserva.getFormaPago());
             ps.setInt(5, reserva.getIdHabitacion());
+            ps.setInt(6, reserva.getIdCliente());
             ps.execute();
             estado = true;
         } catch (SQLException ex) {
@@ -396,6 +397,7 @@ public class ControladorBD {
                 reserva.setValor(rs.getDouble(4));
                 reserva.setFormaPago(rs.getString(5));
                 reserva.setIdHabitacion(rs.getInt(6));
+                reserva.setIdCliente(rs.getInt(7));
                 reservas.add(reserva);
             }
 
