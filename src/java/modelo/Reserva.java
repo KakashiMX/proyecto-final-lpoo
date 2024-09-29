@@ -15,6 +15,7 @@ public class Reserva {
     private double valor;
     private String formaPago;
     private int idHabitacion;
+    private int idCliente;
 
     public Reserva() {
     }
@@ -74,11 +75,20 @@ public class Reserva {
     public void setIdHabitacion(int idHabitacion) {
         this.idHabitacion = idHabitacion;
     }
+    
+    public int getIdCliente() {
+        return idHabitacion;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
 
     @Override
     public String toString() {
         return "Reserva " + "ID : " + idReserva + ", Fecha de entrada: " + fechaEntrada + ", Fecha de salida: " + fechaSalida
-                +", Costo de la habitacion: " + valor + ", Formato de pago: " + formaPago;
+                +", Costo de la habitacion: " + valor + ", Formato de pago: " + formaPago + "ID habitacion: " + idHabitacion
+                + ", ID cliente: " + idCliente;
     }
     
 }
