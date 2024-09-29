@@ -14,11 +14,7 @@
     <body>
         <h1>Panel del administrador</h1>
         <ul>
-<<<<<<< HEAD
-            <li><a href="huespedes.jsp">CRUD Huespedes</a></li>
-=======
-            <li><a href="vistaHuesped/huespedes.jsp">Huespedes</a></li>          
->>>>>>> 3c3a703979c65913a01038edbaf6f5a30585bf6b
+            <li><a href="vistaHuesped/huespedes.jsp">Huespedes</a></li>
         </ul>
         
         <div> 
