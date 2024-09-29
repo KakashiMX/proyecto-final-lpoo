@@ -9,9 +9,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Consultas Huesped</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Consultar Huespedes</h1><br>
+        <ul>
+            <li><a href="consultarNumeroHuespedesPorNacionalidad.jsp">Consultar numero de huespedes por nacionalidad</a></li> 
+            <li><a href="consultarHuespedesPorId.jsp">Consultar Huesped por Id</a></li>
+        </ul>
     </body>
 </html>

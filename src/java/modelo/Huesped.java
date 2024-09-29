@@ -115,6 +115,15 @@ public class Huesped {
         return nacionalidadesCount;
     }
     
+    public Huesped buscarHuespedPorId(ArrayList<Huesped> huespedes, int id) {
+    for (Huesped huesped : huespedes) {
+        if (huesped.getId() == id) {
+            return huesped; // Si el id coincide, devolver el huésped
+        }
+    }
+    return null; // Si no se encuentra, devolver null
+}
+    
     @Override
     public String toString() {
         return "Huesped " + "ID: " + id + ", Nombre completo: " + nombre + " " + apellido + ", Fecha de nacimiento: " + fechaNacimiento

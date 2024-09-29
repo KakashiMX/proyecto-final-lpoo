@@ -52,8 +52,8 @@
                                 String rol = usuario.getRol();
                                 controlador.desconectar();
                                 
-                                if( rol.equalsIgnoreCase("usuario")){
-                                    response.sendRedirect("reservas.jsp");
+                                if( rol.equalsIgnoreCase("cliente")){
+                                    response.sendRedirect("panelUsuario.jsp");
                                 }else if( rol.equalsIgnoreCase("administrador")){
                                     response.sendRedirect("panelAdministrador.jsp");
                                 }
