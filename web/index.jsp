@@ -56,7 +56,7 @@
                                 if( rol.equalsIgnoreCase("cliente")){
                                     response.sendRedirect("panelUsuario.jsp");
                                 }else if( rol.equalsIgnoreCase("administrador")){
-                                    response.sendRedirect("panelAdministrador.jsp?nombreUsuario=" + usuario.getUsuario() + "&rol=" + usuario.getRol());
+                                    response.sendRedirect("panelAdministrador.jsp");
                                 }
                             } else {
                                 // Mostramos un mensaje de error
