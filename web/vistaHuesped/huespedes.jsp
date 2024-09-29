@@ -4,7 +4,6 @@
     Author     : Usuario
 --%>
 
-<%@page import="modelo.Nacionalidad"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="modelo.Huesped"%>
 <%@page import="datos.ControladorBD"%>
@@ -12,17 +11,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Huespedes</title>
     </head>
     <body>
         <h1>Huespedes</h1>
 
         <ul>
-            <li><a href="registroHuespedes.jsp">Registar Huespedes</a></li>    
-            <li><a href="modificarHuespedes.jsp">Modificar Huespedes</a></li> 
-            <li><a href="borrarHuespedes.jsp">Borrar Huespedes</a></li>
-            <li><a href="consultarHuespedes.jsp">Consultar Huespedes</a></li> 
+            <li><a href="agregarHuesped.jsp">Registar Huespedes</a></li>    
+            <li><a href="actualizarHuesped.jsp">Modificar Huespedes</a></li> 
+            <li><a href="eliminarHuesped.jsp">Borrar Huespedes</a></li>
+            <li><a href="consultarHuespedes.jsp">Consultar Huespedes</a></li>
+            <li><a href="moduloEstadisticoHuesped.jsp">Modulo Estadistico de Huespedes</a></li> 
         </ul>
        
     </body>
