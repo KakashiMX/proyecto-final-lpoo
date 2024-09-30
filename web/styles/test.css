@@ -224,4 +224,34 @@ tr:hover {
     }
 }
 
+.admin-panel {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    max-height: 100vh;
+    overflow-y: auto;
+
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        margin-top: 20px;
+        font-size: 1.5em;
+    }
+
+    ul {
+        list-style-type: disc;
+        margin-left: 20px;
+    }
+
+    p {
+        margin: 15px 0;
+    }
+}
+
 

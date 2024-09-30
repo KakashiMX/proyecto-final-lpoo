@@ -23,30 +23,33 @@
                 <!-- Logo -->
                 <img src="./assets/images/logo.jpeg" alt="Hotel Logo">
                 <ul>
-                    <li><a href="vistaHuesped/huespedes.jsp" class="menu-link"><i class="fas fa-user-plus"></i>Huéspedes</a></li> 
-                    <li><a href="./vistaReserva/reservas.jsp" class="menu-link"><i class="fas fa-user-plus"></i>Reservas</a></li> 
+                    <li><a href="vistaHuesped/huespedes.jsp" class="menu-link"><i class="fas fa-users"></i>Huéspedes</a></li> 
+                    <li><a href="./vistaReserva/reservas.jsp" class="menu-link"><i class="fas fa-scroll"></i>Reservas</a></li> 
                 </ul>
             </div>
 
-            <!-- Main Content -->
-            <div class="main-content">
-                <!-- Header -->
-                <div class="header">
-                    <div>Sistema de reservas Hotel CRB Palace</div>
-                    <div class="date"><%out.print("Hoy es " + LocalDate.now());%></div>
-                </div>
+           <div class="admin-panel">
+                <h1>Bienvenido al Panel de Administración</h1>
 
-                <h1 class="title">Bienvenido</h1>
+                <p>
+                    Este sistema le permite gestionar de manera eficiente las reservas y huéspedes del hotel. A continuación, se describen las principales funciones que puede realizar desde este panel:
+                </p>
 
-                <div class="welcome-text">
-                    <p>Sistema del hotel. Controle y administre de forma óptima y fácil el flujo de reservas y de huéspedes del hotel.</p>
-                    <p>Esta herramienta le permitirá llevar un control completo y detallado de sus reservas y huéspedes, teniendo acceso a herramientas especiales para tareas específicas como lo son:</p>
-                    <ul>
-                        <li>Registro de Reservas y Huéspedes</li>
-                        <li>Edición de Reservas y Huéspedes existentes</li>
-                        <li>Eliminar todo tipo de registros</li>
-                    </ul>
-                </div>
+                <h2>Funciones Disponibles</h2>
+                <ul>
+                    <li>Registrar nuevas reservas</li>
+                    <li>Registrar nuevos huéspedes</li>
+                    <li>Editar reservas y huéspedes existentes</li>
+                    <li>Eliminar registros de reservas y huéspedes</li>
+                    <li>Consultar el historial de reservas</li>
+                    <li>Ver estadísticas básicas de ocupación y ventas</li>
+                </ul>
+
+                <h2>Instrucciones de Uso</h2>
+                <ul>
+                    <li>Utilice el menú de navegación en la parte lateral para acceder a las diferentes secciones del sistema</li>
+                    <li>Vea estadisticas para cada entidad (Huéspedes, Habitaciones y Reservas)</li>
+                </ul>
             </div>
         </div>
     </body>
