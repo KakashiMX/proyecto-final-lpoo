@@ -55,9 +55,10 @@
                 </div>
 
                 <div class="form-container">
-                    <form class="form" method="post">
+                    <form class="form" method="post" accept-charset="UTF-8">
                         <div>
                             <%
+                                request.setCharacterEncoding("UTF-8");
                                 if ("POST".equalsIgnoreCase(request.getMethod())
                                         && request.getParameter("nombre") != null
                                         && request.getParameter("apellido") != null

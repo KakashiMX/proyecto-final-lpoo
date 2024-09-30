@@ -174,19 +174,28 @@ public class Reserva {
     }
     
     public String promedioFormaDePago(ArrayList<Reserva> reservas){
-        int contadorTarjeta = 0, contadorEfectivo = 0;
+        int contadorEfectivo = 0, contadorTarjetaCredito = 0, contadorTarjetaDebito = 0, contadorPaypal = 0;
         for( Reserva reserva: reservas){
-            if( reserva.getFormaPago().equalsIgnoreCase("tarjeta") ){
-                contadorTarjeta++;
+            if( reserva.getFormaPago().equalsIgnoreCase("tarjeta de crédito") ){
+                contadorTarjetaCredito++;
             }else if( reserva.getFormaPago().equalsIgnoreCase("efectivo")){
                 contadorEfectivo++;
+            }else if( reserva.getFormaPago().equalsIgnoreCase("tarjeta de débito")){
+                contadorTarjetaDebito++;
+            }else if( reserva.getFormaPago().equalsIgnoreCase("paypal")){
+                contadorPaypal++;
             }
         }
-        float promedioTarjeta = ((float) contadorTarjeta / reservas.size()) * 100;
         float promedioEfectivo = ((float)  contadorEfectivo / reservas.size()) * 100;
+        float promedioTarjetaCredito = ((float) contadorTarjetaCredito / reservas.size()) * 100;
+        float promedioTarjetaDebito = ((float) contadorTarjetaDebito / reservas.size()) * 100;
+        float promedioPaypal = ((float)  contadorPaypal / reservas.size()) * 100;
+        
         return "De tus " + reservas.size() + " reservas, el " + 
-                promedioTarjeta + "% prefiere pagar con tarjeta y el otro " + 
-                promedioEfectivo + "% prefiere el pago en efectivo";
+                promedioEfectivo + "% prefiere pagar en efectivo, un " + 
+                promedioTarjetaCredito + "% prefiere el pago con tarjeta de crédito, otro " +
+                promedioTarjetaDebito + "% paga con tarjeta de débito, mientras que el " +
+                promedioPaypal + " paga usando paypal";
     }
     
     public String promedioTiempoEstadia(ArrayList<Reserva> reservas){
