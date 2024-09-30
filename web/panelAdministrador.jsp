@@ -15,6 +15,7 @@
         <h1>Panel del administrador</h1>
         <ul>
             <li><a href="vistaHuesped/huespedes.jsp">Huespedes</a></li>
+            <li><a href="vistaReserva/reservas.jsp">Reservas</a></li>
         </ul>
         
         <div> 

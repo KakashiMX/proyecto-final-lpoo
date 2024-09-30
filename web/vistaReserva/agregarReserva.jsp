@@ -4,6 +4,9 @@
     Author     : kakashi
 --%>
 
+<%@page import="modelo.Usuario"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="modelo.Habitacion"%>
 <%@page import="modelo.Reserva"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -39,5 +42,7 @@
             response.sendRedirect("reservas.jsp");
             
         %>
+        
+       
     </body>
 </html>

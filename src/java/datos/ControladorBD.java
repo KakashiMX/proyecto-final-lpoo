@@ -27,7 +27,7 @@ import org.mindrot.jbcrypt.BCrypt;
 public class ControladorBD {
 
     private static final String USUARIO = "root";
-    private static final String PASSWORD = "6421";
+    private static final String PASSWORD = "Protegee7-Deceit-Harmful";
     private static final String URL = "jdbc:mysql://localhost:3306/";
     private static final String BD = "hotel";
 
