@@ -23,14 +23,7 @@
        <div class="container">
         <!-- Sidebar -->
         <div class="sidebar">
-            <img src="../assets/images/logo.jpeg" alt="Hotel Logo">
-            <ul>
-                <li><a href="huespedes.jsp" class="menu-link"><i class="fas fa-user-plus"></i> Huéspedes</a></li> 
-                    <li><a href="agregarHuesped.jsp" class="menu-link"><i class="fas fa-user-plus"></i> Registrar Huéspedes</a></li>    
-                    <li><a href="actualizarHuesped.jsp" class="menu-link"><i class="fas fa-user-edit"></i> Modificar Huéspedes</a></li> 
-                    <li><a href="consultarHuespedes.jsp" class="menu-link"><i class="fas fa-users"></i> Consultar Huéspedes</a></li>
-                    <li><a href="moduloEstadisticoHuesped.jsp" class="menu-link"><i class="fas fa-chart-bar"></i> Módulo Estadístico</a></li> 
-            </ul>
+            <%@ include file="sideBarHuesped.jsp" %>
         </div>
         
         <!-- Main content -->
@@ -56,10 +49,10 @@
                 </div>
                 <form class="form" method="post">
                     <div class="form-group">
-                        Id <input 
+                        ID: <input 
                             type="text" 
                             class="form-input"
-                            placeholder="id"
+                            placeholder="Ingrese el valor a eliminar (ej: 5, 10)"
                             name="id"
                         />
                     </div>

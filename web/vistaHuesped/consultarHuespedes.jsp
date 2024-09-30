@@ -20,13 +20,7 @@
     <body>
         <div class="container">
             <div class="sidebar">
-                <img src="../assets/images/logo.jpeg" alt="Hotel Logo">
-                <ul>
-                    <li><a href="huespedes.jsp" class="menu-link"><i class="fas fa-user-plus"></i> Huéspedes</a></li> 
-                    <li><a href="agregarHuesped.jsp" class="menu-link"><i class="fas fa-user-plus"></i> Registrar Huéspedes</a></li>    
-                    <li><a href="eliminarHuesped.jsp" class="menu-link"><i class="fas fa-user-times"></i> Borrar Huéspedes</a></li>
-                    <li><a href="moduloEstadisticoHuesped.jsp" class="menu-link"><i class="fas fa-chart-bar"></i> Módulo Estadístico</a></li> 
-                </ul>
+                <%@ include file="sideBarHuesped.jsp" %>
             </div>
 
             <div class="main-content">
@@ -34,12 +28,12 @@
                     <h1 class="form-title">Consultar huésped por ID</h1>
                     <form class="form" method="post" onsubmit="return validateForm()">
                         <div class="form-group">
-                            <label for="id">Id</label>
+                            <label for="id">ID:</label>
                             <input 
                                 type="text" 
                                 id="id"
                                 class="form-input"
-                                placeholder="ID"
+                                placeholder="Ingrese el valor a buscar (ej: 4, 10)"
                                 name="id"
                                 required
                                 />

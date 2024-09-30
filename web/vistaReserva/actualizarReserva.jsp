@@ -33,18 +33,9 @@
             clientes = controlador.consultarUsuarios();
 
         %>
-        
         <div class="container">
             <div class="sidebar">
-                <!-- Logo -->
-                <img src="../assets/images/logo.jpeg" alt="Hotel Logo">
-                <ul>
-                    <li><a href="reservas.jsp" class="menu-link"><i class="fas fa-user-plus"></i> Reservas</a></li>  
-                    <li><a href="actualizarReserva.jsp" class="menu-link"><i class="fas fa-user-edit"></i> Modificar Reservas</a></li> 
-                    <li><a href="eliminarReserva.jsp" class="menu-link"><i class="fas fa-user-times"></i> Borrar Reserva</a></li>
-                    <li><a href="consultarReservas.jsp" class="menu-link"><i class="fas fa-users"></i> Consultar Reserva</a></li>
-                    <li><a href="moduloEstadisticoReserva.jsp" class="menu-link"><i class="fas fa-chart-bar"></i> Módulo Estadístico</a></li>    
-                </ul>
+                    <%@ include file="sideBarReserva.jsp" %>
             </div>
 
             <div class="main-content">
@@ -116,28 +107,28 @@
                         
                         <div class="form-group">
                             <label class="form-label">ID: </label>
-                            <input type="number" name='idReserva' />
+                            <input type="number" name='idReserva' class="form-input" required="true" placeholder="Ingrese el valor a actualizar (ej: 1, 8)"/>
                         </div>
                         
                         <div class="form-group">
                             <label class="form-label">Fecha de entrada:</label>
-                            <input type="date" name="nuevaFechaEntrada" />
+                            <input type="date" name="nuevaFechaEntrada" class="form-input" required="true"/>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Fecha de salida:</label>
-                            <input type="date" name="nuevaFechaSalida" />
+                            <input type="date" name="nuevaFechaSalida" class="form-input" required="true"/>
                         </div>
                         
                         <div class="form-group">
                             <label class="form-label">Forma de pago: </label>
-                            <select name="nuevaFormaPago">
+                            <select name="nuevaFormaPago" class="form-input" required="true">
                                 <option value="Tarjeta">Tarjeta</option>
                                 <option value="Efectivo">Efectivo</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Tipo de habitación: </label>
-                            <select name="nuevoTipoHabitacion" id="nuevoTipoHabitacion">
+                            <select name="nuevoTipoHabitacion" id="nuevoTipoHabitacion" class="form-input" required="true">
                                 <option value="">Selecciona una opción</option>
                                 <option value="Sencilla">Sencilla</option>
                                 <option value="Doble">Doble</option>
@@ -147,7 +138,7 @@
                         
                         <div class="form-group">
                             <label class="form-label">Habitaciones disponibles</label>
-                            <select name="nuevaHabitacionesDisponibles" id="nuevaHabitacionesDisponibles"></select>
+                            <select name="nuevaHabitacionesDisponibles" id="nuevaHabitacionesDisponibles" class="form-input" required="true"></select>
                         </div>
 
                      <button

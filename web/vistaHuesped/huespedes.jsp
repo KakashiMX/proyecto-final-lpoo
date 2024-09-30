@@ -21,15 +21,7 @@
         <div class="container">
             <!-- Sidebar -->
             <div class="sidebar">
-                <!-- Logo -->
-                <img src="../assets/images/logo.jpeg" alt="Hotel Logo">
-                <ul>
-                    <li><a href="agregarHuesped.jsp" class="menu-link"><i class="fas fa-user-plus"></i> Registrar Huéspedes</a></li>    
-                    <li><a href="actualizarHuesped.jsp" class="menu-link"><i class="fas fa-user-edit"></i> Modificar Huéspedes</a></li> 
-                    <li><a href="eliminarHuesped.jsp" class="menu-link"><i class="fas fa-user-times"></i> Borrar Huéspedes</a></li>
-                    <li><a href="consultarHuespedes.jsp" class="menu-link"><i class="fas fa-users"></i> Consultar Huéspedes</a></li>
-                    <li><a href="moduloEstadisticoHuesped.jsp" class="menu-link"><i class="fas fa-chart-bar"></i> Módulo Estadístico</a></li> 
-                </ul>
+                <%@ include file="sideBarHuesped.jsp" %>
             </div>
 
             <!-- Main Content -->

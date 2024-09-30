@@ -22,15 +22,7 @@
     <body>
         <div class="container">
             <div class="sidebar">
-                <!-- Logo -->
-                <img src="../assets/images/logo.jpeg" alt="Hotel Logo">
-                <ul>
-                    <li><a href="huespedes.jsp" class="menu-link"><i class="fas fa-user-plus"></i> Huéspedes</a></li>  
-                    <li><a href="actualizarHuesped.jsp" class="menu-link"><i class="fas fa-user-edit"></i> Modificar Huéspedes</a></li> 
-                    <li><a href="eliminarHuesped.jsp" class="menu-link"><i class="fas fa-user-times"></i> Borrar Huéspedes</a></li>
-                    <li><a href="consultarHuespedes.jsp" class="menu-link"><i class="fas fa-users"></i> Consultar Huéspedes</a></li>
-                    <li><a href="moduloEstadisticoHuesped.jsp" class="menu-link"><i class="fas fa-chart-bar"></i> Módulo Estadístico</a></li>    
-                </ul>
+                <%@ include file="sideBarHuesped.jsp" %>
             </div>
 
             <div class="main-content">
@@ -73,29 +65,32 @@
                         </div>
 
                         <div class="form-group">
-                            Nombre <input 
+                            Nombre: <input 
                                 type="text" 
                                 class="form-input"
                                 placeholder="Nombre"
                                 name="nombre"
+                                required="true"
                                 />
                         </div>
 
                         <div class="form-group">
-                            Apellido <input 
+                            Apellido: <input 
                                 type="text" 
                                 class="form-input"
                                 placeholder="Apellido"
                                 name="apellido"
+                                required="true"
                                 />
                         </div>
 
                         <div class="form-group">
-                            Fecha de nacimiento <input 
+                            Fecha de nacimiento: <input 
                                 type="text" 
                                 class="form-input"
                                 placeholder="dd/mm/yyyy"
                                 name="fechaNacimiento"
+                                required="true"
                                 />
                         </div>
 
@@ -103,7 +98,7 @@
                             <%
                                 ArrayList<String> nacionalidades = Huesped.obtenerNacionalidadesFijas();
                             %>
-                            Nacionalidad <select name="nacionalidad" class="form-input">
+                            Nacionalidad <select name="nacionalidad" class="form-input" required="true">
                                 <%
                                     for (String nac : nacionalidades) {
                                         out.print("<option>" + nac + "</option>");
@@ -118,6 +113,7 @@
                                 class="form-input"
                                 placeholder="Teléfono"
                                 name="telefono"
+                                required="true"
                                 />
                         </div>
                         <!-- Botón de envío -->

@@ -36,22 +36,13 @@
         
         <div class="container">
             <div class="sidebar">
-                <!-- Logo -->
-                <img src="../assets/images/logo.jpeg" alt="Hotel Logo">
-                <ul>
-                    <li><a href="reservas.jsp" class="menu-link"><i class="fas fa-user-plus"></i> Reservas</a></li>  
-                    <li><a href="actualizarReserva.jsp" class="menu-link"><i class="fas fa-user-edit"></i> Modificar Reservas</a></li> 
-                    <li><a href="eliminarReserva.jsp" class="menu-link"><i class="fas fa-user-times"></i> Borrar Reserva</a></li>
-                    <li><a href="consultarReservas.jsp" class="menu-link"><i class="fas fa-users"></i> Consultar Reserva</a></li>
-                    <li><a href="moduloEstadisticoReserva.jsp" class="menu-link"><i class="fas fa-chart-bar"></i> Módulo Estadístico</a></li>    
-                </ul>
+                <%@ include file="sideBarReserva.jsp" %>
             </div>
 
             <div class="main-content">
-                    
+                <h1 class="form-title">Eliminar Reserva</h1>
                 <div class="form-container">
                     <form method="post" class="form">
-                        <h1 class="form-title">Eliminar Reserva</h1>
                         <div>
                             <%
                                 if ("POST".equalsIgnoreCase(request.getMethod())) {
@@ -80,7 +71,7 @@
                         
                         <div class="form-group">
                             <label class="form-label">ID: </label>
-                            <input type="number" name="idReserva" class="form-input"/> 
+                            <input type="number" name="idReserva" class="form-input" placeholder="Ingrese el valor a eliminar (ej: 1, 8)"/> 
                         </div>
                         
                          <button

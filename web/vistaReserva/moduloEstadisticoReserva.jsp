@@ -20,13 +20,7 @@
     <body>
         <div class="container">
             <div class="sidebar">
-                <img src="../assets/images/logo.jpeg" alt="Hotel Logo">
-                <ul>
-                    <li><a href="reservas.jsp" class="menu-link"><i class="fas fa-user-plus"></i> Reservas</a></li>  
-                    <li><a href="actualizarReserva.jsp" class="menu-link"><i class="fas fa-user-edit"></i> Modificar Reservas</a></li> 
-                    <li><a href="eliminarReserva.jsp" class="menu-link"><i class="fas fa-user-times"></i> Borrar Reserva</a></li>
-                    <li><a href="consultarReservas.jsp" class="menu-link"><i class="fas fa-users"></i> Consultar Reserva</a></li>
-                </ul>
+                <%@ include file="sideBarReserva.jsp" %>
             </div>
             <div class="main-content">
                 <h1 class="form-title">Módulo Estadístico de Reservas</h1>

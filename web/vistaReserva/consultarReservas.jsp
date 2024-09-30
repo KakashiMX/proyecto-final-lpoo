@@ -22,28 +22,19 @@
     <body>
         <div class="container">
             <div class="sidebar">
-                <!-- Logo -->
-                <img src="../assets/images/logo.jpeg" alt="Hotel Logo">
-                <ul>
-                    <li><a href="reservas.jsp" class="menu-link"><i class="fas fa-user-plus"></i> Reservas</a></li>  
-                    <li><a href="actualizarReserva.jsp" class="menu-link"><i class="fas fa-user-edit"></i> Modificar Reservas</a></li> 
-                    <li><a href="eliminarReserva.jsp" class="menu-link"><i class="fas fa-user-times"></i> Borrar Reserva</a></li>
-                    <li><a href="consultarReservas.jsp" class="menu-link"><i class="fas fa-users"></i> Consultar Reserva</a></li>
-                    <li><a href="moduloEstadisticoReserva.jsp" class="menu-link"><i class="fas fa-chart-bar"></i> Módulo Estadístico</a></li>    
-                </ul>
+                <%@ include file="sideBarReserva.jsp" %>
             </div>
-            
             <div class="main-content">
                 <div class="form-container">
                     <h1 class="form-title">Consultar Reserva por ID</h1>
                     <form class="form" method="post" onsubmit="return validateForm()">
                         <div class="form-group">
-                            <label for="id">Id</label>
+                            <label for="id">ID: </label>
                             <input 
                                 type="text" 
                                 id="id"
                                 class="form-input"
-                                placeholder="ID"
+                                placeholder="Ingrese el valor a buscar (ej: 18, 24)"
                                 name="id"
                                 required
                                 />
@@ -103,7 +94,7 @@
                     <% } else if (idABuscar != null) {%>
                     <h3>No se encontró ningún huésped con el ID <%= idABuscar%></h3>
                     <% } else { %>
-                    <h3>Lista de todos los huéspedes</h3>
+                    <h3>Lista de todos las reservas</h3>
                     <table class="result-table">
                         <tr>
                             <th>Id Reserva</th>

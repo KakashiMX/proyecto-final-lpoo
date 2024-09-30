@@ -22,15 +22,7 @@
         <div class="container">
             <!-- Sidebar -->
             <div class="sidebar">
-                <!-- Logo -->
-                <img src="../assets/images/logo.jpeg" alt="Hotel Logo">
-                <ul>
-                    <li><a href="agregarReserva.jsp" class="menu-link"><i class="fas fa-user-plus"></i> Registrar Reservas</a></li>    
-                    <li><a href="actualizarReserva.jsp" class="menu-link"><i class="fas fa-user-edit"></i> Modificar Reservas</a></li> 
-                    <li><a href="eliminarReserva.jsp" class="menu-link"><i class="fas fa-user-times"></i> Borrar Reservas</a></li>
-                    <li><a href="consultarReservas.jsp" class="menu-link"><i class="fas fa-users"></i> Consultar Reservas</a></li>
-                    <li><a href="moduloEstadisticoReserva.jsp" class="menu-link"><i class="fas fa-chart-bar"></i> Módulo Estadístico</a></li> 
-                </ul>
+                <%@ include file="sideBarReserva.jsp" %>
             </div>
 
             <!-- Main Content -->

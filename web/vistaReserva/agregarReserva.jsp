@@ -35,18 +35,9 @@
             clientes = controlador.consultarUsuarios();
 
         %>
-        
         <div class="container">
             <div class="sidebar">
-                <!-- Logo -->
-                <img src="../assets/images/logo.jpeg" alt="Hotel Logo">
-                <ul>
-                    <li><a href="reservas.jsp" class="menu-link"><i class="fas fa-user-plus"></i> Reservas</a></li>  
-                    <li><a href="actualizarReserva.jsp" class="menu-link"><i class="fas fa-user-edit"></i> Modificar Reservas</a></li> 
-                    <li><a href="eliminarReserva.jsp" class="menu-link"><i class="fas fa-user-times"></i> Borrar Reserva</a></li>
-                    <li><a href="consultarReservas.jsp" class="menu-link"><i class="fas fa-users"></i> Consultar Reserva</a></li>
-                    <li><a href="moduloEstadisticoReserva.jsp" class="menu-link"><i class="fas fa-chart-bar"></i> Módulo Estadístico</a></li>    
-                </ul>
+                <%@ include file="sideBarReserva.jsp" %>
             </div>
 
             <div class="main-content">
@@ -88,23 +79,23 @@
                         
                         <div class="form-group">
                             <label class="form-label">Fecha de entrada:</label>
-                            <input type="date" name="fechaEntrada" />
+                            <input type="date" name="fechaEntrada" class="form-input" required="true"/>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Fecha de salida:</label>
-                            <input type="date" name="fechaSalida" />
+                            <input type="date" name="fechaSalida" class="form-input" required="true"/>
                         </div>
                         
                         <div class="form-group">
                             <label class="form-label">Forma de pago: </label>
-                            <select name="formaPago">
+                            <select name="formaPago" class="form-input" required="true">
                                 <option value="Tarjeta">Tarjeta</option>
                                 <option value="Efectivo">Efectivo</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Tipo de habitación: </label>
-                            <select name="tipoHabitacion" id="tipoHabitacion">
+                            <select name="tipoHabitacion" id="tipoHabitacion" class="form-input" required="true">
                                 <option value="">Selecciona una opción</option>
                                 <option value="Sencilla">Sencilla</option>
                                 <option value="Doble">Doble</option>
@@ -114,12 +105,12 @@
                         
                         <div class="form-group">
                             <label class="form-label">Habitaciones disponibles</label>
-                            <select name="habitacionDisponible" id="habitacionesDisponibles"></select>
+                            <select name="habitacionDisponible" id="habitacionesDisponibles" class="form-input" required="true"></select>
                         </div>
                         
                         <div class="form-group">
                             <label class="form-label">Cliente que realiza la reservación</label>
-                            <select name="idCliente">
+                            <select name="idCliente" class="form-input" required="true">
                                 <%
                                     for(Usuario cliente: clientes){
                                         if( cliente.getRol().equalsIgnoreCase("cliente") ){
@@ -139,7 +130,6 @@
                 </div>
             </div>
         </div>
-        
        <script>
                 // Generar dinámicamente la lista de habitaciones desde el servidor JSP
                 const habitaciones = [
