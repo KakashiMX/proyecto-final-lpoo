@@ -23,7 +23,8 @@
                 <!-- Logo -->
                 <img src="./assets/images/logo.jpeg" alt="Hotel Logo">
                 <ul>
-                    <li><a href="vistaHuesped/huespedes.jsp" class="menu-link"><i class="fas fa-user-plus"></i>Registro de Huéspedes</a></li> 
+                    <li><a href="vistaHuesped/huespedes.jsp" class="menu-link"><i class="fas fa-user-plus"></i>Huéspedes</a></li> 
+                    <li><a href="./vistaReserva/reservas.jsp" class="menu-link"><i class="fas fa-user-plus"></i>Reservas</a></li> 
                 </ul>
             </div>
 

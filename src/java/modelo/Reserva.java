@@ -6,8 +6,12 @@ package modelo;
 import datos.ControladorBD;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 /**
  *
  * @author kakashi
@@ -82,21 +86,21 @@ public class Reserva {
     }
     
     public int getIdCliente() {
-        return idHabitacion;
+        return idCliente;
     }
 
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
     
-    public String buscarPorId( ArrayList<Reserva> reservas, int idABuscar){
+    public Reserva buscarPorId( ArrayList<Reserva> reservas, int idABuscar){
         // Buscar la matrícula usando búsqueda binaria
         int encontrado = busquedaBinaria(reservas, idABuscar);
         
         if (encontrado != -1) {
-            return reservas.get(encontrado).toString();
+            return reservas.get(encontrado);
         } else {
-            return "No se encontro un registro con ese ID";
+            return null;
         }
     }
     
@@ -196,7 +200,7 @@ public class Reserva {
         }
         float promedioEstadia = contadorDias/reservas.size();
         
-        return "Los huespedes estan en nuestro hotel en un promedio de " + promedioEstadia + " dias";
+        return "Los huéspedes están en el hotel un promedio de " + promedioEstadia + " dias";
     }
     
     public String promedioGananciaPorDia(ArrayList<Reserva> reservas){
@@ -214,8 +218,42 @@ public class Reserva {
         }
         double promedioPorDia = precioTotalReservas / contadorDias ;
         return "Tienes " + reservas.size() + " reservas, lo que equivale a $" + String.format("%.2f", precioTotalReservas) +
-                " pesos de ganancias, por lo tanto en un dia se obtienen $" + String.format("%.2f", promedioPorDia) + " pesos de ganancia";
+                " pesos netos, por lo tanto en un dia se obtienen $" + String.format("%.2f", promedioPorDia) + " pesos de ganancia";
     }
+    
+    public Map<String, Integer> obtenerReservasPorMes(List<Reserva> reservas) {
+        Map<String, Integer> reservasPorMes = new HashMap<>();
+
+        for (Reserva reserva : reservas) {
+            LocalDate fechaEntrada = reserva.getFechaEntrada().toLocalDate();
+            String mes = fechaEntrada.getMonth().toString();
+            reservasPorMes.put(mes, reservasPorMes.getOrDefault(mes, 0) + 1);
+        }
+        return reservasPorMes;
+    }
+    
+    public Map<Integer, Double> obtenerPromedioEstadiaPorCliente(List<Reserva> reservas) {
+        Map<Integer, Long> totalDiasPorCliente = new HashMap<>();
+        Map<Integer, Integer> reservasPorCliente = new HashMap<>();
+
+        for (Reserva reserva : reservas) {
+            int idCliente = reserva.getIdCliente();
+            long diasEstadia = ChronoUnit.DAYS.between(reserva.getFechaEntrada().toLocalDate(), reserva.getFechaSalida().toLocalDate());
+
+            totalDiasPorCliente.put(idCliente, totalDiasPorCliente.getOrDefault(idCliente, 0L) + diasEstadia);
+            reservasPorCliente.put(idCliente, reservasPorCliente.getOrDefault(idCliente, 0) + 1);
+        }
+
+        // Calcular el promedio por cliente
+        Map<Integer, Double> promedioEstadiaPorCliente = new HashMap<>();
+        for (Map.Entry<Integer, Long> entry : totalDiasPorCliente.entrySet()) {
+            int idCliente = entry.getKey();
+            double promedio = (double) entry.getValue() / reservasPorCliente.get(idCliente);
+            promedioEstadiaPorCliente.put(idCliente, promedio);
+        }
+        return promedioEstadiaPorCliente;
+    }
+    
 
     @Override
     public String toString() {
