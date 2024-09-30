@@ -20,8 +20,8 @@
                 <li><a href="reservas.jsp" class="menu-link"><i class="fas fa-info"></i>Información</a></li>
                 <li><a href="agregarReserva.jsp" class="menu-link"><i class="fas fa-calendar-plus"></i>Registrar Reserva</a></li>   
                 <li><a href="actualizarReserva.jsp" class="menu-link"><i class="fas fa-calendar-check"></i> Modificar Reservas</a></li> 
-                <li><a href="eliminarReserva.jsp" class="menu-link"><i class="fas fa-calendar-minus"></i>Borrar Reserva</a></li>
-                <li><a href="consultarReservas.jsp" class="menu-link"><i class="fas fa-calendar-day"></i> Consultar Reserva</a></li>
+                <li><a href="eliminarReserva.jsp" class="menu-link"><i class="fas fa-calendar-minus"></i>Borrar Reservas</a></li>
+                <li><a href="consultarReservas.jsp" class="menu-link"><i class="fas fa-calendar-day"></i> Consultar Reservas</a></li>
                 <li><a href="moduloEstadisticoReserva.jsp" class="menu-link"><i class="fas fa-chart-bar"></i> Módulo Estadístico</a></li> 
             </ul>
     </body>
