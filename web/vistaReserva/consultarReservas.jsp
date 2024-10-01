@@ -100,7 +100,7 @@
                             out.print("<tr><td>" + reservaId.getIdReserva()+ "</td>");
                             for( Huesped huesped: huespedes){
                                 if( huesped.getId() == reservaId.getIdCliente() ){
-                                    out.print("<td>" + huesped.getNombre()+ " " + huesped.getApellido() + "</td></tr>");
+                                    out.print("<td>" + huesped.getNombre()+ " " + huesped.getApellido() + "</td>");
                                 }
                             }
                             out.print("<td>" + reservaId.getFechaEntrada()+ "</td>");
@@ -110,7 +110,7 @@
                                 if( habitacion.getIdHabitacion() == reservaId.getIdHabitacion()){
                                     out.print("<td>" + habitacion.getNumHabitacion() + "</td>");
                                     out.print("<td>" + habitacion.getTipoHabitacion() + "</td>");
-                                    out.print("<td>" + habitacion.getPrecio() + "</td>");
+                                    out.print("<td>" + habitacion.getPrecio() + "</td></tr>");
                                 }
                             }
                         %>            
