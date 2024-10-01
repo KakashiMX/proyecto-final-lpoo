@@ -29,34 +29,11 @@ import java.util.Map;
  */
 public class Huesped {
 
-    /**
-     * Identificador único del huésped.
-     */
     private Integer id;
-
-    /**
-     * Nombre del huésped.
-     */
     private String nombre;
-
-    /**
-     * Apellido del huésped.
-     */
     private String apellido;
-
-    /**
-     * Fecha de nacimiento del huésped.
-     */
     private LocalDate fechaNacimiento;
-
-    /**
-     * Nacionalidad del huésped.
-     */
     private String nacionalidad;
-
-    /**
-     * Teléfono del huésped.
-     */
     private String telefono;
 
     /**
@@ -548,7 +525,7 @@ public class Huesped {
     }
 
     /**
-     * 
+     * Sobreescribe el metodo toString para la Clase Huesped.
      * @return el estado del Huesped
      */
     @Override
