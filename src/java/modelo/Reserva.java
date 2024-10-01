@@ -93,43 +93,6 @@ public class Reserva {
         this.idCliente = idCliente;
     }
     
-    public Reserva buscarPorId( ArrayList<Reserva> reservas, int idABuscar){
-        // Buscar la matrícula usando búsqueda binaria
-        int encontrado = busquedaBinaria(reservas, idABuscar);
-        
-        if (encontrado != -1) {
-            return reservas.get(encontrado);
-        } else {
-            return null;
-        }
-    }
-    
-    private int busquedaBinaria(ArrayList<Reserva> reservas, int idABuscar) {
-        int inicio = 0;
-        int fin = reservas.size() - 1;
-
-        while (inicio <= fin) {
-            int medio = inicio + (fin - inicio) / 2;
-
-            // Verificar si la matrícula está en el medio
-            if (reservas.get(medio).getIdReserva() == idABuscar) {
-                return medio;
-            }
-
-            // Si la matrícula es mayor, ignorar la mitad izquierda
-            if (reservas.get(medio).getIdReserva() < idABuscar) {
-                inicio = medio + 1;
-            }
-            // Si la matrícula es menor, ignorar la mitad derecha
-            else {
-                fin = medio - 1;
-            }
-        }
-
-        // Si la reserva no está presente en el arreglo
-        return -1;
-    }
-    
     public ArrayList<Reserva> ordenarPorFechaEntrada(ArrayList<Reserva> reservas){
         reservas = quickSort(reservas, 0, reservas.size()-1);
         return reservas;
