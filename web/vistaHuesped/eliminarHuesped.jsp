@@ -43,7 +43,7 @@
                             controlador.conectar();
                             controlador.eliminarHuesped(id);
                             controlador.desconectar();
-                            response.sendRedirect(request.getContextPath() + "/vistaHuesped/eliminarHuesped.jsp");
+                            response.sendRedirect("eliminarHuesped.jsp");
                         }
                     %>
                 </div>
