@@ -1,7 +1,9 @@
 <%-- 
     Document   : index
     Created on : 26 sept 2024, 14:28:07
-    Author     : kakashi
+    Author     : Nava Ricardo
+    Author     : Ceron Cristian
+    Author     : Hernández Monserrath
 --%>
 
 <%@page import="modelo.Administrador"%>
