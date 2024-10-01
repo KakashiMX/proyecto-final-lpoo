@@ -20,7 +20,7 @@
         <title>Eliminar Reserva</title>
     </head>
     <body>
-        
+        <script src="../javascript/script.js"></script>
             
         <%
             ControladorBD controlador = new ControladorBD();

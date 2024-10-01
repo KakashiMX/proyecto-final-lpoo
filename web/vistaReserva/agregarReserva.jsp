@@ -23,6 +23,7 @@
         <title>Agregar Reserva</title>
     </head>
     <body>
+        <script src="../javascript/script.js"></script>
         <%
             ControladorBD controlador = new ControladorBD();
             ArrayList<Reserva> reservas = new ArrayList<>();
@@ -33,7 +34,7 @@
             habitaciones = controlador.consultarHabitaciones();
             reservas = controlador.consultarReservas();
             huespedes = controlador.consultarHuspedes();
-
+            
         %>
         <div class="container">
             <div class="sidebar">
@@ -171,7 +172,6 @@
                             selectHabitacionesDisponibles.appendChild(optionSelect);
                         });
                     }
-                    
                 });
         </script>
     </body>

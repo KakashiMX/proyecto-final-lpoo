@@ -17,6 +17,7 @@
         <title>Hotel CRM Palace </title>
     </head>
     <body>
+        <script src="./javascript/script.js"></script>
          <div class="container">
             <!-- Sidebar -->
             <div class="sidebar">

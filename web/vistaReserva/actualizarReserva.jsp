@@ -21,6 +21,7 @@
         <title>Actualizar Reserva</title>
     </head>
     <body>
+        <script src="../javascript/script.js"></script>
        <%
             ControladorBD controlador = new ControladorBD();
             ArrayList<Reserva> reservas = new ArrayList<>();
