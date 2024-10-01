@@ -27,13 +27,12 @@
 
             <div class="main-content">
                 <div class="form-container">
-                    <form class="form" method="post" accept-charset="UTF-8">
+                    <form class="form" method="post">
                         <!-- Título -->
                         <h1 class="form-title">Registro de Huésped</h1>
                         <div>
                             <%
                                 if ("POST".equalsIgnoreCase(request.getMethod())) {
-                                    request.setCharacterEncoding("UTF-8");
                                     String nombre = request.getParameter("nombre");
                                     String apellido = request.getParameter("apellido");
                                     String fechaNac = request.getParameter("fechaNacimiento");
@@ -43,13 +42,13 @@
                                     if (nombre == null || nombre.trim().isEmpty()
                                             || apellido == null || apellido.trim().isEmpty()
                                             || fechaNac == null || fechaNac.trim().isEmpty()
-                                            || nacionalidad == null || nacionalidad.trim().isEmpty()) {
+                                            || nacionalidad == null || nacionalidad.trim().isEmpty()
+                                            || telefono == null || telefono.trim().isEmpty()) {
 
                                         out.println("<p style='color:red;'>Todos los campos son obligatorios</p>");
                                     } else {
-                                        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                                        LocalDate fechaNacimiento = LocalDate.parse(fechaNac, formato);
-                                        out.println(fechaNacimiento);
+
+                                        LocalDate fechaNacimiento = LocalDate.parse(fechaNac);
 
                                         // Insertar datos a la base de datos
                                         ControladorBD controlador = new ControladorBD();
@@ -84,15 +83,9 @@
                                 required="true"
                                 />
                         </div>
-
                         <div class="form-group">
-                            Fecha de nacimiento: <input 
-                                type="text" 
-                                class="form-input"
-                                placeholder="dd/mm/yyyy"
-                                name="fechaNacimiento"
-                                required="true"
-                                />
+                            <label class="form-label">Fecha de nacimiento</label>
+                            <input type="date" name="fechaNacimiento" class="form-input" required="true"/>
                         </div>
 
                         <div class="form-group">
