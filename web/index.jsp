@@ -4,7 +4,7 @@
     Author     : kakashi
 --%>
 
-<%@page import="modelo.Usuario"%>
+<%@page import="modelo.Administrador"%>
 <%@page import="datos.ControladorBD"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,39 +26,35 @@
                 </div>
                 <!-- Título -->
                 <h1 class="form-title">Iniciar Sesión</h1>
-                
+
                 <div>
-                    <% 
+                    <%
                         // Solo procesamos si el método es POST y los campos no son nulos
-                        if ("POST".equalsIgnoreCase(request.getMethod()) && 
-                            request.getParameter("usuario") != null && 
-                            request.getParameter("contrasena") != null) {
+                        if ("POST".equalsIgnoreCase(request.getMethod())
+                                && request.getParameter("administrador") != null
+                                && request.getParameter("contrasena") != null) {
 
                             // Obtenemos los valores del formulario
-                            String nombreUsuario = request.getParameter("usuario");
+                            String nombreAdministrador = request.getParameter("administrador");
                             String contrasena = request.getParameter("contrasena");
 
                             // Validamos usuario y contraseña
                             ControladorBD controlador = new ControladorBD();
                             controlador.conectar();
-                            boolean existe = controlador.verificarContrasena(nombreUsuario, contrasena);
+                            boolean existe = controlador.verificarContrasena(nombreAdministrador, contrasena);
 
                             if (existe) {
                                 // si el usuario existe, hay que traer su información ya que depende del rol del usuario
                                 // para ver a donde será redireccionado
-                                Usuario usuario = new Usuario();
-                                usuario = controlador.consultarUsuario(nombreUsuario, contrasena);
-                                // se obtiene el rol del usuario
-                                String rol = usuario.getRol();
+                                Administrador administrador = new Administrador();
+                                administrador = controlador.consultarAdministrador(nombreAdministrador, contrasena);
                                 controlador.desconectar();
-                                
 
-                                if( rol.equalsIgnoreCase("administrador")){
-                                    response.sendRedirect("panelAdministrador.jsp");
-                                }
+                                response.sendRedirect("panelAdministrador.jsp");
+
                             } else {
                                 // Mostramos un mensaje de error
-                                out.print("<p id='mensajeError' class='form-alert hidden' data-show-error='true'>El nombre de usuario o la contraseña son incorrectos</p>");
+                                out.print("<p id='mensajeError' class='form-alert hidden' data-show-error='true'>El nombre de administrador o la contraseña son incorrectos</p>");
                             }
                         }
                     %>
@@ -71,10 +67,10 @@
                     <input 
                         type="text" 
                         class="form-input"
-                        placeholder="Nombre Usuario"
-                        name="usuario"
-                        id="nombreUsuario"
-                    />
+                        placeholder="Nombre Administrador"
+                        name="administrador"
+                        id="nombreAdministrador"
+                        />
                 </div>
 
                 <!-- Contenedor del icono y campo -->
@@ -87,7 +83,7 @@
                         class="form-input"
                         placeholder="Contraseña"
                         name="contrasena"
-                    />
+                        />
                 </div>
 
                 <!-- Condiciones del servicio -->
@@ -99,30 +95,30 @@
                 <button
                     type="submit" 
                     class="form-submit"
-                >Iniciar Sesión</button>
+                    >Iniciar Sesión</button>
             </form>
-       </div>
-                
-    <script>
-        // este script sirve para ocultar la alerta despues de 3 segundos
-        // Función para mostrar u ocultar el mensaje de error
-        function mostrarError(elemento) {
-            if (elemento.dataset.showError === 'true') {
-                elemento.classList.remove('hidden');
-                setTimeout(() => {
-                    elemento.classList.add('hidden');
-                }, 3000); // Ocultar después de 3 segundos
-            }
-        }
+        </div>
 
-        // Llamar a la función si el atributo data-show-error está presente
-        const mensajeError = document.getElementById('mensajeError');
-        if (mensajeError) {
-            mostrarError(mensajeError);
-        }
-        document.getElementById('formInicioSesion').addEventListener('submit', () => {
-           localStorage.setItem("Usuario", document.getElementById('nombreUsuario').value);
-        });
-    </script>
+        <script>
+            // este script sirve para ocultar la alerta despues de 3 segundos
+            // Función para mostrar u ocultar el mensaje de error
+            function mostrarError(elemento) {
+                if (elemento.dataset.showError === 'true') {
+                    elemento.classList.remove('hidden');
+                    setTimeout(() => {
+                        elemento.classList.add('hidden');
+                    }, 3000); // Ocultar después de 3 segundos
+                }
+            }
+
+            // Llamar a la función si el atributo data-show-error está presente
+            const mensajeError = document.getElementById('mensajeError');
+            if (mensajeError) {
+                mostrarError(mensajeError);
+            }
+            document.getElementById('formInicioSesion').addEventListener('submit', () => {
+                localStorage.setItem("Usuario", document.getElementById('nombreUsuario').value);
+            });
+        </script>
     </body>
 </html>
