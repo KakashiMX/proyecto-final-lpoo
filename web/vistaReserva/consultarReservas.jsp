@@ -86,33 +86,31 @@
                     <table class="result-table">
                         <tr>
                             <th>Id Reserva</th>
+                            <th>Nombre Huésped</th>
                             <th>Fecha de entrada</th>
                             <th>Fecha de salida</th>
                             <th>Forma de pago</th>
-                            <th>Id Habitacion</th>
+                            <th>Número Habitacion</th>
                             <th>Tipo</th>
                             <th>Costo por noche</th>
-                            <th>Id Huésped</th>
-                            <th>Nombre Huésped</th>
                         </tr>
                         <%
                             out.print("<tr><td>" + reservaId.getIdReserva()+ "</td>");
+                            for( Huesped huesped: huespedes){
+                                if( huesped.getId() == reservaId.getIdCliente() ){
+                                    out.print("<td>" + huesped.getNombre()+ " " + huesped.getApellido() + "</td></tr>");
+                                }
+                            }
                             out.print("<td>" + reservaId.getFechaEntrada()+ "</td>");
                             out.print("<td>" + reservaId.getFechaSalida()+ "</td>");
                             out.print("<td>" + reservaId.getFormaPago() + "</td>");
-                            out.print("<td>" + reservaId.getIdHabitacion() + "</td>");
                             for( Habitacion habitacion: habitaciones){
-                                    if( habitacion.getIdHabitacion() == reservaId.getIdHabitacion()){
-                                        out.print("<td>" + habitacion.getTipoHabitacion() + "</td>");
-                                    }
+                                if( habitacion.getIdHabitacion() == reservaId.getIdHabitacion()){
+                                    out.print("<td>" + habitacion.getNumHabitacion() + "</td>");
+                                    out.print("<td>" + habitacion.getTipoHabitacion() + "</td>");
+                                    out.print("<td>" + habitacion.getPrecio() + "</td>");
                                 }
-                            out.print("<td>" + reservaId.getValor() + "</td>");
-                            for( Huesped huesped: huespedes){
-                                    if( huesped.getId() == reservaId.getIdCliente() ){
-                                        out.print("<td>" + reservaId.getIdCliente()+ "</td>");
-                                        out.print("<td>" + huesped.getNombre()+ " " + huesped.getApellido() + "</td></tr>");
-                                    }
-                                }
+                            }
                         %>            
                     </table> 
                     <% } else if (idABuscar != null) {%>
@@ -122,32 +120,30 @@
                     <table class="result-table">
                         <tr>
                             <th>Id Reserva</th>
+                            <th>Nombre Huésped</th>
                             <th>Fecha de entrada</th>
                             <th>Fecha de salida</th>
                             <th>Forma de pago</th>
-                            <th>Id Habitacion</th>
+                            <th>Número Habitacion</th>
                             <th>Tipo</th>
                             <th>Costo por noche</th>
-                            <th>Id Huésped</th>
-                            <th>Nombre Huésped</th>
                         </tr>
                         <%
                             for (Reserva reserva : reservas) {
                                 out.print("<tr><td>" + reserva.getIdReserva() + "</td>");
+                                for( Huesped huesped: huespedes){
+                                    if( huesped.getId() == reserva.getIdCliente() ){
+                                        out.print("<td>" + huesped.getNombre()+ " " + huesped.getApellido() + "</td>");
+                                    }
+                                }
                                 out.print("<td>" + reserva.getFechaEntrada() + "</td>");
                                 out.print("<td>" + reserva.getFechaSalida() + "</td>");
                                 out.print("<td>" + reserva.getFormaPago()+ "</td>");
-                                out.print("<td>" + reserva.getIdHabitacion() + "</td>");
                                 for( Habitacion habitacion: habitaciones){
                                     if( habitacion.getIdHabitacion() == reserva.getIdHabitacion()){
+                                        out.print("<td>" + habitacion.getNumHabitacion()+ "</td>");
                                         out.print("<td>" + habitacion.getTipoHabitacion() + "</td>");
-                                    }
-                                }
-                                out.print("<td>" + reserva.getValor() + "</td>");
-                                for( Huesped huesped: huespedes){
-                                    if( huesped.getId() == reserva.getIdCliente() ){
-                                        out.print("<td>" + reserva.getIdCliente()+ "</td>");
-                                        out.print("<td>" + huesped.getNombre()+ " " + huesped.getApellido() + "</td></tr>");
+                                        out.print("<td>" + habitacion.getPrecio() + "</td></tr>");
                                     }
                                 }
                             }
