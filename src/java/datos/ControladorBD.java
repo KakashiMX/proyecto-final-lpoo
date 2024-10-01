@@ -99,7 +99,7 @@ public class ControladorBD {
         boolean estado = false;
 
         PreparedStatement ps;
-        String query = "INSERT INTO usuario (usuario, contrasena, rol, fecha_creacion) VALUES(?, ?, ?, ?)";
+        String query = "INSERT INTO usuario (usuario, contrasena, fecha_creacion) VALUES(?, ?, ?)";
 
         try {
             ps = conexion.prepareStatement(query);
