@@ -53,11 +53,8 @@
                                 controlador.desconectar();
                                 
 
-                                if( rol.equalsIgnoreCase("cliente")){
-                                    response.sendRedirect("panelUsuario.jsp");
-                                }else if( rol.equalsIgnoreCase("administrador")){
+                                if( rol.equalsIgnoreCase("administrador")){
                                     response.sendRedirect("panelAdministrador.jsp");
-                                }
                             } else {
                                 // Mostramos un mensaje de error
                                 out.print("<p id='mensajeError' class='form-alert hidden' data-show-error='true'>El nombre de usuario o la contraseña son incorrectos</p>");

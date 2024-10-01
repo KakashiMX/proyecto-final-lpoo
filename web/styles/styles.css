@@ -33,7 +33,9 @@ body{
     width: 100%;
     justify-content: space-around;
     align-items: center;
-    background-color: #fff;
+    background-color: #E9E9E9;
+    height: 100vh;
+    overflow: hidden;
 }
 
 /*  Icono del formulario */

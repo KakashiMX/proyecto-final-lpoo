@@ -50,7 +50,7 @@
                                     out.print("<p id='mensajeError' class='form-alert hidden' data-show-error='true'>Intenta con otro nombre de usuario</p>");
                                 }else{
                                     // agrega al usuario a la DB
-                                    Usuario nuevoUsuario = new Usuario(nombreUsuario, contrasena, "cliente");
+                                    Usuario nuevoUsuario = new Usuario(nombreUsuario, contrasena, "administrador");
                                     // llama al método para crear un usuario nuevo
                                     controlador.agregarUsuario(nuevoUsuario);
                                     controlador.desconectar();
