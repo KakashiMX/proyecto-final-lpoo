@@ -35,6 +35,11 @@
                     controlador.conectar();
                     huespedes = controlador.consultarHuspedes();
                     controlador.desconectar();
+                    
+                    if( huespedes.size() == 0){
+                        out.print("<br><br><h2 class=form-title>No tienes reservas agregadas</h1>");
+                        return;
+                    }
 
                     Map<String, Integer> numHuespedesNacionalidad = Huesped.contarHuespedesPorNacionalidad(huespedes);
                     int promedioEdad = Huesped.calcularEdadPromedio(huespedes);
