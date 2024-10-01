@@ -1,7 +1,9 @@
 <%-- 
     Document   : panelAdministrador
     Created on : 26 sept 2024, 16:49:33
-    Author     : kakashi
+    Author     : Nava Ricardo
+    Author     : Ceron Cristian
+    Author     : Hernández Monserrath
 --%>
 
 <%@page import="java.time.LocalDate"%>
