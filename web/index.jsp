@@ -119,7 +119,7 @@
                 mostrarError(mensajeError);
             }
             document.getElementById('formInicioSesion').addEventListener('submit', () => {
-                localStorage.setItem("Usuario", document.getElementById('nombreAdministrador').value);
+                localStorage.setItem("Usuario", document.getElementById('nombreUsuario').value);
             });
         </script>
     </body>
