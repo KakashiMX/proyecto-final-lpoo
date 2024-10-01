@@ -55,30 +55,36 @@
                 </div>
 
                 <div class="form-container">
-                    <form class="form" method="post" accept-charset="UTF-8">
+                    <form class="form" method="post">
                         <div>
                             <%
-                                request.setCharacterEncoding("UTF-8");
-                                if ("POST".equalsIgnoreCase(request.getMethod())
-                                        && request.getParameter("nombre") != null
-                                        && request.getParameter("apellido") != null
-                                        && request.getParameter("fechaNacimiento") != null
-                                        && request.getParameter("nacionalidad") != null) {
+                                if ("POST".equalsIgnoreCase(request.getMethod())) {
 
                                     // Obtenemos los valores del formulario
                                     Integer id = Integer.parseInt(request.getParameter("id"));
                                     String nombre = request.getParameter("nombre");
                                     String apellido = request.getParameter("apellido");
-                                    DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                                    LocalDate fechaNacimiento = LocalDate.parse(request.getParameter("fechaNacimiento"), formato);
+                                    String fechaNac = request.getParameter("fechaNacimiento");
                                     String nacionalidad = request.getParameter("nacionalidad");
                                     String telefono = request.getParameter("telefono");
 
-                                    controlador.conectar();
-                                    controlador.actualizarHuesped(nombre, apellido, fechaNacimiento, nacionalidad, telefono, id);
-                                    controlador.desconectar();
+                                    if (nombre == null || nombre.trim().isEmpty()
+                                            || apellido == null || apellido.trim().isEmpty()
+                                            || fechaNac == null || fechaNac.trim().isEmpty()
+                                            || nacionalidad == null || nacionalidad.trim().isEmpty()
+                                            || telefono == null || telefono.trim().isEmpty()) {
 
-                                    response.sendRedirect(request.getContextPath() + "/vistaHuesped/actualizarHuesped.jsp");
+                                        out.println("<p style='color:red;'>Todos los campos son obligatorios</p>");
+                                    } else {
+
+                                        LocalDate fechaNacimiento = LocalDate.parse(fechaNac);
+
+                                        controlador.conectar();
+                                        controlador.actualizarHuesped(nombre, apellido, fechaNacimiento, nacionalidad, telefono, id);
+                                        controlador.desconectar();
+
+                                        response.sendRedirect("actualizarHuesped.jsp");
+                                    }
                                 }
                             %>
                         </div>
@@ -113,13 +119,8 @@
                         </div>
 
                         <div class="form-group">
-                            Fecha de nacimiento: <input 
-                                type="text" 
-                                class="form-input"
-                                placeholder="dd/mm/yyyy"
-                                name="fechaNacimiento"
-                                required="true"
-                                />
+                            <label class="form-label">Fecha de nacimiento</label>
+                            <input type="date" name="fechaNacimiento" class="form-input" required="true"/>
                         </div>
 
                         <div class="form-group">
