@@ -20,6 +20,7 @@
         <title>Actualizar Huesped</title>
     </head>
     <body>
+        <script src="../javascript/script.js"></script>
         <%
             ControladorBD controlador = new ControladorBD();
             ArrayList<Huesped> huespedes = new ArrayList<>();

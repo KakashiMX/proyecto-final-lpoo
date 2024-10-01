@@ -20,6 +20,7 @@
         <title>Agregar Huesped</title>
     </head>
     <body>
+        <script src="../javascript/script.js"></script>
         <div class="container">
             <div class="sidebar">
                 <%@ include file="sideBarHuesped.jsp" %>

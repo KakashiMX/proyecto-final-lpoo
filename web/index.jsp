@@ -117,7 +117,7 @@
                 mostrarError(mensajeError);
             }
             document.getElementById('formInicioSesion').addEventListener('submit', () => {
-                localStorage.setItem("Usuario", document.getElementById('nombreUsuario').value);
+                localStorage.setItem("Usuario", document.getElementById('nombreAdministrador').value);
             });
         </script>
     </body>
