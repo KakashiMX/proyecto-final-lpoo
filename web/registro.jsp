@@ -1,7 +1,9 @@
 <%-- 
     Document   : registro
     Created on : 26 sept 2024, 18:50:58
-    Author     : kakashi
+    Author     : Nava Ricardo
+    Author     : Ceron Cristian
+    Author     : Hernández Monserrath
 --%>
 
 <%@page import="modelo.Administrador"%>
