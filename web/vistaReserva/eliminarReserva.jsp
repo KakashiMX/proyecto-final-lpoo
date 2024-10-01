@@ -1,7 +1,9 @@
 <%-- 
     Document   : eliminarReserva
     Created on : 28 sept 2024, 20:04:37
-    Author     : kakashi
+    Author     : Nava Ricardo
+    Author     : Ceron Cristian
+    Author     : Hernández Monserrath
 --%>
 
 <%@page import="modelo.Huesped"%>

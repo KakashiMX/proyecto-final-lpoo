@@ -1,7 +1,9 @@
 <%-- 
     Document   : consultarReservas
     Created on : 29 sept 2024, 11:18:07
-    Author     : kakashi
+    Author     : Nava Ricardo
+    Author     : Ceron Cristian
+    Author     : Hernández Monserrath
 --%>
 
 <%@page import="modelo.Huesped"%>

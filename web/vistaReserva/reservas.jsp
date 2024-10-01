@@ -1,7 +1,9 @@
 <%-- 
     Document   : reservas
     Created on : 26 sept 2024, 16:48:51
-    Author     : kakashi
+    Author     : Nava Ricardo
+    Author     : Ceron Cristian
+    Author     : Hernández Monserrath
 --%>
 
 <%@page import="modelo.Usuario"%>

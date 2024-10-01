@@ -1,7 +1,9 @@
 <%-- 
     Document   : moduloEstadisticoReserva
     Created on : 30 sept 2024, 11:32:52
-    Author     : kakashi
+    Author     : Nava Ricardo
+    Author     : Ceron Cristian
+    Author     : Hernández Monserrath
 --%>
 
 <%@page import="modelo.Habitacion"%>

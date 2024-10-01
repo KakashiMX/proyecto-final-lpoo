@@ -1,7 +1,9 @@
 <%-- 
     Document   : agregarReserva
     Created on : 28 sept 2024, 19:08:47
-    Author     : kakashi
+    Author     : Nava Ricardo
+    Author     : Ceron Cristian
+    Author     : Hernández Monserrath
 --%>
 
 <%@page import="modelo.Huesped"%>
