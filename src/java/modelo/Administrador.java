@@ -17,7 +17,7 @@ import org.mindrot.jbcrypt.BCrypt;
  */
 public class Administrador {
     private int idAdministrador;
-    private String administrador;
+    private String usuario;
     private String contrasena;
     private Timestamp fechaCreacion;
 
@@ -31,56 +31,56 @@ public class Administrador {
      * Constructor con parámetros que crea un administrador con un nombre de usuario
      * y una contraseña. La contraseña es automáticamente hasheada para mayor seguridad.
      * 
-     * @param usuario Nombre de usuario del administrador.
-     * @param contrasena Contraseña del administrador, que será hasheada antes de almacenarse.
+     * @param usuario Nombre de usuario del usuario.
+     * @param contrasena Contraseña del usuario, que será hasheada antes de almacenarse.
      */
     public Administrador(String usuario, String contrasena) {
-        this.administrador = usuario;
-        // hashea la contraseña del administrador para ser almacenada en la DB
+        this.usuario = usuario;
+        // hashea la contraseña del usuario para ser almacenada en la DB
         this.contrasena = BCrypt.hashpw(contrasena, BCrypt.gensalt());
         this.fechaCreacion = new Timestamp(System.currentTimeMillis());
     }
 
     /**
-     * Obtiene el ID del administrador.
+     * Obtiene el ID del usuario.
      * 
-     * @return ID del administrador.
+     * @return ID del usuario.
      */
     public int getIdAdministrador() {
         return idAdministrador;
     }
 
     /**
-     * Establece el ID del administrador.
+     * Establece el ID del usuario.
      * 
-     * @param idAdministrador El nuevo ID del administrador.
+     * @param idAdministrador El nuevo ID del usuario.
      */
     public void setIdAdministrador(int idAdministrador) {
         this.idAdministrador = idAdministrador;
     }
 
     /**
-     * Obtiene el nombre de usuario del administrador.
+     * Obtiene el nombre de usuario del usuario.
      * 
-     * @return Nombre de usuario del administrador.
+     * @return Nombre de usuario del usuario.
      */
-    public String getAdministrador() {
-        return administrador;
+    public String getUsuario() {
+        return usuario;
     }
 
     /**
-     * Establece el nombre de usuario del administrador.
+     * Establece el nombre de usuario del usuario.
      * 
-     * @param administrador El nuevo nombre de usuario del administrador.
+     * @param usuario El nuevo nombre de usuario del usuario.
      */
-    public void setAdministrador(String administrador) {
-        this.administrador = administrador;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     /**
-     * Obtiene la contraseña hasheada del administrador.
+     * Obtiene la contraseña hasheada del usuario.
      * 
-     * @return Contraseña hasheada del administrador.
+     * @return Contraseña hasheada del usuario.
      */
     public String getContrasena() {
         return contrasena;
@@ -90,7 +90,7 @@ public class Administrador {
      * Establece la contraseña del administrador. La contraseña se hashea automáticamente
      * antes de almacenarse para mayor seguridad.
      * 
-     * @param contrasena La nueva contraseña del administrador.
+     * @param contrasena La nueva contraseña del usuario.
      */
     public void setContrasena(String contrasena) {
         // método para hashear la contraseña antes de guardarla en la DB
@@ -99,16 +99,16 @@ public class Administrador {
     }
 
     /**
-     * Obtiene la fecha de creación del administrador.
+     * Obtiene la fecha de creación del usuario.
      * 
-     * @return La fecha de creación del administrador.
+     * @return La fecha de creación del usuario.
      */
     public Timestamp getFechaCreacion() {
         return fechaCreacion;
     }
 
     /**
-     * Establece la fecha de creación del administrador.
+     * Establece la fecha de creación del usuario.
      * 
      * @param fechaCreacion La nueva fecha de creación.
      */
@@ -135,7 +135,7 @@ public class Administrador {
      */
     @Override
     public String toString() {
-        return "Usuario " + "ID: " + idAdministrador + ", Usuario: " + administrador 
+        return "Usuario " + "ID: " + idAdministrador + ", Usuario: " + usuario 
                 + ", Contrasena: " + contrasena + ", Fecha de creacion: " + fechaCreacion;
     }
 }
