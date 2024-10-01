@@ -3,10 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
-import datos.ControladorBD;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -183,6 +181,53 @@ public class Reserva {
      */
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
+    }
+    
+        /**
+     * Busca una reserva en una lista de reservas utilizando búsqueda binaria.
+     * 
+     * @param reservas   Lista de reservas en la que se realizará la búsqueda.  
+     * @param idABuscar  El ID de la reserva que se desea buscar.
+     * @return           La reserva encontrada con el ID especificado, o null si no se encuentra.
+     */
+    public Reserva buscarPorId(ArrayList<Reserva> reservas, int idABuscar) {
+        // Buscar la matrícula usando búsqueda binaria
+        int encontrado = busquedaBinaria(reservas, idABuscar);
+
+        if (encontrado != -1) {
+            return reservas.get(encontrado);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Realiza una búsqueda binaria sobre una lista de reservas para encontrar una reserva por ID.
+     * 
+     * @param reservas   Lista de reservas en la que se realizará la búsqueda.
+     * @param idABuscar  El ID de la reserva que se desea buscar.
+     * @return           El índice de la reserva en la lista si se encuentra, o -1 si no se encuentra.
+     */
+    private int busquedaBinaria(ArrayList<Reserva> reservas, int idABuscar) {
+        int inicio = 0;
+        int fin = reservas.size() - 1;
+        while (inicio <= fin) {
+            int medio = inicio + (fin - inicio) / 2;
+            // Verificar si la reserva está en el medio
+            if (reservas.get(medio).getIdReserva() == idABuscar) {
+                return medio;
+            }
+            // Si el ID es mayor, ignorar la mitad izquierda
+            if (reservas.get(medio).getIdReserva() < idABuscar) {
+                inicio = medio + 1;
+            }
+            // Si el ID es menor, ignorar la mitad derecha
+            else {
+                fin = medio - 1;
+            }
+        }
+        // Si la reserva no está presente en la lista
+        return -1;
     }
     
     /**
