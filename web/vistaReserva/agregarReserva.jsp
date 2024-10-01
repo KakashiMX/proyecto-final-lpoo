@@ -92,7 +92,7 @@
                             <select name="formaPago" class="form-input" required="true">
                                 <option value="Efectivo">Efectivo</option>
                                 <option value="Tarjeta de crédito">Tarjeta de crédito</option>
-                                <option value="Tarjeta de débito">Tarjeta de crédito</option>
+                                <option value="Tarjeta de débito">Tarjeta de dédito</option>
                                 <option value="Paypal">Paypal</option>
                                 
                             </select>

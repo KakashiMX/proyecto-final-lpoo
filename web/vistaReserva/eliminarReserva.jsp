@@ -4,6 +4,7 @@
     Author     : kakashi
 --%>
 
+<%@page import="modelo.Huesped"%>
 <%@page import="modelo.Usuario"%>
 <%@page import="modelo.Habitacion"%>
 <%@page import="java.util.ArrayList"%>
@@ -25,12 +26,12 @@
             ControladorBD controlador = new ControladorBD();
             ArrayList<Reserva> reservas = new ArrayList<>();
             ArrayList<Habitacion> habitaciones = new ArrayList<>();
-            ArrayList<Usuario> clientes = new ArrayList<>();
+            ArrayList<Huesped> huespedes = new ArrayList<>();
             controlador.conectar();
             
             habitaciones = controlador.consultarHabitaciones();
             reservas = controlador.consultarReservas();
-            clientes = controlador.consultarUsuarios();
+            huespedes = controlador.consultarHuspedes();
 
         %>
         
@@ -82,15 +83,17 @@
                 </form>
                         
                         <div>
-                    <table border="1" width="500">
+                    <table class="result-table">
                         <tr>
                             <th>Id Reserva</th>
                             <th>Fecha entrada</th>
                             <th>Fecha Salida</th>
                             <th>Forma de pago</th>
                             <th>Id Habitacion</th>
+                            <th>Tipo Habitacion</th>
                             <th>costo por noche</th>
                             <th>Id Huésped</th>
+                            <th>Nombre del Huésped</th>
                         </tr>
                         <%
                             for (Reserva reserva : reservas) {
@@ -99,9 +102,20 @@
                                 out.print("<td>" + reserva.getFechaSalida() + "</td>");
                                 out.print("<td>" + reserva.getFormaPago()+ "</td>");
                                 out.print("<td>" + reserva.getIdHabitacion() + "</td>");
+                                for( Habitacion habitacion: habitaciones){
+                                    if( habitacion.getIdHabitacion() == reserva.getIdHabitacion()){
+                                        out.print("<td>" + habitacion.getTipoHabitacion() + "</td>");
+                                    }
+                                }
                                 out.print("<td>" + reserva.getValor() + "</td>");
-                                out.print("<td>" + reserva.getIdCliente()+ "</td></tr>");
+                                for( Huesped huesped: huespedes){
+                                    if( huesped.getId() == reserva.getIdCliente() ){
+                                        out.print("<td>" + reserva.getIdCliente()+ "</td>");
+                                        out.print("<td>" + huesped.getNombre()+ " " + huesped.getApellido() + "</td></tr>");
+                                    }
+                                }
                             }
+                            controlador.desconectar();
                         %>            
                     </table> 
                     <br><br>

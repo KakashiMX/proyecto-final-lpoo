@@ -4,6 +4,8 @@
     Author     : kakashi
 --%>
 
+<%@page import="modelo.Habitacion"%>
+<%@page import="modelo.Huesped"%>
 <%@page import="java.util.Map"%>
 <%@page import="modelo.Reserva"%>
 <%@page import="java.util.ArrayList"%>
@@ -27,8 +29,12 @@
                 <%
                     ControladorBD controlador = new ControladorBD();
                     ArrayList<Reserva> reservas = new ArrayList<>();
+                    ArrayList<Huesped> huespedes = new ArrayList<>();
+                    ArrayList<Habitacion> habitaciones = new ArrayList<>();
                     controlador.conectar();
                     reservas = controlador.consultarReservas();
+                    huespedes = controlador.consultarHuspedes();
+                    habitaciones = controlador.consultarHabitaciones();
                     Reserva reserva = new Reserva();
                     String resultadoFormaPago = reserva.promedioFormaDePago(reservas);
                     String resultadoPromedioEstadia = reserva.promedioTiempoEstadia(reservas);
@@ -41,28 +47,42 @@
 
                 <div class="main-content">
                     <h2>Reservas ordenadas por fecha de entrada</h2>
-                    <table border=1, width="800">
-                    <tr>
-                        <th>Id Reserva</th>
-                        <th>Fecha entrada</th>
-                        <th>Fecha Salida</th>
-                        <th>Forma de pago</th>
-                        <th>Id Habitacion</th>
-                        <th>costo por noche</th>
-                        <th>Id cliente</th>
-                    </tr>
-                    <%
-                        for (Reserva reservaOrdenada: reservasOrdenadas) {
-                            out.print("<tr><td>" + reservaOrdenada.getIdReserva() + "</td>");
-                            out.print("<td>" + reservaOrdenada.getFechaEntrada() + "</td>");
-                            out.print("<td>" + reservaOrdenada.getFechaSalida() + "</td>");
-                            out.print("<td>" + reservaOrdenada.getFormaPago()+ "</td>");
-                            out.print("<td>" + reservaOrdenada.getIdHabitacion() + "</td>");
-                            out.print("<td>" + reservaOrdenada.getValor() + "</td>");
-                            out.print("<td>" + reservaOrdenada.getIdCliente()+ "</td></tr>");
-                        }
-                    %>     
-                    </table>
+                     <table class="result-table">
+                        <tr>
+                            <th>Id Reserva</th>
+                            <th>Fecha entrada</th>
+                            <th>Fecha Salida</th>
+                            <th>Forma de pago</th>
+                            <th>Id Habitacion</th>
+                            <th>Tipo Habitacion</th>
+                            <th>costo por noche</th>
+                            <th>Id Huésped</th>
+                            <th>Nombre del Huésped</th>
+                        </tr>
+                        <%
+                            for (Reserva reservaOrdenada : reservasOrdenadas) {
+                                out.print("<tr><td>" + reservaOrdenada.getIdReserva() + "</td>");
+                                out.print("<td>" + reservaOrdenada.getFechaEntrada() + "</td>");
+                                out.print("<td>" + reservaOrdenada.getFechaSalida() + "</td>");
+                                out.print("<td>" + reservaOrdenada.getFormaPago()+ "</td>");
+                                out.print("<td>" + reservaOrdenada.getIdHabitacion() + "</td>");
+                                for( Habitacion habitacion: habitaciones){
+                                    if( habitacion.getIdHabitacion() == reservaOrdenada.getIdHabitacion()){
+                                    System.out.println("Si son iguales");
+                                        out.print("<td>" + habitacion.getTipoHabitacion() + "</td>");
+                                    }
+                                }
+                                out.print("<td>" + reservaOrdenada.getValor() + "</td>");
+                                for( Huesped huesped: huespedes){
+                                    if( huesped.getId() == reservaOrdenada.getIdCliente() ){
+                                        out.print("<td>" + reservaOrdenada.getIdCliente()+ "</td>");
+                                        out.print("<td>" + huesped.getNombre()+ " " + huesped.getApellido() + "</td></tr>");
+                                    }
+                                }
+                            }
+                            controlador.desconectar();
+                        %>            
+                    </table> 
                     
                     <h2>Reservas por mes</h2>
                     <table>

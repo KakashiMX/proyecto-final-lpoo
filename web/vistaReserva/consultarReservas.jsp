@@ -4,6 +4,7 @@
     Author     : kakashi
 --%>
 
+<%@page import="modelo.Huesped"%>
 <%@page import="modelo.Usuario"%>
 <%@page import="modelo.Habitacion"%>
 <%@page import="java.util.ArrayList"%>
@@ -20,6 +21,18 @@
         <title>Lista de reservas</title>
     </head>
     <body>
+        <%
+            ControladorBD controlador = new ControladorBD();
+            ArrayList<Reserva> reservas = new ArrayList<>();
+            ArrayList<Habitacion> habitaciones = new ArrayList<>();
+            ArrayList<Huesped> huespedes = new ArrayList<>();
+            controlador.conectar();
+            
+            habitaciones = controlador.consultarHabitaciones();
+            reservas = controlador.consultarReservas();
+            huespedes = controlador.consultarHuspedes();
+
+        %>
         <div class="container">
             <div class="sidebar">
                 <%@ include file="sideBarReserva.jsp" %>
@@ -44,9 +57,7 @@
                     </form>
 
                     <%
-                        ControladorBD controlador = new ControladorBD();
                         Integer idABuscar = null;
-                        ArrayList<Reserva> reservas = new ArrayList<>();
                         Reserva reservaId = new Reserva();
                         if ("POST".equalsIgnoreCase(request.getMethod()) && request.getParameter("id") != null) {
                             try {
@@ -78,8 +89,10 @@
                             <th>Fecha Salida</th>
                             <th>Forma de pago</th>
                             <th>Id Habitacion</th>
+                            <th>Tipo Habitacion</th>
                             <th>costo por noche</th>
                             <th>Id Huésped</th>
+                            <th>Nombre del Huésped</th>
                         </tr>
                         <%
                             out.print("<tr><td>" + reservaId.getIdReserva()+ "</td>");
@@ -87,8 +100,18 @@
                             out.print("<td>" + reservaId.getFechaSalida()+ "</td>");
                             out.print("<td>" + reservaId.getFormaPago() + "</td>");
                             out.print("<td>" + reservaId.getIdHabitacion() + "</td>");
+                            for( Habitacion habitacion: habitaciones){
+                                    if( habitacion.getIdHabitacion() == reservaId.getIdHabitacion()){
+                                        out.print("<td>" + habitacion.getTipoHabitacion() + "</td>");
+                                    }
+                                }
                             out.print("<td>" + reservaId.getValor() + "</td>");
-                            out.print("<td>" + reservaId.getIdCliente() + "</td></tr>");
+                            for( Huesped huesped: huespedes){
+                                    if( huesped.getId() == reservaId.getIdCliente() ){
+                                        out.print("<td>" + reservaId.getIdCliente()+ "</td>");
+                                        out.print("<td>" + huesped.getNombre()+ " " + huesped.getApellido() + "</td></tr>");
+                                    }
+                                }
                         %>            
                     </table> 
                     <% } else if (idABuscar != null) {%>
@@ -102,20 +125,30 @@
                             <th>Fecha Salida</th>
                             <th>Forma de pago</th>
                             <th>Id Habitacion</th>
+                            <th>Tipo Habitacion</th>
                             <th>costo por noche</th>
                             <th>Id Huésped</th>
+                            <th>Nombre del Huésped</th>
                         </tr>
                         <%
-                            controlador.conectar();
-                            reservas = controlador.consultarReservas();
                             for (Reserva reserva : reservas) {
                                 out.print("<tr><td>" + reserva.getIdReserva() + "</td>");
                                 out.print("<td>" + reserva.getFechaEntrada() + "</td>");
                                 out.print("<td>" + reserva.getFechaSalida() + "</td>");
                                 out.print("<td>" + reserva.getFormaPago()+ "</td>");
                                 out.print("<td>" + reserva.getIdHabitacion() + "</td>");
+                                for( Habitacion habitacion: habitaciones){
+                                    if( habitacion.getIdHabitacion() == reserva.getIdHabitacion()){
+                                        out.print("<td>" + habitacion.getTipoHabitacion() + "</td>");
+                                    }
+                                }
                                 out.print("<td>" + reserva.getValor() + "</td>");
-                                out.print("<td>" + reserva.getIdCliente()+ "</td></tr>");
+                                for( Huesped huesped: huespedes){
+                                    if( huesped.getId() == reserva.getIdCliente() ){
+                                        out.print("<td>" + reserva.getIdCliente()+ "</td>");
+                                        out.print("<td>" + huesped.getNombre()+ " " + huesped.getApellido() + "</td></tr>");
+                                    }
+                                }
                             }
                             controlador.desconectar();
                         %>            
