@@ -20,6 +20,14 @@
         <title>Actualizar Huesped</title>
     </head>
     <body>
+        <%
+            ControladorBD controlador = new ControladorBD();
+            ArrayList<Huesped> huespedes = new ArrayList<>();
+
+            controlador.conectar();
+            huespedes = controlador.consultarHuspedes();
+            controlador.desconectar();
+        %>
         <div class="container">
             <div class="sidebar">
                 <%@ include file="sideBarHuesped.jsp" %>
@@ -27,32 +35,6 @@
 
             <div class="main-content">
                 <h1 class="form-title">Actualizar Huesped</h1>
-                <div>
-                    <%
-                        ControladorBD controlador = new ControladorBD();
-                        ArrayList<Huesped> huespedes = new ArrayList<>();
-
-                        controlador.conectar();
-                        huespedes = controlador.consultarHuspedes();
-                        controlador.desconectar();
-                    %>
-                    <table border="1" width="500">
-                        <tr>
-                            <th>Id</th><th>Nombre</th><th>Apellido</th><th>Fecha de Nacimiento</th><th>Nacionalidad</th><th>Telefono</th>
-                        </tr>
-                        <%
-                            for (Huesped hp : huespedes) {
-                                out.print("<tr><td>" + hp.getId() + "</td>");
-                                out.print("<td>" + hp.getNombre() + "</td>");
-                                out.print("<td>" + hp.getApellido() + "</td>");
-                                out.print("<td>" + hp.getFechaNacimiento() + "</td>");
-                                out.print("<td>" + hp.getNacionalidad() + "</td>");
-                                out.print("<td>" + hp.getTelefono() + "</td></tr>");
-                            }
-                        %>            
-                    </table> 
-                    <br><br>
-                </div>
 
                 <div class="form-container">
                     <form class="form" method="post">
@@ -151,6 +133,24 @@
                             class="form-submit"
                             >Actualizar</button>
                     </form>
+                </div>
+                <div>
+                    <table border="1" width="500">
+                        <tr>
+                            <th>Id</th><th>Nombre</th><th>Apellido</th><th>Fecha de Nacimiento</th><th>Nacionalidad</th><th>Telefono</th>
+                        </tr>
+                        <%
+                            for (Huesped hp : huespedes) {
+                                out.print("<tr><td>" + hp.getId() + "</td>");
+                                out.print("<td>" + hp.getNombre() + "</td>");
+                                out.print("<td>" + hp.getApellido() + "</td>");
+                                out.print("<td>" + hp.getFechaNacimiento() + "</td>");
+                                out.print("<td>" + hp.getNacionalidad() + "</td>");
+                                out.print("<td>" + hp.getTelefono() + "</td></tr>");
+                            }
+                        %>            
+                    </table> 
+                    <br><br>
                 </div>
             </div>
         </div>

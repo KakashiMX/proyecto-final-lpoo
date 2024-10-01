@@ -85,14 +85,14 @@
                     <table class="result-table">
                         <tr>
                             <th>Id Reserva</th>
-                            <th>Fecha entrada</th>
-                            <th>Fecha Salida</th>
+                            <th>Fecha de entrada</th>
+                            <th>Fecha de salida</th>
                             <th>Forma de pago</th>
                             <th>Id Habitacion</th>
-                            <th>Tipo Habitacion</th>
-                            <th>costo por noche</th>
+                            <th>Tipo</th>
+                            <th>Costo por noche</th>
                             <th>Id Huésped</th>
-                            <th>Nombre del Huésped</th>
+                            <th>Nombre Huésped</th>
                         </tr>
                         <%
                             out.print("<tr><td>" + reservaId.getIdReserva()+ "</td>");
@@ -121,14 +121,14 @@
                     <table class="result-table">
                         <tr>
                             <th>Id Reserva</th>
-                            <th>Fecha entrada</th>
-                            <th>Fecha Salida</th>
+                            <th>Fecha de entrada</th>
+                            <th>Fecha de salida</th>
                             <th>Forma de pago</th>
                             <th>Id Habitacion</th>
-                            <th>Tipo Habitacion</th>
-                            <th>costo por noche</th>
+                            <th>Tipo</th>
+                            <th>Costo por noche</th>
                             <th>Id Huésped</th>
-                            <th>Nombre del Huésped</th>
+                            <th>Nombre Huésped</th>
                         </tr>
                         <%
                             for (Reserva reserva : reservas) {

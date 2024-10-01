@@ -40,43 +40,6 @@
 
             <div class="main-content">
                 <h1 class="form-title">Actualizar Reserva</h1>
-                <div>
-                    <table border="1" width="500">
-                        <tr>
-                            <th>Id Reserva</th>
-                            <th>Fecha entrada</th>
-                            <th>Fecha Salida</th>
-                            <th>Forma de pago</th>
-                            <th>Id Habitacion</th>
-                            <th>Tipo Habitacion</th>
-                            <th>costo por noche</th>
-                            <th>Id Huésped</th>
-                            <th>Nombre del Huésped</th>
-                        </tr>
-                        <%
-                            for (Reserva reserva : reservas) {
-                                out.print("<tr><td>" + reserva.getIdReserva() + "</td>");
-                                out.print("<td>" + reserva.getFechaEntrada() + "</td>");
-                                out.print("<td>" + reserva.getFechaSalida() + "</td>");
-                                out.print("<td>" + reserva.getFormaPago()+ "</td>");
-                                out.print("<td>" + reserva.getIdHabitacion() + "</td>");
-                                for( Habitacion habitacion: habitaciones){
-                                    if( habitacion.getIdHabitacion() == reserva.getIdHabitacion()){
-                                        out.print("<td>" + habitacion.getTipoHabitacion() + "</td>");
-                                    }
-                                }
-                                out.print("<td>" + reserva.getValor() + "</td>");
-                                for( Huesped huesped: huespedes){
-                                    if( huesped.getId() == reserva.getIdCliente() ){
-                                        out.print("<td>" + reserva.getIdCliente()+ "</td>");
-                                        out.print("<td>" + huesped.getNombre()+ " " + huesped.getApellido() + "</td></tr>");
-                                    }
-                                }
-                            }
-                        %>            
-                    </table> 
-                    <br><br>
-                </div>
                     
                 <div class="form-container">
                     <form method="post" class="form">
@@ -99,7 +62,6 @@
                                        Date fechaSalida = new Date(sdf.parse(request.getParameter("nuevaFechaSalida")).getTime());
                                        String formaPago = request.getParameter("nuevaFormaPago");
                                        String informacionHabitacion[] = request.getParameter("nuevaHabitacionesDisponibles").split(",");
-                                       System.out.println(informacionHabitacion);
                                        int idHabitacion = Integer.parseInt(informacionHabitacion[0]);
                                        float precio = Float.parseFloat(informacionHabitacion[1]);
 
@@ -161,6 +123,44 @@
                             class="form-submit"
                             >Actualizar</button>
                 </form>
+                </div>
+                        
+                <div>
+                    <table border="1" width="500">
+                        <tr>
+                            <th>Id Reserva</th>
+                            <th>Fecha de entrada</th>
+                            <th>Fecha de salida</th>
+                            <th>Forma de pago</th>
+                            <th>Id Habitacion</th>
+                            <th>Tipo</th>
+                            <th>Costo por noche</th>
+                            <th>Id Huésped</th>
+                            <th>Nombre Huésped</th>
+                        </tr>
+                        <%
+                            for (Reserva reserva : reservas) {
+                                out.print("<tr><td>" + reserva.getIdReserva() + "</td>");
+                                out.print("<td>" + reserva.getFechaEntrada() + "</td>");
+                                out.print("<td>" + reserva.getFechaSalida() + "</td>");
+                                out.print("<td>" + reserva.getFormaPago()+ "</td>");
+                                out.print("<td>" + reserva.getIdHabitacion() + "</td>");
+                                for( Habitacion habitacion: habitaciones){
+                                    if( habitacion.getIdHabitacion() == reserva.getIdHabitacion()){
+                                        out.print("<td>" + habitacion.getTipoHabitacion() + "</td>");
+                                    }
+                                }
+                                out.print("<td>" + reserva.getValor() + "</td>");
+                                for( Huesped huesped: huespedes){
+                                    if( huesped.getId() == reserva.getIdCliente() ){
+                                        out.print("<td>" + reserva.getIdCliente()+ "</td>");
+                                        out.print("<td>" + huesped.getNombre()+ " " + huesped.getApellido() + "</td></tr>");
+                                    }
+                                }
+                            }
+                        %>            
+                    </table> 
+                    <br><br>
                 </div>
             </div>
         </div>

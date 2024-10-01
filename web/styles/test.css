@@ -149,11 +149,12 @@ table {
     width: 100%; /* Ancho completo */
     border-collapse: collapse; /* Colapsar bordes */
     margin-top: 20px; /* Espacio superior */
+    text-align: center;
 }
 
 th, td {
     padding: 10px; /* Espaciado interno */
-    text-align: left; /* Alinear texto a la izquierda */
+    text-align: center; /* Alinear texto a la izquierda */
     border: 1px solid #ddd; /* Borde gris claro */
 }
 

@@ -50,14 +50,14 @@
                      <table class="result-table">
                         <tr>
                             <th>Id Reserva</th>
-                            <th>Fecha entrada</th>
-                            <th>Fecha Salida</th>
+                            <th>Fecha de entrada</th>
+                            <th>Fecha de salida</th>
                             <th>Forma de pago</th>
                             <th>Id Habitacion</th>
-                            <th>Tipo Habitacion</th>
-                            <th>costo por noche</th>
+                            <th>Tipo</th>
+                            <th>Costo por noche</th>
                             <th>Id Huésped</th>
-                            <th>Nombre del Huésped</th>
+                            <th>Nombre Huésped</th>
                         </tr>
                         <%
                             for (Reserva reservaOrdenada : reservasOrdenadas) {
@@ -68,7 +68,6 @@
                                 out.print("<td>" + reservaOrdenada.getIdHabitacion() + "</td>");
                                 for( Habitacion habitacion: habitaciones){
                                     if( habitacion.getIdHabitacion() == reservaOrdenada.getIdHabitacion()){
-                                    System.out.println("Si son iguales");
                                         out.print("<td>" + habitacion.getTipoHabitacion() + "</td>");
                                     }
                                 }
@@ -102,31 +101,51 @@
                     <table>
                         <tr>
                             <th>ID Huésped</th>
-                            <th>Días</th>
+                            <th>Nombre</th>
+                            <th>Días de instancia</th>
                         </tr>
                         <%
                             for (Map.Entry<Integer, Double> entry : estanciaPorCliente.entrySet()) {
-                                out.println("<tr><td>" + entry.getKey() + "</td><td>" + entry.getValue() + "</td></tr>");
+                                out.println("<tr><td>" + entry.getKey() + "</td>");
+                                for( Huesped huesped: huespedes){
+                                    if( huesped.getId() == entry.getKey()){
+                                        out.println("<td>" + huesped.getNombre() + " " + huesped.getApellido() + "</td><td>" + entry.getValue() + "</td></tr>");
+                                    }
+                                }
                             }
                         %>
                     </table>
                     
                     <h2>Forma de pago preferida por los clientes</h2>
-                    <%
-                        out.print("<p>" + resultadoFormaPago + "</p");
-                    %>
+                    <table>
+                        <tr>
+                            <%
+                                out.print("<td>" + resultadoFormaPago + "</td>");
+                            %>
+                            
+                            
+                        </tr>
+                    </table>
                     <br><br>
                     
                     <h2>Promedio de estadia de todos los clientes</h2>
-                    <%
-                        out.print("<p>" + resultadoPromedioEstadia + "</p");
-                    %>
+                    <table>
+                        <tr>
+                            <%
+                                out.print("<td>" + resultadoFormaPago + "</td>");
+                            %>
+                        </tr>
+                    </table>
                     <br><br>
                     
                     <h2>Ganancias diarias</h2>
-                    <%
-                        out.print("<p>" + resultadoPromedioGananciaPorDia + "</p");
-                    %>
+                    <table>
+                        <tr>
+                            <%
+                                out.print("<td>" + resultadoPromedioGananciaPorDia + "</td>");
+                            %>
+                        </tr>
+                    </table>
                     <br><br>
                     
                     
