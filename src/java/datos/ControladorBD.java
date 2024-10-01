@@ -103,7 +103,7 @@ public class ControladorBD {
 
         try {
             ps = conexion.prepareStatement(query);
-            ps.setString(1, usuario.getAdministrador());
+            ps.setString(1, usuario.getUsuario());
             ps.setString(2, usuario.getContrasena());
             ps.setTimestamp(3, usuario.getFechaCreacion());
             ps.execute();
@@ -133,7 +133,7 @@ public class ControladorBD {
             while (rs.next()) {
                 Administrador admin = new Administrador();
                 admin.setIdAdministrador(rs.getInt(1));
-                admin.setAdministrador(rs.getString(2));
+                admin.setUsuario(rs.getString(2));
                 admin.setContrasena(rs.getString(3));
                 admin.setFechaCreacion(rs.getTimestamp(4));
                 sdministradores.add(admin);
@@ -158,7 +158,7 @@ public class ControladorBD {
         Administrador administrador = new Administrador();
         Statement sentenciaSQL;
         ResultSet rs;
-        String query = "SELECT * FROM administrador WHERE administrador='" + nombreAdministrador + "'";
+        String query = "SELECT * FROM administrador WHERE usuario='" + nombreAdministrador + "'";
 
         try {
             sentenciaSQL = conexion.createStatement();
@@ -166,7 +166,7 @@ public class ControladorBD {
 
             while (rs.next()) {
                 administrador.setIdAdministrador(rs.getInt(1));
-                administrador.setAdministrador(rs.getString(2));
+                administrador.setUsuario(rs.getString(2));
                 administrador.setContrasena(rs.getString(3));
                 administrador.setFechaCreacion(rs.getTimestamp(4));
             }
@@ -190,7 +190,7 @@ public class ControladorBD {
         Administrador administrador = new Administrador();
         Statement sentenciaSQL;
         ResultSet rs;
-        String query = "SELECT * FROM administrador WHERE administrador='" + nombreAdministrador + "'";
+        String query = "SELECT * FROM administrador WHERE usuario='" + nombreAdministrador + "'";
 
         try {
             sentenciaSQL = conexion.createStatement();
@@ -198,7 +198,7 @@ public class ControladorBD {
 
             while (rs.next()) {
                 administrador.setIdAdministrador(rs.getInt(1));
-                administrador.setAdministrador(rs.getString(2));
+                administrador.setUsuario(rs.getString(2));
                 administrador.setContrasena(rs.getString(3));
                 administrador.setFechaCreacion(rs.getTimestamp(4));
             }
@@ -207,7 +207,7 @@ public class ControladorBD {
             System.out.println("Excepcion: " + ex.getMessage());
         }
 
-        if (administrador.getAdministrador() != null) {
+        if (administrador.getUsuario() != null) {
             yaExiste = true;
         }
         return yaExiste;
@@ -223,7 +223,7 @@ public class ControladorBD {
     public boolean actualizarNombreAdministrador(String administradorAnterior, String administradorNuevo) {
         boolean estado = false;
         PreparedStatement ps;
-        String query = "UPDATE usuario SET administrador = ? WHERE administrador =?";
+        String query = "UPDATE administrador SET usuario = ? WHERE usuario =?";
 
         try {
             ps = conexion.prepareStatement(query);
@@ -240,23 +240,23 @@ public class ControladorBD {
     /**
      * Actualiza la contraseña de un administrador en la base de datos.
      *
-     * @param administrador Nombre de administrador.
+     * @param usuario Nombre de administrador.
      * @param contrasenaAnterior Contraseña anterior del administrador.
      * @param nuevaContra Nueva contraseña a establecer.
      * @return true si se actualizó correctamente, false si hubo algún error.
      */
-    public boolean actualizarContrasenaAdministrador(String administrador, String contrasenaAnterior, String nuevaContra) {
+    public boolean actualizarContrasenaAdministrador(String usuario, String contrasenaAnterior, String nuevaContra) {
         boolean estado = false;
         PreparedStatement ps;
-        String query = "UPDATE administrador SET contrasena = ? WHERE administrador =?";
-        boolean compararContrasena = verificarContrasena(administrador, contrasenaAnterior);
+        String query = "UPDATE administrador SET contrasena = ? WHERE usuario =?";
+        boolean compararContrasena = verificarContrasena(usuario, contrasenaAnterior);
 
         if (compararContrasena) {
             try {
                 String contrasenaHasheada = Administrador.hashearContrasena(nuevaContra);
                 ps = conexion.prepareStatement(query);
                 ps.setString(1, contrasenaHasheada);
-                ps.setString(2, administrador);
+                ps.setString(2, usuario);
                 ps.execute();
                 estado = true;
             } catch (SQLException ex) {
@@ -276,7 +276,7 @@ public class ControladorBD {
     public boolean eliminarAdministrador(String nombreAdministrador) {
         boolean estado = false;
         Statement st;
-        String query = "DELETE FROM administrador WHERE administrador ='" + nombreAdministrador + "'";
+        String query = "DELETE FROM administrador WHERE usuario ='" + nombreAdministrador + "'";
 
         try {
             st = conexion.createStatement();
