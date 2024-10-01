@@ -1,7 +1,9 @@
 <%-- 
     Document   : moduloEstadisticoHuesped
     Created on : 29 sept 2024, 08:45:14
-    Author     : Usuario
+    Author     : Nava Ricardo
+    Author     : Ceron Cristian
+    Author     : Hernández Monserrath
 --%>
 
 <%@page import="java.util.ArrayList"%>
