@@ -1,7 +1,9 @@
 <%-- 
     Document   : sideBarHuesped
     Created on : 30 sept 2024, 15:16:02
-    Author     : kakashi
+    Author     : Nava Ricardo
+    Author     : Ceron Cristian
+    Author     : Hernández Monserrath
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

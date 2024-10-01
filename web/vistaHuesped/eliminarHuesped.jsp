@@ -1,7 +1,9 @@
 <%-- 
     Document   : eliminarHuesped
     Created on : 28 sept 2024, 14:38:32
-    Author     : Usuario
+    Author     : Nava Ricardo
+    Author     : Ceron Cristian
+    Author     : Hernández Monserrath
 --%>
 
 <%@page import="java.time.LocalDate"%>

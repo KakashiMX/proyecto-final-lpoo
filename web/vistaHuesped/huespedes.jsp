@@ -1,7 +1,9 @@
 <%-- 
     Document   : huespedes
     Created on : 28 sept 2024, 14:30:10
-    Author     : Usuario
+    Author     : Nava Ricardo
+    Author     : Ceron Cristian
+    Author     : Hernández Monserrath
 --%>
 
 <%@page import="java.util.ArrayList"%>

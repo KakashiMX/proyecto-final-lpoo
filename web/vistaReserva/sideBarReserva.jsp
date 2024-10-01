@@ -1,7 +1,9 @@
 <%-- 
     Document   : sideBarReserva
     Created on : 30 sept 2024, 14:52:19
-    Author     : kakashi
+    Author     : Nava Ricardo
+    Author     : Ceron Cristian
+    Author     : Hernández Monserrath
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

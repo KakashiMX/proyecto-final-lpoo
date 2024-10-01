@@ -1,7 +1,9 @@
 <%-- 
     Document   : consultarHuespedes
     Created on : 28 sept 2024, 18:54:59
-    Author     : Usuario
+    Author     : Nava Ricardo
+    Author     : Ceron Cristian
+    Author     : Hernández Monserrath
 --%>
 
 <%@page import="java.util.ArrayList"%>

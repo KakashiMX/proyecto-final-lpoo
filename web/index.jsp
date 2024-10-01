@@ -1,7 +1,9 @@
 <%-- 
     Document   : index
     Created on : 26 sept 2024, 14:28:07
-    Author     : kakashi
+    Author     : Nava Ricardo
+    Author     : Ceron Cristian
+    Author     : Hernández Monserrath
 --%>
 
 <%@page import="modelo.Administrador"%>
@@ -31,23 +33,23 @@
                     <%
                         // Solo procesamos si el método es POST y los campos no son nulos
                         if ("POST".equalsIgnoreCase(request.getMethod())
-                                && request.getParameter("administrador") != null
+                                && request.getParameter("usuario") != null
                                 && request.getParameter("contrasena") != null) {
 
                             // Obtenemos los valores del formulario
-                            String nombreAdministrador = request.getParameter("administrador");
+                            String nombreUsuario = request.getParameter("usuario");
                             String contrasena = request.getParameter("contrasena");
 
                             // Validamos usuario y contraseña
                             ControladorBD controlador = new ControladorBD();
                             controlador.conectar();
-                            boolean existe = controlador.verificarContrasena(nombreAdministrador, contrasena);
+                            boolean existe = controlador.verificarContrasena(nombreUsuario, contrasena);
 
                             if (existe) {
                                 // si el usuario existe, hay que traer su información ya que depende del rol del usuario
                                 // para ver a donde será redireccionado
                                 Administrador administrador = new Administrador();
-                                administrador = controlador.consultarAdministrador(nombreAdministrador, contrasena);
+                                administrador = controlador.consultarAdministrador(nombreUsuario, contrasena);
                                 controlador.desconectar();
 
                                 response.sendRedirect("panelAdministrador.jsp");
@@ -67,9 +69,9 @@
                     <input 
                         type="text" 
                         class="form-input"
-                        placeholder="Nombre Administrador"
-                        name="administrador"
-                        id="nombreAdministrador"
+                        placeholder="Nombre Usuario"
+                        name="usuario"
+                        id="nombreUsuario"
                         />
                 </div>
 

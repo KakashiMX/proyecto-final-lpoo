@@ -1,7 +1,9 @@
 <%-- 
     Document   : agregarHuesped
     Created on : 28 sept 2024, 14:41:35
-    Author     : Usuario
+    Author     : Nava Ricardo
+    Author     : Ceron Cristian
+    Author     : Hernández Monserrath
 --%>
 
 <%@page import="java.util.ArrayList"%>
