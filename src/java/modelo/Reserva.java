@@ -186,16 +186,16 @@ public class Reserva {
                 contadorPaypal++;
             }
         }
-        float promedioEfectivo = ((float)  contadorEfectivo / reservas.size()) * 100;
-        float promedioTarjetaCredito = ((float) contadorTarjetaCredito / reservas.size()) * 100;
-        float promedioTarjetaDebito = ((float) contadorTarjetaDebito / reservas.size()) * 100;
-        float promedioPaypal = ((float)  contadorPaypal / reservas.size()) * 100;
+        float promedioEfectivo = Math.round( ((float)  contadorEfectivo / reservas.size()) * 100);
+        float promedioTarjetaCredito = Math.round( ((float) contadorTarjetaCredito / reservas.size()) * 100);
+        float promedioTarjetaDebito = Math.round( ((float) contadorTarjetaDebito / reservas.size()) * 100);
+        float promedioPaypal = Math.round( ((float)  contadorPaypal / reservas.size()) * 100);
         
         return "De tus " + reservas.size() + " reservas, el " + 
                 promedioEfectivo + "% prefiere pagar en efectivo, un " + 
                 promedioTarjetaCredito + "% prefiere el pago con tarjeta de crédito, otro " +
                 promedioTarjetaDebito + "% paga con tarjeta de débito, mientras que el " +
-                promedioPaypal + " paga usando paypal";
+                promedioPaypal + "% paga usando paypal";
     }
     
     public String promedioTiempoEstadia(ArrayList<Reserva> reservas){

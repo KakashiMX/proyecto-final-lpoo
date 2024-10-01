@@ -25,11 +25,12 @@
                 <ul>
                     <li><a href="vistaHuesped/huespedes.jsp" class="menu-link"><i class="fas fa-users"></i>Huéspedes</a></li> 
                     <li><a href="./vistaReserva/reservas.jsp" class="menu-link"><i class="fas fa-scroll"></i>Reservas</a></li> 
+                    <li id="cerrarSesion"><a href="./index.jsp" class="menu-link"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li> 
                 </ul>
             </div>
 
            <div class="admin-panel">
-                <h1>Bienvenido al Panel de Administración</h1>
+               <h1 id="bienvenida"></h1>
 
                 <p>
                     Este sistema le permite gestionar de manera eficiente las reservas y huéspedes del hotel. A continuación, se describen las principales funciones que puede realizar desde este panel:
@@ -52,5 +53,14 @@
                 </ul>
             </div>
         </div>
+        
+        <script>
+            const nombreUsuario = localStorage.getItem("Usuario");
+            const btnCerrarSesion = document.getElementById("cerrarSesion");
+            document.getElementById('bienvenida').textContent = "Bienvenido '" + nombreUsuario + "'";
+            btnCerrarSesion.addEventListener('click', () => {
+                localStorage.removeItem("Usuario");
+            });
+        </script>
     </body>
 </html>

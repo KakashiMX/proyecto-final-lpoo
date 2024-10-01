@@ -4,7 +4,7 @@
     Author     : kakashi
 --%>
 
-<%@page import="modelo.Usuario"%>
+<%@page import="modelo.Huesped"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="modelo.Habitacion"%>
@@ -27,12 +27,12 @@
             ControladorBD controlador = new ControladorBD();
             ArrayList<Reserva> reservas = new ArrayList<>();
             ArrayList<Habitacion> habitaciones = new ArrayList<>();
-            ArrayList<Usuario> clientes = new ArrayList<>();
+            ArrayList<Huesped> huespedes = new ArrayList<>();
             controlador.conectar();
             
             habitaciones = controlador.consultarHabitaciones();
             reservas = controlador.consultarReservas();
-            clientes = controlador.consultarUsuarios();
+            huespedes = controlador.consultarHuspedes();
 
         %>
         <div class="container">
@@ -47,6 +47,7 @@
                         <div>
                             <%
                                 if ("POST".equalsIgnoreCase(request.getMethod())) {
+                                    request.setCharacterEncoding("UTF-8");
                                     String tipoHabitacion = request.getParameter("tipoHabitacion");
                                     String habitacionDisponible = request.getParameter("habitacionDisponible");
 
@@ -70,7 +71,7 @@
                                             controlador.actualizarHabitacion(idHabitacion, false, precio);
                                             controlador.desconectar();
                                             out.println("<p style='color:green;'>La reserva se agregó correctamente</p>");
-                                            response.sendRedirect("reservas.jsp");
+                                            response.sendRedirect("agregarReserva.jsp");
                                             
                                     }
                                 }
@@ -89,8 +90,11 @@
                         <div class="form-group">
                             <label class="form-label">Forma de pago: </label>
                             <select name="formaPago" class="form-input" required="true">
-                                <option value="Tarjeta">Tarjeta</option>
                                 <option value="Efectivo">Efectivo</option>
+                                <option value="Tarjeta de crédito">Tarjeta de crédito</option>
+                                <option value="Tarjeta de débito">Tarjeta de crédito</option>
+                                <option value="Paypal">Paypal</option>
+                                
                             </select>
                         </div>
                         <div class="form-group">
@@ -112,11 +116,10 @@
                             <label class="form-label">Cliente que realiza la reservación</label>
                             <select name="idCliente" class="form-input" required="true">
                                 <%
-                                    for(Usuario cliente: clientes){
-                                        if( cliente.getRol().equalsIgnoreCase("cliente") ){
-                                            out.print("<option value='" + cliente.getIdUsuario() + "'> ID: " + cliente.getIdUsuario() + " - Cliente: " +
-                                            cliente.getUsuario() + "</option>");
-                                        }
+                                    for(Huesped huesped: huespedes){
+                                        
+                                        out.print("<option value='" + huesped.getId()+ "'> ID: " + huesped.getId()+ " - Nombre: " +
+                                        huesped.getNombre()+ " " + huesped.getApellido() + "</option>");
                                     }
                                 %>
                             </select>

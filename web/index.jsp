@@ -19,7 +19,7 @@
     <body>
         <div class="form-container">
             <!-- Formulario -->
-            <form class="form" method="post">
+            <form class="form" method="post" id="formInicioSesion">
                 <!-- Icono del formulario -->
                 <div class="form-icon">
                     <img src="./assets/images/logo.jpeg" alt="alt" class="form-icon-logo"/>
@@ -55,6 +55,7 @@
 
                                 if( rol.equalsIgnoreCase("administrador")){
                                     response.sendRedirect("panelAdministrador.jsp");
+                                }
                             } else {
                                 // Mostramos un mensaje de error
                                 out.print("<p id='mensajeError' class='form-alert hidden' data-show-error='true'>El nombre de usuario o la contraseña son incorrectos</p>");
@@ -72,6 +73,7 @@
                         class="form-input"
                         placeholder="Nombre Usuario"
                         name="usuario"
+                        id="nombreUsuario"
                     />
                 </div>
 
@@ -118,6 +120,9 @@
         if (mensajeError) {
             mostrarError(mensajeError);
         }
+        document.getElementById('formInicioSesion').addEventListener('submit', () => {
+           localStorage.setItem("Usuario", document.getElementById('nombreUsuario').value);
+        });
     </script>
     </body>
 </html>

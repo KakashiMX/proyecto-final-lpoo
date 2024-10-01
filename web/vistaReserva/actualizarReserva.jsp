@@ -4,7 +4,6 @@
     Author     : kakashi
 --%>
 
-<%@page import="modelo.Usuario"%>
 <%@page import="modelo.Habitacion"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="modelo.Reserva"%>
@@ -25,12 +24,10 @@
             ControladorBD controlador = new ControladorBD();
             ArrayList<Reserva> reservas = new ArrayList<>();
             ArrayList<Habitacion> habitaciones = new ArrayList<>();
-            ArrayList<Usuario> clientes = new ArrayList<>();
             controlador.conectar();
             
             habitaciones = controlador.consultarHabitaciones();
             reservas = controlador.consultarReservas();
-            clientes = controlador.consultarUsuarios();
 
         %>
         <div class="container">
@@ -71,6 +68,7 @@
                         <div>
                             <%
                                 if ("POST".equalsIgnoreCase(request.getMethod())) {
+                                    request.setCharacterEncoding("UTF-8");
                                     int id = Integer.parseInt(request.getParameter("idReserva"));
                                     String tipoHabitacion = request.getParameter("nuevoTipoHabitacion");
                                     String habitacionDisponible = request.getParameter("nuevaHabitacionesDisponibles");
@@ -122,8 +120,10 @@
                         <div class="form-group">
                             <label class="form-label">Forma de pago: </label>
                             <select name="nuevaFormaPago" class="form-input" required="true">
-                                <option value="Tarjeta">Tarjeta</option>
                                 <option value="Efectivo">Efectivo</option>
+                                <option value="Tarjeta de crédito">Tarjeta de crédito</option>
+                                <option value="Tarjeta de débito">Tarjeta de crédito</option>
+                                <option value="Paypal">Paypal</option>
                             </select>
                         </div>
                         <div class="form-group">
