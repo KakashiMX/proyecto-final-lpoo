@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import modelo.Habitacion;
 import modelo.Huesped;
 import modelo.Reserva;
-import modelo.Usuario;
+import modelo.Administrador;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
@@ -89,13 +89,13 @@ public class ControladorBD {
     
      */
     /**
-     * Agrega un usuario a la base de datos.
+     * Agrega un administrador a la base de datos.
      *
-     * @param usuario Objeto Usuario que representa al usuario a agregar.
-     * @return true si el usuario fue agregado correctamente, false si hubo
-     * algún error.
+     * @param usuario Objeto Administrador que representa al administrador a agregar.
+     * @return true si el administrador fue agregado correctamente, false si hubo
+ algún error.
      */
-    public boolean agregarUsuario(Usuario usuario) {
+    public boolean agregarAdministrador(Administrador usuario) {
         boolean estado = false;
 
         PreparedStatement ps;
@@ -103,10 +103,9 @@ public class ControladorBD {
 
         try {
             ps = conexion.prepareStatement(query);
-            ps.setString(1, usuario.getUsuario());
+            ps.setString(1, usuario.getAdministrador());
             ps.setString(2, usuario.getContrasena());
-            ps.setString(3, usuario.getRol());
-            ps.setTimestamp(4, usuario.getFechaCreacion());
+            ps.setTimestamp(3, usuario.getFechaCreacion());
             ps.execute();
             estado = true;
         } catch (SQLException ex) {
@@ -116,123 +115,120 @@ public class ControladorBD {
     }
 
     /**
-     * Consulta todos los usuarios registrados en la base de datos.
+     * Consulta todos los sdministradores registrados en la base de datos.
      *
-     * @return {@code ArrayList<Usuario>} de Usuario con todos los usuarios 
-     * registrados.
+     * @return {@code ArrayList<Administrador>} de Administrador con todos 
+     * los sdministradores registrados.
      */
-    public ArrayList<Usuario> consultarUsuarios() {
-        ArrayList<Usuario> usuarios = new ArrayList<>();
+    public ArrayList<Administrador> consultarAdministradores() {
+        ArrayList<Administrador> sdministradores = new ArrayList<>();
         Statement sentenciaSQL;
         ResultSet rs;
-        String query = "SELECT * FROM usuario";
+        String query = "SELECT * FROM administrador";
 
         try {
             sentenciaSQL = conexion.createStatement();
             rs = sentenciaSQL.executeQuery(query);
 
             while (rs.next()) {
-                Usuario usu = new Usuario();
-                usu.setIdUsuario(rs.getInt(1));
-                usu.setUsuario(rs.getString(2));
-                usu.setContrasena(rs.getString(3));
-                usu.setRol(rs.getString(4));
-                usu.setFechaCreacion(rs.getTimestamp(5));
-                usuarios.add(usu);
+                Administrador admin = new Administrador();
+                admin.setIdAdministrador(rs.getInt(1));
+                admin.setAdministrador(rs.getString(2));
+                admin.setContrasena(rs.getString(3));
+                admin.setFechaCreacion(rs.getTimestamp(4));
+                sdministradores.add(admin);
             }
 
         } catch (SQLException ex) {
             System.out.println("Excepcion: " + ex.getMessage());
         }
 
-        return usuarios;
+        return sdministradores;
     }
 
     /**
-     * Consulta un usuario específico en la base de datos.
+     * Consulta un administrador específico en la base de datos.
      *
-     * @param nombreUsuario Nombre de usuario del usuario a consultar.
-     * @param contrasena Contraseña del usuario a consultar.
-     * @return Objeto Usuario si se encuentra en la base de datos, o un Usuario
-     * vacío si no se encuentra.
+     * @param nombreAdministrador Nombre de administrador del administrador a consultar.
+     * @param contrasena Contraseña del administrador a consultar.
+     * @return Objeto Administrador si se encuentra en la base de datos, o un Administrador
+ vacío si no se encuentra.
      */
-    public Usuario consultarUsuario(String nombreUsuario, String contrasena) {
-        Usuario usuario = new Usuario();
+    public Administrador consultarAdministrador(String nombreAdministrador, String contrasena) {
+        Administrador administrador = new Administrador();
         Statement sentenciaSQL;
         ResultSet rs;
-        String query = "SELECT * FROM usuario WHERE usuario='" + nombreUsuario + "'";
+        String query = "SELECT * FROM usuario WHERE administrador='" + nombreAdministrador + "'";
 
         try {
             sentenciaSQL = conexion.createStatement();
             rs = sentenciaSQL.executeQuery(query);
 
             while (rs.next()) {
-                usuario.setIdUsuario(rs.getInt(1));
-                usuario.setUsuario(rs.getString(2));
-                usuario.setContrasena(rs.getString(3));
-                usuario.setRol(rs.getString(4));
-                usuario.setFechaCreacion(rs.getTimestamp(5));
+                administrador.setIdAdministrador(rs.getInt(1));
+                administrador.setAdministrador(rs.getString(2));
+                administrador.setContrasena(rs.getString(3));
+                administrador.setFechaCreacion(rs.getTimestamp(4));
             }
 
         } catch (SQLException ex) {
             System.out.println("Excepcion: " + ex.getMessage());
         }
 
-        return usuario;
+        return administrador;
     }
 
     /**
-     * Verifica si ya existe un usuario con el nombre especificado en la base de
-     * datos.
+     * Verifica si ya existe un administrador con el nombre especificado en la base de
+ datos.
      *
-     * @param nombreUsuario Nombre de usuario a verificar.
-     * @return true si el usuario ya existe, false si no existe.
+     * @param nombreAdministrador Nombre de administrador a verificar.
+     * @return true si el administrador ya existe, false si no existe.
      */
-    public boolean yaExisteUsuario(String nombreUsuario) {
+    public boolean yaExisteAdministrador(String nombreAdministrador) {
         boolean yaExiste = false;
-        Usuario usuario = new Usuario();
+        Administrador administrador = new Administrador();
         Statement sentenciaSQL;
         ResultSet rs;
-        String query = "SELECT * FROM usuario WHERE usuario='" + nombreUsuario + "'";
+        String query = "SELECT * FROM usuario WHERE administrador='" + nombreAdministrador + "'";
 
         try {
             sentenciaSQL = conexion.createStatement();
             rs = sentenciaSQL.executeQuery(query);
 
             while (rs.next()) {
-                usuario.setIdUsuario(rs.getInt(1));
-                usuario.setUsuario(rs.getString(2));
-                usuario.setContrasena(rs.getString(3));
-                usuario.setRol(rs.getString(4));
-                usuario.setFechaCreacion(rs.getTimestamp(5));
+                administrador.setIdAdministrador(rs.getInt(1));
+                administrador.setAdministrador(rs.getString(2));
+                administrador.setContrasena(rs.getString(3));
+                administrador.setFechaCreacion(rs.getTimestamp(4));
             }
 
         } catch (SQLException ex) {
             System.out.println("Excepcion: " + ex.getMessage());
         }
 
-        if (usuario.getUsuario() != null) {
+        if (administrador.getAdministrador() != null) {
             yaExiste = true;
         }
         return yaExiste;
     }
 
     /**
-     * Actualiza el nombre de usuario en la base de datos.
+     * Actualiza el nombre de administrador en la base de datos.
      *
-     * @param usuarioAnterior Nombre de usuario anterior.
-     * @param usuarioNuevo Nuevo nombre de usuario.
+     * @param administradorAnterior Nombre de administrador anterior.
+     * @param administradorNuevo Nuevo nombre de administrador.
      * @return true si se actualizó correctamente, false si hubo algún error.
      */
-    public boolean actualizarNombreUsuario(String usuarioAnterior, String usuarioNuevo) {
+    public boolean actualizarNombreAdministrador(String administradorAnterior, String administradorNuevo) {
         boolean estado = false;
         PreparedStatement ps;
-        String query = "UPDATE usuario SET usuario = ? WHERE usuario =?";
+        String query = "UPDATE usuario SET administrador = ? WHERE administrador =?";
 
         try {
             ps = conexion.prepareStatement(query);
-            ps.setString(1, usuarioNuevo);
-            ps.setString(2, usuarioAnterior);
+            ps.setString(1, administradorNuevo);
+            ps.setString(2, administradorAnterior);
             ps.execute();
             estado = true;
         } catch (SQLException ex) {
@@ -242,25 +238,25 @@ public class ControladorBD {
     }
 
     /**
-     * Actualiza la contraseña de un usuario en la base de datos.
+     * Actualiza la contraseña de un administrador en la base de datos.
      *
-     * @param usuario Nombre de usuario.
-     * @param contrasenaAnterior Contraseña anterior del usuario.
+     * @param administrador Nombre de administrador.
+     * @param contrasenaAnterior Contraseña anterior del administrador.
      * @param nuevaContra Nueva contraseña a establecer.
      * @return true si se actualizó correctamente, false si hubo algún error.
      */
-    public boolean actualizarContrasenaUsuario(String usuario, String contrasenaAnterior, String nuevaContra) {
+    public boolean actualizarContrasenaAdministrador(String administrador, String contrasenaAnterior, String nuevaContra) {
         boolean estado = false;
         PreparedStatement ps;
-        String query = "UPDATE usuario SET contrasena = ? WHERE usuario =?";
-        boolean compararContrasena = verificarContrasena(usuario, contrasenaAnterior);
+        String query = "UPDATE administrador SET contrasena = ? WHERE administrador =?";
+        boolean compararContrasena = verificarContrasena(administrador, contrasenaAnterior);
 
         if (compararContrasena) {
             try {
-                String contrasenaHasheada = Usuario.hashearContrasena(nuevaContra);
+                String contrasenaHasheada = Administrador.hashearContrasena(nuevaContra);
                 ps = conexion.prepareStatement(query);
                 ps.setString(1, contrasenaHasheada);
-                ps.setString(2, usuario);
+                ps.setString(2, administrador);
                 ps.execute();
                 estado = true;
             } catch (SQLException ex) {
@@ -272,15 +268,15 @@ public class ControladorBD {
     }
 
     /**
-     * Elimina un usuario de la base de datos.
+     * Elimina un administrador de la base de datos.
      *
-     * @param nombreUsuario Nombre de usuario a eliminar.
+     * @param nombreAdministrador Nombre de administrador a eliminar.
      * @return true si se eliminó correctamente, false si hubo algún error.
      */
-    public boolean eliminarUsuario(String nombreUsuario) {
+    public boolean eliminarAdministrador(String nombreAdministrador) {
         boolean estado = false;
         Statement st;
-        String query = "DELETE FROM usuario WHERE usuario ='" + nombreUsuario + "'";
+        String query = "DELETE FROM administrador WHERE administrador ='" + nombreAdministrador + "'";
 
         try {
             st = conexion.createStatement();
@@ -295,9 +291,9 @@ public class ControladorBD {
 
     /**
      * Verifica si la contraseña ingresada coincide con la almacenada en la base
-     * de datos para el usuario especificado.
+ de datos para el administrador especificado.
      *
-     * @param usuario Nombre de usuario.
+     * @param usuario Nombre de administrador.
      * @param contrasenaIngresada Contraseña a verificar
      * @return true si la contraseña concide con el hash almacenado, false si
      * hubo algún error.
