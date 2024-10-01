@@ -4,7 +4,7 @@
     Author     : kakashi
 --%>
 
-<%@page import="modelo.Usuario"%>
+<%@page import="modelo.Administrador"%>
 <%@page import="datos.ControladorBD"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -45,14 +45,14 @@
                                 // Mostramos un mensaje de error
                                 out.print("<p id='mensajeError' class='form-alert hidden' data-show-error='true'>Verifica que los datos sean correctos</p>");
                             }else{
-                                boolean usuarioExistente = controlador.yaExisteUsuario(nombreUsuario);
+                                boolean usuarioExistente = controlador.yaExisteAdministrador(nombreUsuario);
                                 if( usuarioExistente){
                                     out.print("<p id='mensajeError' class='form-alert hidden' data-show-error='true'>Intenta con otro nombre de usuario</p>");
                                 }else{
                                     // agrega al usuario a la DB
-                                    Usuario nuevoUsuario = new Usuario(nombreUsuario, contrasena, "administrador");
+                                    Administrador administrador = new Administrador(nombreUsuario, contrasena);
                                     // llama al método para crear un usuario nuevo
-                                    controlador.agregarUsuario(nuevoUsuario);
+                                    controlador.agregarAdministrador(administrador);
                                     controlador.desconectar();
                                     response.sendRedirect("index.jsp");
 

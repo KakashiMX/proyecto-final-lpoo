@@ -99,7 +99,7 @@ public class ControladorBD {
         boolean estado = false;
 
         PreparedStatement ps;
-        String query = "INSERT INTO usuario (usuario, contrasena, fecha_creacion) VALUES(?, ?, ?)";
+        String query = "INSERT INTO administrador (usuario, contrasena, fecha_creacion) VALUES(?, ?, ?)";
 
         try {
             ps = conexion.prepareStatement(query);
@@ -158,7 +158,7 @@ public class ControladorBD {
         Administrador administrador = new Administrador();
         Statement sentenciaSQL;
         ResultSet rs;
-        String query = "SELECT * FROM usuario WHERE administrador='" + nombreAdministrador + "'";
+        String query = "SELECT * FROM administrador WHERE administrador='" + nombreAdministrador + "'";
 
         try {
             sentenciaSQL = conexion.createStatement();
@@ -190,7 +190,7 @@ public class ControladorBD {
         Administrador administrador = new Administrador();
         Statement sentenciaSQL;
         ResultSet rs;
-        String query = "SELECT * FROM usuario WHERE administrador='" + nombreAdministrador + "'";
+        String query = "SELECT * FROM administrador WHERE administrador='" + nombreAdministrador + "'";
 
         try {
             sentenciaSQL = conexion.createStatement();
@@ -302,7 +302,7 @@ public class ControladorBD {
         boolean coincidencia = false;
         PreparedStatement ps;
         ResultSet rs;
-        String query = "SELECT contrasena FROM usuario WHERE usuario = ?";
+        String query = "SELECT contrasena FROM administrador WHERE usuario = ?";
 
         try {
             ps = conexion.prepareStatement(query);
