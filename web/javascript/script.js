@@ -6,7 +6,7 @@
 // verifica que se haya iniciado sesión
 const nombreUsu= localStorage.getItem("Usuario");
 
-if( nombreUsu === null){
+if( nombreUsu === null || nombreUsu === ""){
     
     alert("No tienes permisos para ver esta página");
     window.location.href = 'http://localhost:8080/Hotel_Reservas/';
