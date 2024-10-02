@@ -27,6 +27,7 @@
                 <img src="./assets/images/logo.jpeg" alt="Hotel Logo">
                 <ul>
                     <li><a href="vistaHuesped/huespedes.jsp" class="menu-link"><i class="fas fa-users"></i>Huéspedes</a></li> 
+                    <li><a href="./vistaHabitacion/habitaciones.jsp" class="menu-link"><i class="fas fa-door-open"></i>Habitaciones</a></li>
                     <li><a href="./vistaReserva/reservas.jsp" class="menu-link"><i class="fas fa-scroll"></i>Reservas</a></li> 
                     <li id="cerrarSesion"><a href="./index.jsp" class="menu-link"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li> 
                 </ul>
