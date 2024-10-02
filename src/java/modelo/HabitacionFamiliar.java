@@ -8,32 +8,69 @@ package modelo;
  *
  * @author kakashi
  */
-// lo mismo, estos campos no estan en la DB, faltan crearlos
+
+// los precios de la habitación familiar varian entre $4,000 y $7,000 pesos
 public class HabitacionFamiliar extends Habitacion{
-    private int numCamas = 4;
-    private boolean admiteVisitas = true;
+    // de tres a 6 personas
+    private int capacidadMaxima;
+    private boolean tieneSala;
+    private boolean tieneCocina;
 
     public HabitacionFamiliar() {
     }
 
-    public HabitacionFamiliar(String numHabitacion, String tipoHabitacion, boolean disponibilidad, double precio) {
-        super(numHabitacion, tipoHabitacion, disponibilidad, precio);
+    public HabitacionFamiliar(int capacidadMaxima,boolean tieneSala, boolean tieneCocina) {
+        this.capacidadMaxima = capacidadMaxima;
+        this.tieneSala = tieneSala;
+        this.tieneCocina = tieneCocina;
     }
 
-    public int getNumCamas() {
-        return numCamas;
+    public HabitacionFamiliar(String numHabitacion, String tipoHabitacion, boolean disponibilidad, double precio, double precioTotalTipoHabitacion, int capacidadMaxima,
+                                boolean tieneSala, boolean tieneCocina) {
+        super(numHabitacion, tipoHabitacion, disponibilidad, precio, precioTotalTipoHabitacion);
+        this.capacidadMaxima = capacidadMaxima;
+        this.tieneSala = tieneSala;
+        this.tieneCocina = tieneCocina;
     }
 
-    public void setNumCamas(int numCamas) {
-        this.numCamas = numCamas;
+    public int getCapacidadMaxima() {
+        return capacidadMaxima;
     }
 
-    public boolean isAdminteVisitas() {
-        return admiteVisitas;
+    public void setCapacidadMaxima(int capacidadMaxima) {
+        this.capacidadMaxima = capacidadMaxima;
     }
 
-    public void setAdminteVisitas(boolean adminteVisitas) {
-        this.admiteVisitas = adminteVisitas;
+    public boolean isTieneSala() {
+        return tieneSala;
+    }
+
+    public void setTieneSala(boolean tieneSala) {
+        this.tieneSala = tieneSala;
+    }
+
+    public boolean isTieneCocina() {
+        return tieneCocina;
+    }
+
+    public void setTieneCocina(boolean tieneCocina) {
+        this.tieneCocina = tieneCocina;
+    }
+
+    @Override
+    public double calcularPrecioTotal( double precio) {
+        double precioBase = precio;
+
+        // Ajuste de precio por tener sala
+        if (tieneSala) {
+            precioBase += 1250;
+        }
+
+        // Ajuste de precio por tener cocina
+        if (tieneCocina) {
+            precioBase += 1250;
+        }
+        return precioBase;
     }
     
     

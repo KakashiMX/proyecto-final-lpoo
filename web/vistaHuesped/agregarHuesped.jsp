@@ -30,11 +30,12 @@
 
             <div class="main-content">
                 <div class="form-container">
-                    <form class="form" method="post">
+                    <form class="form" method="post" accept-charset="UTF-8">
                         <!-- Título -->
                         <h1 class="form-title">Registro de Huésped</h1>
                         <div>
                             <%
+                                request.setCharacterEncoding("UTF-8");
                                 if ("POST".equalsIgnoreCase(request.getMethod())) {
                                     String nombre = request.getParameter("nombre");
                                     String apellido = request.getParameter("apellido");

@@ -17,6 +17,9 @@ import modelo.Habitacion;
 import modelo.Huesped;
 import modelo.Reserva;
 import modelo.Administrador;
+import modelo.HabitacionFamiliar;
+import modelo.HabitacionSencilla;
+import modelo.HabitacionSuite;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
@@ -338,7 +341,7 @@ public class ControladorBD {
         boolean estado = false;
 
         PreparedStatement ps;
-        String query = "INSERT INTO habitacion (numero_habitacion, tipo_habitacion, estado_disponibilidad, precio) VALUES(?, ?, ?, ?)";
+        String query = "INSERT INTO habitacion (numero_habitacion, tipo_habitacion, estado_disponibilidad, precio, precio_total) VALUES(?, ?, ?, ?, ?)";
 
         try {
             ps = conexion.prepareStatement(query);
@@ -346,6 +349,7 @@ public class ControladorBD {
             ps.setString(2, habitacion.getTipoHabitacion());
             ps.setBoolean(3, habitacion.isDisponibilidad());
             ps.setDouble(4, habitacion.getPrecio());
+            ps.setDouble(5, habitacion.getPrecioTotalTipoHabitacion());
             ps.execute();
             estado = true;
         } catch (SQLException ex) {
@@ -353,6 +357,56 @@ public class ControladorBD {
         }
         return estado;
     }
+    
+    public boolean agregarHabitacionFamiliar(HabitacionFamiliar habitacionFamiliar) {
+        boolean estado = false;
+
+        PreparedStatement ps;
+        String query = "INSERT INTO habitacion (numero_habitacion, tipo_habitacion,capacidad_maxima,"
+                +"tiene_sala, tiene_cocina, estado_disponibilidad, precio, precio_total) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try {
+            ps = conexion.prepareStatement(query);
+            ps.setString(1, habitacionFamiliar.getNumHabitacion());
+            ps.setString(2, habitacionFamiliar.getTipoHabitacion());
+            ps.setInt(3, habitacionFamiliar.getCapacidadMaxima());
+            ps.setBoolean(4, habitacionFamiliar.isTieneSala());
+            ps.setBoolean(5, habitacionFamiliar.isTieneCocina());
+            ps.setBoolean(6, habitacionFamiliar.isDisponibilidad());
+            ps.setDouble(7, habitacionFamiliar.getPrecio());
+            ps.setDouble(8, habitacionFamiliar.getPrecioTotalTipoHabitacion());
+            ps.execute();
+            estado = true;
+        } catch (SQLException ex) {
+            System.out.println("Excepcion: " + ex.getMessage());
+        }
+        return estado;
+    }
+    
+    public boolean agregarHabitacionSuite(HabitacionSuite habitacionSuite) {
+        boolean estado = false;
+
+        PreparedStatement ps;
+        String query = "INSERT INTO habitacion (numero_habitacion, tipo_habitacion,"
+                +"servicio_habitacion, vista, estado_disponibilidad, precio, precio_total) VALUES(?, ?, ?, ?, ?, ?, ?)";
+
+        try {
+            ps = conexion.prepareStatement(query);
+            ps.setString(1, habitacionSuite.getNumHabitacion());
+            ps.setString(2, habitacionSuite.getTipoHabitacion());
+            ps.setBoolean(3, habitacionSuite.isServicioHabitacion());
+            ps.setString(4, habitacionSuite.getVista());
+            ps.setBoolean(5, habitacionSuite.isDisponibilidad());
+            ps.setDouble(6, habitacionSuite.getPrecio());
+            ps.setDouble(7, habitacionSuite.getPrecioTotalTipoHabitacion());
+            ps.execute();
+            estado = true;
+        } catch (SQLException ex) {
+            System.out.println("Excepcion: " + ex.getMessage());
+        }
+        return estado;
+    }
+    
 
     /**
      * Consulta todas las habitaciones almacenadas en la base de datos.
@@ -361,33 +415,150 @@ public class ControladorBD {
      * con todas las habitaciones almacenadas.
      */
     public ArrayList<Habitacion> consultarHabitaciones() {
-        ArrayList<Habitacion> habitaciones = new ArrayList<>();
-        Statement sentenciaSQL;
-        ResultSet rs;
-        String query = "SELECT * FROM habitacion";
+    ArrayList<Habitacion> habitaciones = new ArrayList<>();
+    Statement sentenciaSQL;
+    ResultSet rs;
+    String query = "SELECT * FROM habitacion";
+
+    try {
+        sentenciaSQL = conexion.createStatement();
+        rs = sentenciaSQL.executeQuery(query);
+
+        while (rs.next()) {
+            String tipoHabitacion = rs.getString(3);
+
+            if (tipoHabitacion.equalsIgnoreCase("Familiar")) {
+                HabitacionFamiliar habitacionFamiliar = new HabitacionFamiliar();
+                habitacionFamiliar.setIdHabitacion(rs.getInt(1));
+                habitacionFamiliar.setNumHabitacion(rs.getString(2));
+                habitacionFamiliar.setTipoHabitacion(tipoHabitacion);
+                habitacionFamiliar.setCapacidadMaxima(rs.getInt(4));
+                habitacionFamiliar.setTieneSala(rs.getBoolean(5)); // Esto parece repetido, revisa los índices de las columnas
+                habitacionFamiliar.setTieneCocina(rs.getBoolean(6)); // Esto parece repetido, revisa los índices de las columnas
+                habitacionFamiliar.setDisponibilidad(rs.getBoolean(9));
+                habitacionFamiliar.setPrecio(rs.getDouble(10));
+                habitacionFamiliar.setPrecioTotalTipoHabitacion(rs.getDouble(11));
+                
+                habitaciones.add(habitacionFamiliar);
+
+            } else if (tipoHabitacion.equalsIgnoreCase("Suite")) {
+                HabitacionSuite habitacionSuite = new HabitacionSuite();
+                habitacionSuite.setIdHabitacion(rs.getInt(1));
+                habitacionSuite.setNumHabitacion(rs.getString(2));
+                habitacionSuite.setTipoHabitacion(tipoHabitacion);
+                habitacionSuite.setServicioHabitacion(rs.getBoolean(7)); 
+                habitacionSuite.setVista(rs.getString(8));
+                habitacionSuite.setDisponibilidad(rs.getBoolean(9));
+                habitacionSuite.setPrecio(rs.getDouble(10));
+                habitacionSuite.setPrecioTotalTipoHabitacion(rs.getDouble(11));
+
+                habitaciones.add(habitacionSuite);
+
+            } else {
+                // Si es una habitación sencilla o por defecto
+                Habitacion habitacionSencilla = new HabitacionSencilla();
+                habitacionSencilla.setIdHabitacion(rs.getInt(1));
+                habitacionSencilla.setNumHabitacion(rs.getString(2));
+                habitacionSencilla.setTipoHabitacion(tipoHabitacion);
+                habitacionSencilla.setDisponibilidad(rs.getBoolean(9));
+                habitacionSencilla.setPrecio(rs.getDouble(10));
+                habitacionSencilla.setPrecioTotalTipoHabitacion(rs.getDouble(11));
+
+                habitaciones.add(habitacionSencilla);
+            }
+        }
+    } catch (SQLException ex) {
+        System.out.println("Excepcion: " + ex.getMessage());
+    }
+
+    return habitaciones;
+}
+    /**
+     * Actualiza la información de una habitación en la base de datos.
+     *
+     * @param idHabitacion El ID de la habitación que se va a actualizar.
+     * @param numHabitacion El nuevo número de la habitación.
+     * @param tipoHabitacion El nuevo tipo de la habitación.
+     * @param disponibilidad La nueva disponibilidad de la habitación.
+     * @param precio El nuevo precio de la habitación.
+     * @param precioTotal El nuevo precio total de la habitación "solo si incluye servicios".
+     * @return true si la operación fue exitosa, false si ocurrió un error.
+     */
+    // Actualiza información de una habitación
+    //Pueden agregar más atributos a actualizar, yo sólo agregue estos
+    public boolean actualizarHabitacion(int idHabitacion, String numHabitacion, String tipoHabitacion, boolean disponibilidad, double precio, double precioTotal) {
+        boolean estado = false;
+        PreparedStatement ps;
+        String query = "UPDATE habitacion SET numero_habitacion=?, tipo_habitacion=?, estado_disponibilidad = ?, precio = ?, precio_total WHERE id=?";
 
         try {
-            sentenciaSQL = conexion.createStatement();
-            rs = sentenciaSQL.executeQuery(query);
-
-            while (rs.next()) {
-                Habitacion habitacion = new Habitacion();
-                habitacion.setIdHabitacion(rs.getInt(1));
-                habitacion.setNumHabitacion(rs.getString(2));
-                habitacion.setTipoHabitacion(rs.getString(3));
-                habitacion.setDisponibilidad(rs.getBoolean(4));
-                habitacion.setPrecio(rs.getDouble(5));
-                habitaciones.add(habitacion);
-            }
-
+            ps = conexion.prepareStatement(query);
+            ps.setString(1, numHabitacion);
+            ps.setString(2, tipoHabitacion);
+            ps.setBoolean(3, disponibilidad);
+            ps.setDouble(4, precio);
+            ps.setDouble(5, precioTotal);
+            ps.setInt(6, idHabitacion);
+            ps.execute();
+            estado = true;
         } catch (SQLException ex) {
             System.out.println("Excepcion: " + ex.getMessage());
         }
-
-        return habitaciones;
+        return estado;
     }
+    
+    public boolean actualizarHabitacionFamiliar(HabitacionFamiliar habitacionFamiliar){
+         boolean estado = false;
+        PreparedStatement ps;
+        String query = "UPDATE habitacion SET numero_habitacion=?, tipo_habitacion=?,"
+                + "capacidad_maxima=?, tiene_sala=?,tiene_cocina=?, "
+                +"estado_disponibilidad = ?, precio = ?, precio_total=? WHERE id=?";
 
-    /**
+        try {
+            ps = conexion.prepareStatement(query);
+            ps.setString(1, habitacionFamiliar.getNumHabitacion());
+            ps.setString(2, habitacionFamiliar.getTipoHabitacion());
+            ps.setInt(3, habitacionFamiliar.getCapacidadMaxima());
+            ps.setBoolean(4, habitacionFamiliar.isTieneSala());
+            ps.setBoolean(5, habitacionFamiliar.isTieneSala());
+            ps.setBoolean(6, habitacionFamiliar.isDisponibilidad());
+            ps.setDouble(7, habitacionFamiliar.getPrecio());
+            ps.setDouble(8, habitacionFamiliar.getPrecioTotalTipoHabitacion());
+            ps.setInt(9, habitacionFamiliar.getIdHabitacion());
+            ps.execute();
+            estado = true;
+        } catch (SQLException ex) {
+            System.out.println("Excepcion: " + ex.getMessage());
+        }
+        return estado;
+    }
+    
+    public boolean actualizarHabitacionSuite(HabitacionSuite habitacionSuite){
+        System.out.println(habitacionSuite.getIdHabitacion());
+         boolean estado = false;
+        PreparedStatement ps;
+        String query = "UPDATE habitacion SET numero_habitacion=?, tipo_habitacion=?,"
+                +"servicio_habitacion=?, vista=?, estado_disponibilidad = ?, precio = ?, precio_total=? WHERE id=?";
+
+        try {
+            ps = conexion.prepareStatement(query);
+            ps.setString(1, habitacionSuite.getNumHabitacion());
+            ps.setString(2, habitacionSuite.getTipoHabitacion());
+            ps.setBoolean(3, habitacionSuite.isServicioHabitacion());
+            ps.setString(4, habitacionSuite.getVista());
+            ps.setBoolean(5, habitacionSuite.isDisponibilidad());
+            ps.setDouble(6, habitacionSuite.getPrecio());
+            ps.setDouble(7, habitacionSuite.getPrecioTotalTipoHabitacion());
+            ps.setInt(8, habitacionSuite.getIdHabitacion());
+            ps.execute();
+            estado = true;
+        } catch (SQLException ex) {
+            System.out.println("Excepcion: " + ex.getMessage());
+        }
+        return estado;
+    }
+    
+     /**
      * Actualiza la información de una habitación en la base de datos.
      *
      * @param idHabitacion El ID de la habitación que se va a actualizar.
@@ -395,7 +566,7 @@ public class ControladorBD {
      * @param precio El nuevo precio de la habitación.
      * @return true si la operación fue exitosa, false si ocurrió un error.
      */
-    public boolean actualizarHabitacion(int idHabitacion, boolean disponibilidad, double precio) {
+    public boolean actualizarHabitacionReserva(int idHabitacion, boolean disponibilidad, double precio) {
         boolean estado = false;
         PreparedStatement ps;
         String query = "UPDATE habitacion SET estado_disponibilidad = ?, precio = ? WHERE id=?";
@@ -412,7 +583,7 @@ public class ControladorBD {
         }
         return estado;
     }
-
+    
     /**
      * Elimina una habitación de la base de datos.
      *

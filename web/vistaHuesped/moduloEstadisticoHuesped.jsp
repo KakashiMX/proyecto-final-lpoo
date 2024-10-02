@@ -37,7 +37,7 @@
                     controlador.desconectar();
                     
                     if( huespedes.size() == 0){
-                        out.print("<br><br><h2 class=form-title>No tienes reservas agregadas</h1>");
+                        out.print("<br><br><h2 class=form-title>No tienes huespeds agregados</h1>");
                         return;
                     }
 

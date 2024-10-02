@@ -6,6 +6,9 @@
     Author     : Hernández Monserrath
 --%>
 
+<%@page import="modelo.HabitacionSuite"%>
+<%@page import="modelo.HabitacionFamiliar"%>
+<%@page import="modelo.HabitacionFamiliar"%>
 <%@page import="modelo.Huesped"%>
 <%@page import="modelo.Habitacion"%>
 <%@page import="java.util.ArrayList"%>
@@ -70,11 +73,11 @@
 
                                        for( Reserva reserva: reservas){
                                            if( reserva.getIdReserva() == idReserva){
-                                               controlador.actualizarHabitacion(reserva.getIdHabitacion(), true, reserva.getValor());
+                                               controlador.actualizarHabitacionReserva(reserva.getIdHabitacion(), true, reserva.getValor());
                                            }
                                        }
                                        controlador.actualizarReserva(idReserva, fechaEntrada, fechaSalida, precio, formaPago, idHabitacion);
-                                       controlador.actualizarHabitacion(idHabitacion, false, precio);
+                                       controlador.actualizarHabitacionReserva(idHabitacion, false, precio);
                                        controlador.desconectar();
                                        response.sendRedirect("actualizarReserva.jsp");
                                             
@@ -111,7 +114,7 @@
                             <select name="nuevoTipoHabitacion" id="nuevoTipoHabitacion" class="form-input" required="true">
                                 <option value="">Selecciona una opción</option>
                                 <option value="Sencilla">Sencilla</option>
-                                <option value="Doble">Doble</option>
+                                <option value="Familiar">Familiar</option>
                                 <option value="Suite">Suite</option>
                             </select>
                         </div>
@@ -119,6 +122,11 @@
                         <div class="form-group">
                             <label class="form-label">Habitaciones disponibles</label>
                             <select name="nuevaHabitacionesDisponibles" id="nuevaHabitacionesDisponibles" class="form-input" required="true"></select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Servicios de la habitación:</label>
+                            <textarea id="serviciosHabitacion" class="form-input" rows="5" readonly></textarea>
                         </div>
 
                      <button
@@ -155,7 +163,7 @@
                                     if( habitacion.getIdHabitacion() == reserva.getIdHabitacion()){
                                         out.print("<td>" + habitacion.getNumHabitacion() + "</td>");
                                         out.print("<td>" + habitacion.getTipoHabitacion() + "</td>");
-                                        out.print("<td>" + habitacion.getPrecio() + "</td></tr>");
+                                        out.print("<td>" + habitacion.getPrecioTotalTipoHabitacion() + "</td></tr>");
                                     }
                                 }
                             }
@@ -166,46 +174,66 @@
             </div>
         </div>
         <script>
-                // Generar dinámicamente la lista de habitaciones desde el servidor JSP
-                const otrasHabitaciones = [
-                    <% 
-                        for (Habitacion habitacion : habitaciones) {
-                            // Crear un objeto para cada habitación en formato que JavaScript pueda leer
-                            out.println("{ id: " + habitacion.getIdHabitacion() + 
-                                         ", tipo: '" + habitacion.getTipoHabitacion() + 
-                                         "', numero: '" + habitacion.getNumHabitacion() + 
-                                         "', precio: " + habitacion.getPrecio() + 
-                                         ", disponibilidad: " + habitacion.isDisponibilidad() + " },");
-                        }
-                    %>
-                ];
-                
-                const nuevoTipoHabitacion = document.getElementById("nuevoTipoHabitacion");
-                const nuevoHabitacionesDisponibles = document.getElementById("nuevaHabitacionesDisponibles");
-                
-                // Función que actualiza el select de habitaciones disponibles
-                nuevoTipoHabitacion.addEventListener('change', () => {
-                    const nuevoTipoSeleccionado = nuevoTipoHabitacion.value;
-                    nuevoHabitacionesDisponibles.innerHTML = ""; // Limpiar las opciones anteriores
-
-                    if (nuevoTipoSeleccionado === "") {
-                        // Si no se selecciona un tipo, mostrar opción vacía
-                        nuevoHabitacionesDisponibles.innerHTML = "<option value=''>Seleccione una habitación</option>";
-                        
-                    }else{
-                        // Filtrar habitaciones por tipo seleccionado y disponibilidad
-                        const nuevasHabitacionesFiltradas = otrasHabitaciones.filter(habitacion => habitacion.tipo === nuevoTipoSeleccionado && habitacion.disponibilidad);
-                        // Agregar opciones filtradas al select
-                        nuevasHabitacionesFiltradas.forEach(habitacion => {
-                            const optionSelect = document.createElement("option");
-                            optionSelect.value = habitacion.id + "," + habitacion.precio;
-                            optionSelect.text = "# Habitación: " + habitacion.numero + "- Precio: " + habitacion.precio;
-                            nuevoHabitacionesDisponibles.appendChild(optionSelect);
-                        });
+        // Generar dinámicamente la lista de habitaciones desde el servidor JSP
+        const habitaciones = [
+            <% 
+                for (Habitacion habitacion : habitaciones) {
+                    String servicios = "";
+                    if (habitacion instanceof HabitacionFamiliar) {
+                        HabitacionFamiliar familiar = (HabitacionFamiliar) habitacion;
+                        servicios = "Capacidad máxima: " + familiar.getCapacidadMaxima() + 
+                                    ", Cocina: " + (familiar.isTieneCocina() ? "Sí" : "No") + 
+                                    ", Sala: " + (familiar.isTieneSala() ? "Sí" : "No");
+                    } else if (habitacion instanceof HabitacionSuite) {
+                        HabitacionSuite suite = (HabitacionSuite) habitacion;
+                        servicios = "Servicio a la habitación: " + (suite.isServicioHabitacion() ? "Sí" : "No") + 
+                                    ", Vista: " + suite.getVista();
+                    } else {
+                        servicios = "No aplica";
                     }
-                    
+
+                    out.println("{ id: " + habitacion.getIdHabitacion() + 
+                                 ", tipo: '" + habitacion.getTipoHabitacion() + 
+                                 "', numero: '" + habitacion.getNumHabitacion() + 
+                                 "', precio: " + habitacion.getPrecioTotalTipoHabitacion()+ 
+                                 ", disponibilidad: " + habitacion.isDisponibilidad() + 
+                                 ", servicios: '" + servicios + "' },");
+                }
+            %>
+        ];
+
+        const tipoHabitacion = document.getElementById("nuevoTipoHabitacion");
+        const selectHabitacionesDisponibles = document.getElementById("nuevaHabitacionesDisponibles");
+
+        // Función que actualiza el select de habitaciones disponibles
+        tipoHabitacion.addEventListener('change', () => {
+            const tipoSeleccionado = tipoHabitacion.value;
+            selectHabitacionesDisponibles.innerHTML = ""; // Limpiar las opciones anteriores
+            document.getElementById("serviciosHabitacion").value = ""; // Limpiar el textarea de servicios
+
+            if (tipoSeleccionado === "") {
+                selectHabitacionesDisponibles.innerHTML = "<option value=''>Seleccione una habitación</option>";
+            } else {
+                // Filtrar habitaciones por tipo seleccionado y disponibilidad
+                const habitacionesFiltradas = habitaciones.filter(habitacion => habitacion.tipo === tipoSeleccionado && habitacion.disponibilidad);
+                habitacionesFiltradas.forEach(habitacion => {
+                    const optionSelect = document.createElement("option");
+                    optionSelect.value = habitacion.id + ", " + habitacion.precio;
+                    optionSelect.text = "# Habitación: " + habitacion.numero + "- Precio: " + habitacion.precio;
+                    selectHabitacionesDisponibles.appendChild(optionSelect);
                 });
-                
-            </script>          
+            }
+        });
+
+        // Función que actualiza el textarea de servicios cuando se selecciona una habitación
+        selectHabitacionesDisponibles.addEventListener('change', () => {
+            const habitacionSeleccionada = parseInt(selectHabitacionesDisponibles.value.split(",")[0]); // Convertir a número
+            const habitacion = habitaciones.find(h => h.id === habitacionSeleccionada);
+
+            if (habitacion) {
+                document.getElementById("serviciosHabitacion").value = habitacion.servicios;
+            }
+        });
+    </script>       
     </body>
 </html>

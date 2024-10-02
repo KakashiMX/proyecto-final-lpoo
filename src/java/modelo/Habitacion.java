@@ -4,25 +4,29 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author kakashi
  */
-public class Habitacion {
+public abstract class Habitacion {
     private int idHabitacion;
     private String numHabitacion;
     private String tipoHabitacion;
     private boolean disponibilidad;
     private double precio;
+    private double precioTotalTipoHabitacion;
 
     public Habitacion() {
     }
 
-    public Habitacion(String numHabitacion, String tipoHabitacion, boolean disponibilidad, double precio) {
+    public Habitacion(String numHabitacion, String tipoHabitacion, boolean disponibilidad, double precio, double precioTotalTipoHabitacion) {
         this.numHabitacion = numHabitacion;
         this.tipoHabitacion = tipoHabitacion;
         this.disponibilidad = disponibilidad;
         this.precio = precio;
+        this.precioTotalTipoHabitacion = precioTotalTipoHabitacion;
     }
 
     public int getIdHabitacion() {
@@ -64,7 +68,26 @@ public class Habitacion {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+
+    public double getPrecioTotalTipoHabitacion() {
+        return precioTotalTipoHabitacion;
+    }
+
+    public void setPrecioTotalTipoHabitacion(double precioTotalTipoHabitacion) {
+        this.precioTotalTipoHabitacion = precioTotalTipoHabitacion;
+    }
     
+    // método que calcula el precio total de la habitación dependiendo de los servicios incluidos
+    public abstract double calcularPrecioTotal(double precio);
+    
+    public Habitacion bucarHabitacionporID(ArrayList<Habitacion>habitaciones,int id){
+        for(Habitacion habitacion : habitaciones){
+            if(habitacion.getIdHabitacion()==id){
+                return habitacion; // Si el id coincide, devolver la habitación
+            }
+        }
+        return null; // Si no se encuentra, devolver null
+    }
     
    @Override
     public String toString() {

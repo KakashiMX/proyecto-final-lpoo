@@ -8,24 +8,19 @@ package modelo;
  *
  * @author kakashi
  */
-// cómo el proyecto pide de a fuerza aplicar herencia, se me ocurrio aplicarla a las habitaciones
-    // Sólo que en la DB faltaria agregar estos campos
-public class HabitacionSencilla extends Habitacion{
-    private String tipoCama = "individual";    
 
+// los precios de habitacion sencilla varian entre $800 y $1,500 pesos
+public class HabitacionSencilla extends Habitacion{
+    
     public HabitacionSencilla() {
     }
 
-    public HabitacionSencilla(String numHabitacion, String tipoHabitacion, boolean disponibilidad, double precio) {
-        super(numHabitacion, tipoHabitacion, disponibilidad, precio);
+    public HabitacionSencilla(String numHabitacion, String tipoHabitacion, boolean disponibilidad, double precio, double precioTotalTipoHabitacion) {
+        super(numHabitacion, tipoHabitacion, disponibilidad, precio, precioTotalTipoHabitacion);
     }
 
-    public String getTipoCama() {
-        return tipoCama;
-    }
-
-    public void setTipoCama(String tipoCama) {
-        this.tipoCama = tipoCama;
-    }
-    
+    @Override
+    public double calcularPrecioTotal(double precio) {
+        return precio;
+    }   
 }

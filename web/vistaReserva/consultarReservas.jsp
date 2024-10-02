@@ -110,7 +110,7 @@
                                 if( habitacion.getIdHabitacion() == reservaId.getIdHabitacion()){
                                     out.print("<td>" + habitacion.getNumHabitacion() + "</td>");
                                     out.print("<td>" + habitacion.getTipoHabitacion() + "</td>");
-                                    out.print("<td>" + habitacion.getPrecio() + "</td></tr>");
+                                    out.print("<td>" + habitacion.getPrecioTotalTipoHabitacion()+ "</td></tr>");
                                 }
                             }
                         %>            
@@ -145,7 +145,7 @@
                                     if( habitacion.getIdHabitacion() == reserva.getIdHabitacion()){
                                         out.print("<td>" + habitacion.getNumHabitacion()+ "</td>");
                                         out.print("<td>" + habitacion.getTipoHabitacion() + "</td>");
-                                        out.print("<td>" + habitacion.getPrecio() + "</td></tr>");
+                                        out.print("<td>" + habitacion.getPrecioTotalTipoHabitacion()+ "</td></tr>");
                                     }
                                 }
                             }

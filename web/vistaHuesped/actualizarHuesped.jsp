@@ -40,9 +40,10 @@
                 <h1 class="form-title">Actualizar Huesped</h1>
 
                 <div class="form-container">
-                    <form class="form" method="post">
+                    <form class="form" method="post" accept-charset="UTF-8">
                         <div>
                             <%
+                                request.setCharacterEncoding("UTF-8");
                                 if ("POST".equalsIgnoreCase(request.getMethod())) {
 
                                     // Obtenemos los valores del formulario

@@ -59,7 +59,7 @@
                                         // Si se elimina una reserva, se tiene que actualizar el estado de la habitación a disponible
                                         for(Reserva reserva: reservas){
                                             if( idReserva == reserva.getIdReserva()){
-                                                controlador.actualizarHabitacion(reserva.getIdHabitacion(), true, reserva.getValor());
+                                                controlador.actualizarHabitacionReserva(reserva.getIdHabitacion(), true, reserva.getValor());
                                             }
                                         }
                                         controlador.eliminarReserva(idReserva);
@@ -111,7 +111,7 @@
                                     if( habitacion.getIdHabitacion() == reserva.getIdHabitacion()){
                                         out.print("<td>" + habitacion.getNumHabitacion() + "</td>");
                                         out.print("<td>" + habitacion.getTipoHabitacion() + "</td>");
-                                        out.print("<td>" + habitacion.getPrecio() + "</td></tr>");
+                                        out.print("<td>" + habitacion.getPrecioTotalTipoHabitacion() + "</td></tr>");
                                     }
                                 }
                             }

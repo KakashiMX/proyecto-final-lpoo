@@ -36,7 +36,6 @@
                     ArrayList<Habitacion> habitaciones = new ArrayList<>();
                     controlador.conectar();
                     reservas = controlador.consultarReservas();
-                    System.out.println(reservas.size());
                     if( reservas.size() == 0){
                         out.print("<br><br><h2 class=form-title>No tienes reservas agregadas</h1>");
                         return;
@@ -82,9 +81,9 @@
                                     if( habitacion.getIdHabitacion() == reservaOrdenada.getIdHabitacion()){
                                         out.print("<td>" + habitacion.getNumHabitacion() + "</td>");
                                         out.print("<td>" + habitacion.getTipoHabitacion() + "</td>");
+                                        out.print("<td>" + habitacion.getPrecioTotalTipoHabitacion() + "</td></tr>");
                                     }
                                 }
-                                out.print("<td>" + reservaOrdenada.getValor() + "</td></tr>");
                             }
                             controlador.desconectar();
                         %>            
