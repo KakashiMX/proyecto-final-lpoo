@@ -4,6 +4,8 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  * La clase {@code HabitacionSuite} representa una habitación de tipo suite en el sistema de reservas.
  * Los precios de las habitaciones suite varían entre $7,000 y $16,000 pesos, dependiendo de los servicios incluidos
@@ -134,6 +136,22 @@ public class HabitacionSuite extends Habitacion {
         }
         
         return precioBase;
+    }
+    
+     /**
+     * Muestra una lista de habitaciones suite que tienen servicio de habitación.
+     * @param habitaciones La lista de habitaciones suite a evaluar.
+     * @return Una lista de habitaciones suite que tienen servicio de habitación.
+     */
+    public ArrayList<HabitacionSuite> mostrarHabitacionConServicio (ArrayList<HabitacionSuite>habitaciones){
+        ArrayList <HabitacionSuite> habitacionesServi = new ArrayList<>();
+        for (HabitacionSuite hbServ: habitaciones){
+            if(hbServ.isServicioHabitacion()){
+             habitacionesServi.add(hbServ);
+            }    
+        }
+        return habitacionesServi;
+              
     }
     
 }

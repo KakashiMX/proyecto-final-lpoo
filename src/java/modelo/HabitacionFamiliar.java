@@ -4,6 +4,8 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  * La clase HabitacionFamiliar representa una habitación familiar en el 
  * sistema de reservas. Esta habitación puede tener sala, cocina y su 
@@ -156,5 +158,21 @@ public class HabitacionFamiliar extends Habitacion{
             precioBase += 1250;
         }
         return precioBase;
+    }
+    
+    /**
+     * Muestra una lista de habitaciones familiares que tienen sala.
+     * @param habitaciones La lista de habitaciones familiares a evaluar.
+     * @return Una lista de habitaciones familiares que tienen sala.
+     */
+    public ArrayList<HabitacionFamiliar> mostrarHabitacionConSala (ArrayList<HabitacionFamiliar>habitaciones){
+        ArrayList <HabitacionFamiliar> habitacionesSala = new ArrayList<>();
+        for (HabitacionFamiliar hbS: habitaciones){
+            if(hbS.isTieneSala()==true){
+             habitacionesSala.add(hbS);
+            }    
+        }
+        return habitacionesSala;
+              
     }
 }
