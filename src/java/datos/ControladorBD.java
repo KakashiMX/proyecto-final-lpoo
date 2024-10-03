@@ -94,9 +94,10 @@ public class ControladorBD {
     /**
      * Agrega un administrador a la base de datos.
      *
-     * @param usuario Objeto Administrador que representa al administrador a agregar.
-     * @return true si el administrador fue agregado correctamente, false si hubo
- algún error.
+     * @param usuario Objeto Administrador que representa al administrador 
+     * a agregar.
+     * @return true si el administrador fue agregado correctamente, false si 
+     * hubo algún error.
      */
     public boolean agregarAdministrador(Administrador usuario) {
         boolean estado = false;
