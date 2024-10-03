@@ -93,7 +93,7 @@
                                                 HabitacionSencilla habitacionSencilla = new HabitacionSencilla();
                                                 double precioTotalSencilla = habitacionSencilla.calcularPrecioTotal(precio);
                                                 habitacionSencilla = new HabitacionSencilla(numHabitacion, tipoHabitacion, disponibilidad, precio, precioTotalSencilla);
-                                                controlador.actualizarHabitacion(idHabitacion, numHabitacion, tipoHabitacion, disponibilidad, precio, precioTotalSencilla);
+                                                controlador.actualizarHabitacion(idHabitacion, numHabitacion, tipoHabitacion, disponibilidad);
                                                 
                                         }
                                     controlador.desconectar();

@@ -73,11 +73,11 @@
 
                                        for( Reserva reserva: reservas){
                                            if( reserva.getIdReserva() == idReserva){
-                                               controlador.actualizarHabitacionReserva(reserva.getIdHabitacion(), true, reserva.getValor());
+                                               controlador.actualizarHabitacionReserva(reserva.getIdHabitacion(), true);
                                            }
                                        }
                                        controlador.actualizarReserva(idReserva, fechaEntrada, fechaSalida, precio, formaPago, idHabitacion);
-                                       controlador.actualizarHabitacionReserva(idHabitacion, false, precio);
+                                       controlador.actualizarHabitacionReserva(idHabitacion, false);
                                        controlador.desconectar();
                                        response.sendRedirect("actualizarReserva.jsp");
                                             

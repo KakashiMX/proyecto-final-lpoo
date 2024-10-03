@@ -59,7 +59,7 @@
                                         // Si se elimina una reserva, se tiene que actualizar el estado de la habitación a disponible
                                         for(Reserva reserva: reservas){
                                             if( idReserva == reserva.getIdReserva()){
-                                                controlador.actualizarHabitacionReserva(reserva.getIdHabitacion(), true, reserva.getValor());
+                                                controlador.actualizarHabitacionReserva(reserva.getIdHabitacion(), true);
                                             }
                                         }
                                         controlador.eliminarReserva(idReserva);
