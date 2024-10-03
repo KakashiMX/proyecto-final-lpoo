@@ -358,6 +358,12 @@ public class ControladorBD {
         return estado;
     }
     
+    /**
+     * Agrega una habitación familiar a la base de datos.
+     *
+     * @param habitacionFamiliar La habitación que se va a agregar.
+     * @return true si la operación fue exitosa, false si ocurrió un error.
+     */
     public boolean agregarHabitacionFamiliar(HabitacionFamiliar habitacionFamiliar) {
         boolean estado = false;
 
@@ -383,6 +389,12 @@ public class ControladorBD {
         return estado;
     }
     
+    /**
+     * Agrega una habitación suite a la base de datos.
+     * 
+     * @param habitacionSuite
+     * @return 
+     */
     public boolean agregarHabitacionSuite(HabitacionSuite habitacionSuite) {
         boolean estado = false;
 

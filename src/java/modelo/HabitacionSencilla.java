@@ -16,11 +16,12 @@ package modelo;
  * <p>Utilizada cuando se desea representar una habitación de tipo sencilla, 
  * sin sala ni cocina.
  * 
+ * @see Habitacion
+ * 
  * @author Nava Ricardo
  * @author Ceron Cristian
  * @author Hernández Monserrath
  * @version 2024/09/30
- * @see Habitacion
  */
 public class HabitacionSencilla extends Habitacion {
 
