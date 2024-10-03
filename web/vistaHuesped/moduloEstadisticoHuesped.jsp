@@ -132,8 +132,7 @@
                             <option value="">--Seleccionar--</option>
                             <%
                                 for (Map.Entry<String, Integer> entry : numHuespedesApellido.entrySet()) {
-                                    String selected = (entry.getKey().equals(request.getParameter("apellidoComun"))) ? "selected" : "";
-                                    out.print("<option value='" + entry.getKey() + "' " + selected + ">" + entry.getKey() + "</option>");
+                                    out.print("<option>" + entry.getKey() + "</option>");
                                 }
                             %>
                         </select>
