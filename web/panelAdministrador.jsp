@@ -62,7 +62,7 @@
         <script>
             const nombreUsuario = localStorage.getItem("Usuario");
             const btnCerrarSesion = document.getElementById("cerrarSesion");
-            document.getElementById('bienvenida').textContent = "Bienvenido '" + nombreUsuario + "'";
+            document.getElementById('bienvenida').textContent = "Bienvenido '" + nombreUsuario + "'" + " al Hotel CRB Palace";
             btnCerrarSesion.addEventListener('click', () => {
                 localStorage.removeItem("Usuario");
             });
