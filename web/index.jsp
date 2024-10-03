@@ -46,8 +46,6 @@
                             boolean existe = controlador.verificarContrasena(nombreUsuario, contrasena);
 
                             if (existe) {
-                                // si el usuario existe, hay que traer su información ya que depende del rol del usuario
-                                // para ver a donde será redireccionado
                                 Administrador administrador = new Administrador();
                                 administrador = controlador.consultarAdministrador(nombreUsuario, contrasena);
                                 controlador.desconectar();
