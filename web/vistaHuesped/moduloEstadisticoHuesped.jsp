@@ -84,13 +84,15 @@
                             <option value="">--Seleccionar--</option>
                             <%
                                 for (Map.Entry<String, Integer> entry : numHuespedesNombre.entrySet()) {
-                                    out.print("<option>" + entry.getKey() +  "</option>");
+                                    out.print("<option>" + entry.getKey() + "</option>");
                                 }
                             %>
                         </select>
                     </form>
 
-                    <% String nombre = request.getParameter("nombreComun"); %>
+                    <% 
+                        request.setCharacterEncoding("UTF-8"); 
+                        String nombre = request.getParameter("nombreComun"); %>
                     <% if (nombre != null && !nombre.isEmpty()) {%>
                     <table>
                         <tr>
@@ -103,7 +105,7 @@
                         </tr>
                     </table>
                     <% } %>
-                    
+
                     <h2>Número de Huéspedes con el Mismo Apellido</h2>
 
                     <form method="POST" action="">
@@ -112,13 +114,16 @@
                             <option value="">--Seleccionar--</option>
                             <%
                                 for (Map.Entry<String, Integer> entry : numHuespedesApellido.entrySet()) {
-                                    out.print("<option>" + entry.getKey() +  "</option>");
+                                    String selected = (entry.getKey().equals(request.getParameter("apellidoComun"))) ? "selected" : "";
+                                    out.print("<option value='" + entry.getKey() + "' " + selected + ">" + entry.getKey() + "</option>");
                                 }
                             %>
                         </select>
                     </form>
 
-                    <% String apellido = request.getParameter("apellidoComun"); %>
+                    <% 
+                        request.setCharacterEncoding("UTF-8"); 
+                        String apellido = request.getParameter("apellidoComun"); %>
                     <% if (apellido != null && !apellido.isEmpty()) {%>
                     <table>
                         <tr>
