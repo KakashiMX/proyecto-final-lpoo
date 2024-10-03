@@ -35,8 +35,8 @@
                     controlador.conectar();
                     huespedes = controlador.consultarHuspedes();
                     controlador.desconectar();
-                    
-                    if( huespedes.size() == 0){
+
+                    if (huespedes.size() == 0) {
                         out.print("<br><br><h2 class=form-title>No tienes huéspedes agregados</h1>");
                         return;
                     }
@@ -46,6 +46,8 @@
                     Map<String, Integer> numHuespedesIntervaloEdad = Huesped.contarPorRangosDeEdad(huespedes);
                     Map<String, Integer> numHuespedesNombre = Huesped.nombresMasComunes(huespedes);
                     Map<String, Integer> numHuespedesApellido = Huesped.apellidosMasComunes(huespedes);
+
+
                 %>
 
                 <div class="main-content">
@@ -55,8 +57,7 @@
                             <th>Nacionalidad</th>
                             <th>Cantidad</th>
                         </tr>
-                        <%
-                            for (Map.Entry<String, Integer> entry : numHuespedesNacionalidad.entrySet()) {
+                        <%                            for (Map.Entry<String, Integer> entry : numHuespedesNacionalidad.entrySet()) {
                                 out.println("<tr><td>" + entry.getKey() + "</td><td>" + entry.getValue() + "</td></tr>");
                             }
                         %>
@@ -76,30 +77,60 @@
                     </table>
 
                     <h2>Número de Huéspedes con el Mismo Nombre</h2>
+
+                    <form method="GET" action="">
+                        <p>Seleccione el nombre</p>
+                        <select name="nombreComun" class="form-input" required="true" onchange="this.form.submit()">
+                            <option value="">--Seleccionar--</option>
+                            <%
+                                for (Map.Entry<String, Integer> entry : numHuespedesNombre.entrySet()) {
+                                    out.print("<option>" + entry.getKey() +  "</option>");
+                                }
+                            %>
+                        </select>
+                    </form>
+
+                    <% String nombre = request.getParameter("nombreComun"); %>
+                    <% if (nombre != null && !nombre.isEmpty()) {%>
                     <table>
                         <tr>
                             <th>Nombre</th>
                             <th>Cantidad</th>
                         </tr>
-                        <%
-                            for (Map.Entry<String, Integer> entry : numHuespedesNombre.entrySet()) {
-                                out.println("<tr><td>" + entry.getKey() + "</td><td>" + entry.getValue() + "</td></tr>");
-                            }
-                        %>
+                        <tr>
+                            <td><%= nombre%></td>
+                            <td><%= numHuespedesNombre.get(nombre)%></td>
+                        </tr>
                     </table>
-
+                    <% } %>
+                    
                     <h2>Número de Huéspedes con el Mismo Apellido</h2>
+
+                    <form method="GET" action="">
+                        <p>Seleccione el apellido:</p>
+                        <select name="apellidoComun" class="form-input" required="true" onchange="this.form.submit()">
+                            <option value="">--Seleccionar--</option>
+                            <%
+                                for (Map.Entry<String, Integer> entry : numHuespedesApellido.entrySet()) {
+                                    out.print("<option>" + entry.getKey() +  "</option>");
+                                }
+                            %>
+                        </select>
+                    </form>
+
+                    <% String apellido = request.getParameter("apellidoComun"); %>
+                    <% if (apellido != null && !apellido.isEmpty()) {%>
                     <table>
                         <tr>
                             <th>Apellido</th>
                             <th>Cantidad</th>
                         </tr>
-                        <%
-                            for (Map.Entry<String, Integer> entry : numHuespedesApellido.entrySet()) {
-                                out.println("<tr><td>" + entry.getKey() + "</td><td>" + entry.getValue() + "</td></tr>");
-                            }
-                        %>
+                        <tr>
+                            <td><%= apellido%></td>
+                            <td><%= numHuespedesApellido.get(apellido)%></td>
+                        </tr>
                     </table>
+                    <% } %>
 
                     <h2>Promedio de la Edad de Huéspedes</h2>
                     <table>
