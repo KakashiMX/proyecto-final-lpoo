@@ -16,11 +16,13 @@ package modelo;
  * calcularPrecioTotal para ajustar el precio según las características 
  * de la habitación.
  * 
+ * @see Habitacion
+ * 
  * @author Nava Ricardo
  * @author Ceron Cristian
  * @author Hernández Monserrath
  * @version 2024/09/30
- * @see Habitacion
+ * 
  */
 
 // los precios de la habitación familiar varian entre $4,000 y $7,000 pesos
