@@ -492,25 +492,21 @@ public class ControladorBD {
      * @param numHabitacion El nuevo número de la habitación.
      * @param tipoHabitacion El nuevo tipo de la habitación.
      * @param disponibilidad La nueva disponibilidad de la habitación.
-     * @param precio El nuevo precio de la habitación.
-     * @param precioTotal El nuevo precio total de la habitación "solo si incluye servicios".
      * @return true si la operación fue exitosa, false si ocurrió un error.
      */
     // Actualiza información de una habitación
     //Pueden agregar más atributos a actualizar, yo sólo agregue estos
-    public boolean actualizarHabitacion(int idHabitacion, String numHabitacion, String tipoHabitacion, boolean disponibilidad, double precio, double precioTotal) {
+    public boolean actualizarHabitacion(int idHabitacion, String numHabitacion, String tipoHabitacion, boolean disponibilidad) {
         boolean estado = false;
         PreparedStatement ps;
-        String query = "UPDATE habitacion SET numero_habitacion=?, tipo_habitacion=?, estado_disponibilidad = ?, precio = ?, precio_total WHERE id=?";
+        String query = "UPDATE habitacion SET numero_habitacion=?, tipo_habitacion=?, estado_disponibilidad = ? WHERE id=?";
 
         try {
             ps = conexion.prepareStatement(query);
             ps.setString(1, numHabitacion);
             ps.setString(2, tipoHabitacion);
             ps.setBoolean(3, disponibilidad);
-            ps.setDouble(4, precio);
-            ps.setDouble(5, precioTotal);
-            ps.setInt(6, idHabitacion);
+            ps.setInt(4, idHabitacion);
             ps.execute();
             estado = true;
         } catch (SQLException ex) {
@@ -603,19 +599,17 @@ public class ControladorBD {
      *
      * @param idHabitacion El ID de la habitación que se va a actualizar.
      * @param disponibilidad La nueva disponibilidad de la habitación.
-     * @param precio El nuevo precio de la habitación.
      * @return true si la operación fue exitosa, false si ocurrió un error.
      */
-    public boolean actualizarHabitacionReserva(int idHabitacion, boolean disponibilidad, double precio) {
+    public boolean actualizarHabitacionReserva(int idHabitacion, boolean disponibilidad) {
         boolean estado = false;
         PreparedStatement ps;
-        String query = "UPDATE habitacion SET estado_disponibilidad = ?, precio = ? WHERE id=?";
+        String query = "UPDATE habitacion SET estado_disponibilidad = ? WHERE id=?";
 
         try {
             ps = conexion.prepareStatement(query);
             ps.setBoolean(1, disponibilidad);
-            ps.setDouble(2, precio);
-            ps.setInt(3, idHabitacion);
+            ps.setInt(2, idHabitacion);
             ps.execute();
             estado = true;
         } catch (SQLException ex) {

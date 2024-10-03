@@ -73,7 +73,7 @@
                                             Reserva reserva = new Reserva(fechaEntrada, fechaSalida, precio, formaPago, idHabitacion, idCliente);
                                             controlador.agregarReserva(reserva);
 
-                                            controlador.actualizarHabitacionReserva(idHabitacion, false, precio);
+                                            controlador.actualizarHabitacionReserva(idHabitacion, false);
                                             controlador.desconectar();
                                             out.println("<p style='color:green;'>La reserva se agregó correctamente</p>");
                                             response.sendRedirect("agregarReserva.jsp");
