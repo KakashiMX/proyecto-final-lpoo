@@ -78,7 +78,7 @@
 
                     <h2>Número de Huéspedes con el Mismo Nombre</h2>
 
-                    <form method="GET" action="">
+                    <form method="POST" action="">
                         <p>Seleccione el nombre</p>
                         <select name="nombreComun" class="form-input" required="true" onchange="this.form.submit()">
                             <option value="">--Seleccionar--</option>
@@ -106,7 +106,7 @@
                     
                     <h2>Número de Huéspedes con el Mismo Apellido</h2>
 
-                    <form method="GET" action="">
+                    <form method="POST" action="">
                         <p>Seleccione el apellido:</p>
                         <select name="apellidoComun" class="form-input" required="true" onchange="this.form.submit()">
                             <option value="">--Seleccionar--</option>
