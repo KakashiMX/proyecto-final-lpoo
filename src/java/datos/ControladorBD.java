@@ -153,10 +153,11 @@ public class ControladorBD {
     /**
      * Consulta un administrador específico en la base de datos.
      *
-     * @param nombreAdministrador Nombre de administrador del administrador a consultar.
+     * @param nombreAdministrador Nombre de administrador del 
+     * administrador a consultar.
      * @param contrasena Contraseña del administrador a consultar.
-     * @return Objeto Administrador si se encuentra en la base de datos, o un Administrador
- vacío si no se encuentra.
+     * @return Objeto Administrador si se encuentra en la base de datos, o un 
+     * Administrador vacío si no se encuentra.
      */
     public Administrador consultarAdministrador(String nombreAdministrador, String contrasena) {
         Administrador administrador = new Administrador();
@@ -183,8 +184,8 @@ public class ControladorBD {
     }
 
     /**
-     * Verifica si ya existe un administrador con el nombre especificado en la base de
- datos.
+     * Verifica si ya existe un administrador con el nombre
+     * especificado en la base de datos.
      *
      * @param nombreAdministrador Nombre de administrador a verificar.
      * @return true si el administrador ya existe, false si no existe.
@@ -294,8 +295,8 @@ public class ControladorBD {
     }
 
     /**
-     * Verifica si la contraseña ingresada coincide con la almacenada en la base
- de datos para el administrador especificado.
+     * Verifica si la contraseña ingresada coincide con la 
+     * almacenada en la base de datos para el administrador especificado.
      *
      * @param usuario Nombre de administrador.
      * @param contrasenaIngresada Contraseña a verificar
