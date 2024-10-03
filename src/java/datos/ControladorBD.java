@@ -492,8 +492,6 @@ public class ControladorBD {
      * @param numHabitacion El nuevo número de la habitación.
      * @param tipoHabitacion El nuevo tipo de la habitación.
      * @param disponibilidad La nueva disponibilidad de la habitación.
-     * @param precio El nuevo precio de la habitación.
-     * @param precioTotal El nuevo precio total de la habitación "solo si incluye servicios".
      * @return true si la operación fue exitosa, false si ocurrió un error.
      */
     // Actualiza información de una habitación
