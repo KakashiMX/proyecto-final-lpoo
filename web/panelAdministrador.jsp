@@ -44,10 +44,11 @@
                 <ul>
                     <li>Registrar nuevas reservas</li>
                     <li>Registrar nuevos huéspedes</li>
-                    <li>Editar reservas y huéspedes existentes</li>
-                    <li>Eliminar registros de reservas y huéspedes</li>
-                    <li>Consultar el historial de reservas</li>
-                    <li>Ver estadísticas básicas de ocupación y ventas</li>
+                    <li>Registrar nuevas habitaciones</li>
+                    <li>Editar reservas, huéspedes y habitaciones existentes</li>
+                    <li>Eliminar registros de reservas, huéspedes y habitaciones</li>
+                    <li>Consultar el historial de reservas, huéspedes y habitaciones</li>
+                    <li>Ver estadísticas básicas de reservas, huéspedes y habitaciones</li>
                 </ul>
 
                 <h2>Instrucciones de Uso</h2>
