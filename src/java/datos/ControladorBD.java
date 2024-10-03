@@ -599,7 +599,6 @@ public class ControladorBD {
      *
      * @param idHabitacion El ID de la habitación que se va a actualizar.
      * @param disponibilidad La nueva disponibilidad de la habitación.
-     * @param precio El nuevo precio de la habitación.
      * @return true si la operación fue exitosa, false si ocurrió un error.
      */
     public boolean actualizarHabitacionReserva(int idHabitacion, boolean disponibilidad) {
