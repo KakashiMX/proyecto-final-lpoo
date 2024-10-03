@@ -52,17 +52,35 @@
 
                 <div class="main-content">
                     <h2>Número de Huéspedes por Nacionalidad</h2>
+                    
+                     <form method="POST" action="">
+                        <p>Seleccione la nacionalidad</p>
+                        <select name="nacionalidad" class="form-input" required="true" onchange="this.form.submit()">
+                            <option value="">--Seleccionar--</option>
+                            <%
+                                for (Map.Entry<String, Integer> entry : numHuespedesNacionalidad.entrySet()) {
+                                    out.print("<option>" + entry.getKey() + "</option>");
+                                }
+                            %>
+                        </select>
+                    </form>
+
+                    <%
+                        request.setCharacterEncoding("UTF-8");
+                        String nacionalidad = request.getParameter("nacionalidad"); %>
+                    <% if (nacionalidad != null && !nacionalidad.isEmpty()) {%>
                     <table>
                         <tr>
                             <th>Nacionalidad</th>
                             <th>Cantidad</th>
                         </tr>
-                        <%                            for (Map.Entry<String, Integer> entry : numHuespedesNacionalidad.entrySet()) {
-                                out.println("<tr><td>" + entry.getKey() + "</td><td>" + entry.getValue() + "</td></tr>");
-                            }
-                        %>
+                        <tr>
+                            <td><%= nacionalidad%></td>
+                            <td><%= numHuespedesNacionalidad.get(nacionalidad)%></td>
+                        </tr>
                     </table>
-
+                    <% } %>
+                    
                     <h2>Número de Huéspedes por Intervalo de Edad</h2>
                     <table>
                         <tr>
@@ -90,8 +108,8 @@
                         </select>
                     </form>
 
-                    <% 
-                        request.setCharacterEncoding("UTF-8"); 
+                    <%
+                        request.setCharacterEncoding("UTF-8");
                         String nombre = request.getParameter("nombreComun"); %>
                     <% if (nombre != null && !nombre.isEmpty()) {%>
                     <table>
@@ -121,8 +139,8 @@
                         </select>
                     </form>
 
-                    <% 
-                        request.setCharacterEncoding("UTF-8"); 
+                    <%
+                        request.setCharacterEncoding("UTF-8");
                         String apellido = request.getParameter("apellidoComun"); %>
                     <% if (apellido != null && !apellido.isEmpty()) {%>
                     <table>
