@@ -6,6 +6,9 @@
     Author     : Hernández Monserrath
 --%>
 
+<%@page import="modelo.Habitacion"%>
+<%@page import="modelo.Reserva"%>
+<%@page import="modelo.HabitacionSencilla"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="modelo.Huesped"%>
@@ -44,6 +47,18 @@
                             Integer id = Integer.parseInt(request.getParameter("id"));
                             
                             controlador.conectar();
+                            ArrayList<Habitacion> habitaciones = controlador.consultarHabitaciones();
+                            ArrayList<Reserva> reservas = controlador.consultarReservas();
+                            for( Reserva reserva: reservas){
+                                if( reserva.getIdCliente() == id){
+                                    for( Habitacion habitacion: habitaciones){
+                                        if( habitacion.getIdHabitacion() == reserva.getIdHabitacion()){
+                                            controlador.actualizarHabitacionReserva(habitacion.getIdHabitacion(), true);
+                                            break;
+                                        }
+                                    }   
+                                }
+                            }
                             controlador.eliminarHuesped(id);
                             controlador.desconectar();
                             response.sendRedirect("eliminarHuesped.jsp");
