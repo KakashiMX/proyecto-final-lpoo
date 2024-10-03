@@ -507,6 +507,20 @@ public class ControladorBD {
         return estado;
     }
     
+    /**
+    * Actualiza los datos de una habitación familiar en la base de datos.
+    *
+    * Este método toma un objeto de tipo {@link HabitacionFamiliar} y actualiza
+    * los campos correspondientes en la tabla de habitaciones. Los campos que se 
+    * actualizan incluyen el número de habitación, tipo de habitación, 
+    * capacidad máxima, estado de sala y cocina, disponibilidad, precio y 
+    * precio total. 
+    *
+    * @param habitacionFamiliar El objeto {@link HabitacionFamiliar} que contiene
+    *                           los nuevos datos para la actualización.
+    * @return true si la actualización se realizó con éxito; false en caso
+    *         contrario.
+    */
     public boolean actualizarHabitacionFamiliar(HabitacionFamiliar habitacionFamiliar){
          boolean estado = false;
         PreparedStatement ps;
@@ -533,6 +547,20 @@ public class ControladorBD {
         return estado;
     }
     
+    /**
+    * Actualiza los datos de una habitación suite en la base de datos.
+    *
+    * Este método toma un objeto de tipo {@link HabitacionSuite} y actualiza
+    * los campos correspondientes en la tabla de habitaciones. Los campos que se 
+    * actualizan incluyen el número de habitación, tipo de habitación, 
+    * servicio a la habitación, vista, disponibilidad, precio y 
+    * precio total. 
+    *
+    * @param habitacionSuite El objeto {@link HabitacionSuite} que contiene
+    *                        los nuevos datos para la actualización.
+    * @return true si la actualización se realizó con éxito; false en caso
+    *         contrario.
+    */
     public boolean actualizarHabitacionSuite(HabitacionSuite habitacionSuite){
         System.out.println(habitacionSuite.getIdHabitacion());
          boolean estado = false;
